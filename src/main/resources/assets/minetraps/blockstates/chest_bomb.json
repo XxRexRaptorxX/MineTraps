@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "minetraps:block/chest_bomb", "y": 0},
+        "facing=south": { "model": "minetraps:block/chest_bomb", "y": 180},
+        "facing=east": {  "model": "minetraps:block/chest_bomb", "y": 90},
+        "facing=west": {  "model": "minetraps:block/chest_bomb", "y": 270}
+    }
+}

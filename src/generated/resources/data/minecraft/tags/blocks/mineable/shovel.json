@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "minetraps:quicksand",
+    "minetraps:nail_trap",
+    "minetraps:toxic_nail_trap",
+    "minetraps:explosive_mine",
+    "minetraps:toxic_mine",
+    "minetraps:pitfall_trap",
+    "minetraps:bear_trap",
+    "minetraps:mud"
+  ]
+}

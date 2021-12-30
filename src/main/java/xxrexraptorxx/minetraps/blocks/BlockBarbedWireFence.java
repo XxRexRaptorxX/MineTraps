@@ -1,0 +1,111 @@
+package xxrexraptorxx.minetraps.blocks;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CrossCollisionBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+public class BlockBarbedWireFence extends CrossCollisionBlock {
+
+	public BlockBarbedWireFence() {
+		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, Properties.of(Material.STONE)
+				.requiresCorrectToolForDrops()
+				.strength(5.0F, 10.0F)
+				.sound(SoundType.METAL)
+				.color(MaterialColor.METAL)
+				.noOcclusion()
+				.noCollission()
+		);
+
+		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
+	}
+
+
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockGetter blockgetter = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
+		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+		BlockPos blockpos1 = blockpos.north();
+		BlockPos blockpos2 = blockpos.south();
+		BlockPos blockpos3 = blockpos.west();
+		BlockPos blockpos4 = blockpos.east();
+		BlockState blockstate = blockgetter.getBlockState(blockpos1);
+		BlockState blockstate1 = blockgetter.getBlockState(blockpos2);
+		BlockState blockstate2 = blockgetter.getBlockState(blockpos3);
+		BlockState blockstate3 = blockgetter.getBlockState(blockpos4);
+		return this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.attachsTo(blockstate, blockstate.isFaceSturdy(blockgetter, blockpos1, Direction.SOUTH)))).setValue(SOUTH, Boolean.valueOf(this.attachsTo(blockstate1, blockstate1.isFaceSturdy(blockgetter, blockpos2, Direction.NORTH)))).setValue(WEST, Boolean.valueOf(this.attachsTo(blockstate2, blockstate2.isFaceSturdy(blockgetter, blockpos3, Direction.EAST)))).setValue(EAST, Boolean.valueOf(this.attachsTo(blockstate3, blockstate3.isFaceSturdy(blockgetter, blockpos4, Direction.WEST)))).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+	}
+
+
+	@Override
+	public BlockState updateShape(BlockState p_54211_, Direction p_54212_, BlockState p_54213_, LevelAccessor p_54214_, BlockPos p_54215_, BlockPos p_54216_) {
+		if (p_54211_.getValue(WATERLOGGED)) {
+			p_54214_.scheduleTick(p_54215_, Fluids.WATER, Fluids.WATER.getTickDelay(p_54214_));
+		}
+
+		return p_54212_.getAxis().isHorizontal() ? p_54211_.setValue(PROPERTY_BY_DIRECTION.get(p_54212_), Boolean.valueOf(this.attachsTo(p_54213_, p_54213_.isFaceSturdy(p_54214_, p_54216_, p_54212_.getOpposite())))) : super.updateShape(p_54211_, p_54212_, p_54213_, p_54214_, p_54215_, p_54216_);
+	}
+
+
+	@Override
+	public VoxelShape getVisualShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
+	}
+
+
+	@Override
+	public boolean skipRendering(BlockState state, BlockState state2, Direction direction) {
+		if (state2.is(this)) {
+			if (!direction.getAxis().isHorizontal()) {
+				return true;
+			}
+
+			if (state.getValue(PROPERTY_BY_DIRECTION.get(direction)) && state2.getValue(PROPERTY_BY_DIRECTION.get(direction.getOpposite()))) {
+				return true;
+			}
+		}
+
+		return super.skipRendering(state, state2, direction);
+	}
+
+
+	public final boolean attachsTo(BlockState state, boolean p_54219_) {
+		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof net.minecraft.world.level.block.IronBarsBlock || state.is(BlockTags.WALLS);
+	}
+
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
+		state.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
+	}
+
+
+	@Override
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
+
+		if (!level.isClientSide) {
+			entity.hurt(DamageSource.GENERIC, 1.0F);
+		}
+	}
+
+
+	}

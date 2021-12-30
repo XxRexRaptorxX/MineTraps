@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  
+    " # ",
+    "# #",
+    " # "
+  ],
+  
+  "key": {
+    "#": {
+      "item": "minetraps:barbed_wire"
+    }
+  },
+  
+  "result": {
+    "item": "minetraps:razor_wire"
+  }
+}

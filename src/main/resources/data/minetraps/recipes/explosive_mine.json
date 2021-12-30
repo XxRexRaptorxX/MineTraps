@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  
+    "#X#",
+    "#O#",
+    "###"
+  ],
+    
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "item": "minecraft:tnt"
+    },
+    "X": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    }
+  },
+  
+  "result": {
+    "item": "minetraps:explosive_mine"
+  }
+}

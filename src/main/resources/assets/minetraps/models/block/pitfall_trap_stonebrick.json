@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "minetraps:block/pitfall_trap_stonebrick",
+        "up": "minecraft:block/stone_bricks",
+        "down": "minetraps:block/pitfall_trap_stonebrick",
+        "north": "minetraps:block/pitfall_trap_stonebrick",
+        "east": "minetraps:block/pitfall_trap_stonebrick",
+        "west": "minetraps:block/pitfall_trap_stonebrick",
+        "south": "minetraps:block/pitfall_trap_stonebrick"
+    }
+}

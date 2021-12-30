@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "powered=false": { "model": "minetraps:block/spikes_toxic" },
+        "powered=true": { "model": "minetraps:block/spikes_toxic_on" }
+    }
+}
+

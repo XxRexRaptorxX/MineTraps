@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[38,)"
+license="All rights reserved"
+issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/minetraps/issues"
+
+[[mods]]
+modId="minetraps"
+version="2.0.0-pre4"
+displayName="MineTraps"
+itemIcon="minetraps:pitfall_trap"
+updateJSONURL="https://raw.githubusercontent.com/XxRexRaptorxX/Update-Checker/main/MineTraps.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/minetraps"
+logoFile="logo.png"
+#credits=""
+authors="XxRexRaptorxX (RexRaptor)"
+description='''
+This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!
+'''
+
+[[dependencies.minetraps]]
+    modId="forge"
+    mandatory=true
+    versionRange="[38,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.minetraps]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18,1.19)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,144 @@
+package xxrexraptorxx.minetraps.blocks;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import xxrexraptorxx.minetraps.main.ModBlocks;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
+
+public class BlockSpikes extends FallingBlock {
+
+	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+	protected static final VoxelShape OM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
+	protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+
+	public BlockSpikes() {
+		super(Properties.of(Material.METAL)
+				.requiresCorrectToolForDrops()
+				.strength(1.8F, 7.0F)
+				.sound(SoundType.METAL)
+				.color(MaterialColor.METAL)
+				.noCollission()
+				.noOcclusion()
+		);
+
+		this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));
+	}
+
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+		return Shapes.empty();
+	}
+
+
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		if (state.getValue(POWERED)) {
+			return OM_SHAPE;
+		} else {
+			return OFF_SHAPE;
+		}
+	}
+
+
+	@Override
+	public boolean canConnectRedstone(BlockState state, BlockGetter world, BlockPos pos, @Nullable Direction direction) {
+		return true;
+	}
+
+
+	@Override
+	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+		return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
+	}
+
+
+	@Override
+	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> list, TooltipFlag pFlag) {
+		list.add(new TranslatableComponent("message.minetraps.spike.desc").withStyle(ChatFormatting.GRAY));
+	}
+
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+		pBuilder.add(POWERED);
+	}
+
+
+	@Override
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
+		if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
+			LivingEntity entity = (LivingEntity) entityIn;
+
+			entity.hurt(DamageSource.GENERIC, 4.0F);
+			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, 250, 0));
+		}
+	}
+
+
+	@Nullable
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+		return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())));
+	}
+
+
+	@Override
+	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+		if (!level.isClientSide) {
+			boolean flag = state.getValue(POWERED);
+			if (flag != level.hasNeighborSignal(pos)) {
+				if (flag) {
+					level.scheduleTick(pos, this, 4);
+				} else {
+					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
+					level.setBlock(pos, state.cycle(POWERED), 2);
+				}
+			}
+		}
+	}
+
+
+	@Override
+	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
+		if (pState.getValue(POWERED) && !pLevel.hasNeighborSignal(pPos)) {
+			pLevel.setBlock(pPos, pState.cycle(POWERED), 2);
+		}
+	}
+
+
+}

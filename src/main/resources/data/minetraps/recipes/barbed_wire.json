@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  
+    "#X#",
+    "X#X",
+    "#X#" 
+  ],
+    
+  "key": {
+    "#": {
+      "item": "minetraps:nails"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  
+  "result": {
+    "item": "minetraps:barbed_wire"
+  }
+}

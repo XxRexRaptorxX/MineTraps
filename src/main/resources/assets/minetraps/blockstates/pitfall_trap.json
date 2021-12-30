@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "type=0": { "model": "minetraps:block/pitfall_trap" },
+        "type=1": { "model": "minetraps:block/pitfall_trap_dirt" },
+        "type=2": { "model": "minetraps:block/pitfall_trap_stone" },
+        "type=3": { "model": "minetraps:block/pitfall_trap_planks" },
+        "type=4": { "model": "minetraps:block/pitfall_trap_sand" },
+        "type=5": { "model": "minetraps:block/pitfall_trap_cobblestone" },
+        "type=6": { "model": "minetraps:block/pitfall_trap_stonebrick" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "minetraps:block/barbed_wire", "y": 0},
+        "facing=south": { "model": "minetraps:block/barbed_wire", "y": 180},
+        "facing=east": {  "model": "minetraps:block/barbed_wire", "y": 90},
+        "facing=west": {  "model": "minetraps:block/barbed_wire", "y": 270}
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "parent": "block/block",
+	"__comment": "Designed by RexRaptor with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "minetraps:block/bear_trap",
+		"texture": "minetraps:block/bear_trap"
+	},
+	"elements": [
+		{
+			"__comment": "Plane",
+			"from": [ 0, 0.5, 0 ],
+			"to": [ 16, 0.501, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+        "firstperson_righthand": {
+            "rotation":  [ 30, -90, 180 ],
+            "translation":  [ 0, 0, -1.391 ],
+            "scale":  [ 0.4, 0.4, 0.4 ]
+        },
+        "firstperson_lefthand": {
+            "rotation":  [ 30, -90, 180 ],
+            "translation":  [ 0, 0, -1.391 ],
+            "scale":  [ 0.4, 0.4, 0.4 ]
+        },
+		"gui": {
+			"rotation":  [ 30, 225, 0 ],
+			"translation":  [ 0, 3.4782, 0 ],
+			"scale":  [ 0.625, 0.625, 0.625 ]
+		},
+		"ground": {
+			"translation":  [ 0, 3, 0 ],
+			"scale":  [ 0.25, 0.25, 0.25 ]
+		},
+		"fixed": {
+			"rotation":  [ -90, 0, 0 ],
+			"translation":  [ 0, 0, -6.956 ]
+		}
+	}
+}

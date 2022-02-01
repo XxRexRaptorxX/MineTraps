@@ -8,6 +8,10 @@ import org.apache.logging.log4j.Logger;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.world.OreGenerator;
 
+/**
+ * @author XxRexRaptorxX (RexRaptor)
+ * @projectPage https://www.curseforge.com/minecraft/mc-mods/minetraps
+ **/
 @Mod(References.MODID)
 public class MineTraps {
 

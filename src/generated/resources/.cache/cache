@@ -14,6 +14,7 @@ d0b4cad58456fb24fbbd415222d8d94d4d21caed assets/minetraps/models/item/obstacle.j
 e0b3ad209886083c5babdf5cfa10e459335a3bf3 assets/minetraps/models/item/toxic_mine.json
 d56d24bb420e8affb66d59e1af3444661fb7d337 assets/minetraps/models/item/toxic_nail_trap.json
 a630378a7394c4043fb7c78b87e531c95a2d65db assets/minetraps/models/item/toxin_bottle.json
+ca7e9d0c147cb9842ea5d05f5e41e1aa5de2c066 assets/minetraps/models/item/toxin_bucket.json
 1210d14611c1533b1c310c04c79cb0e2a6262d05 data/minecraft/tags/blocks/mineable/axe.json
 75123020bb060711fa3fccf41aa4fab0f4c80557 data/minecraft/tags/blocks/mineable/pickaxe.json
 6fc16e33b1ce326c7ebe3d5cb3de8fc180f0df1f data/minecraft/tags/blocks/mineable/shovel.json

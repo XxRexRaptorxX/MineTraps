@@ -3,7 +3,7 @@
   "ingredients": [
 
     {  
-      "item": "toxin_bucket"
+      "item": "minetraps:toxin_bucket"
     },
     {  
       "item": "minecraft:glass_bottle"

@@ -52,7 +52,7 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(BlockStateProperties.FACING);
+		builder.add(BlockStateProperties.HORIZONTAL_FACING);
 
 	}
 
@@ -60,7 +60,7 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-			return defaultBlockState().setValue(BlockStateProperties.FACING, context.getHorizontalDirection().getOpposite());
+		return defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 }

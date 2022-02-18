@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -22,6 +23,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWireFence extends CrossCollisionBlock {
 
@@ -103,7 +106,14 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
 
 		if (!level.isClientSide) {
-			entity.hurt(DamageSource.GENERIC, 1.0F);
+			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
+				entity.hurt(DamageSource.GENERIC, 1.0F);
+
+			} else {
+				if (entity instanceof LivingEntity) {
+					entity.hurt(DamageSource.GENERIC, 1.0F);
+				}
+			}
 		}
 	}
 

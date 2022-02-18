@@ -3,6 +3,7 @@ package xxrexraptorxx.minetraps.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -17,6 +18,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.utils.Config;
 
 import javax.annotation.Nullable;
 
@@ -42,8 +44,15 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
 
 		if (!level.isClientSide) {
-			if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(DamageSource.GENERIC, 1.0F);
-			if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(DamageSource.GENERIC, 3.0F);
+			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
+				if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(DamageSource.GENERIC, 1.0F);
+				if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(DamageSource.GENERIC, 3.0F);
+			} else {
+				if (entity instanceof LivingEntity) {
+					if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(DamageSource.GENERIC, 1.0F);
+					if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(DamageSource.GENERIC, 3.0F);
+				}
+			}
 		}
 	}
 

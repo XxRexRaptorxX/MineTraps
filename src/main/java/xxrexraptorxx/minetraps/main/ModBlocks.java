@@ -68,6 +68,12 @@ public class ModBlocks {
     public static final RegistryObject<BlockPitfallTrap> PITFALL_TRAP = BLOCKS.register("pitfall_trap", BlockPitfallTrap::new);
     public static final RegistryObject<Item> PITFALL_TRAP_BLOCKITEM = ITEMS.register("pitfall_trap", () -> new BlockItem(PITFALL_TRAP.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));
 
+    public static final RegistryObject<BlockGhost> GHOST_BLOCK = BLOCKS.register("ghost_block", BlockGhost::new);
+    public static final RegistryObject<Item> GHOST_BLOCK_BLOCKITEM = ITEMS.register("ghost_block", () -> new BlockItem(GHOST_BLOCK.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));
+
+    public static final RegistryObject<BlockTroll> TROLL_BLOCK = BLOCKS.register("troll_block", BlockTroll::new);
+    public static final RegistryObject<Item> TROLL_BLOCKITEM = ITEMS.register("troll_block", () -> new BlockItem(TROLL_BLOCK.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));
+
     public static final RegistryObject<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.of(Material.WATER).noCollission().randomTicks().strength(100.0F).noDrops()));
 
 }

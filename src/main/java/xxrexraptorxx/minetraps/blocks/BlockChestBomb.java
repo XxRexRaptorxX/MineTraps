@@ -54,7 +54,8 @@ public class BlockChestBomb extends Block {
 
 		if(!level.isClientSide) {
 			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Explosion.BlockInteraction.BREAK);
-		}	}
+		}
+	}
 
 
 	@Override

@@ -28,7 +28,8 @@ public class LootTables extends BaseLootTableProvider {
         addBaseLootTable(ModBlocks.QUICK_SAND.get());
         addBaseLootTable(ModBlocks.SPIKES.get());
         addBaseLootTable(ModBlocks.TOXIC_SPIKES.get());
-
+        addBaseLootTable(ModBlocks.GHOST_BLOCK.get());
+        addBaseLootTable(ModBlocks.TROLL_BLOCK.get());
     }
 
 

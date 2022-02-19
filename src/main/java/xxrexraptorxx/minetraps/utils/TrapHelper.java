@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.ArrayList;
 
-public class TrapUtil {
+public class TrapHelper {
 
 
     public static int getStateFromBlock(String inputBlock) {

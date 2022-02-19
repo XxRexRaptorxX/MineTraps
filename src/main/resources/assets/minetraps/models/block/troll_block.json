@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "minetraps:block/troll_block",
+        "up":       "minetraps:block/troll_block",
+        "down":     "minetraps:block/troll_block",
+        "north":    "minetraps:block/troll_block",
+        "east":     "minetraps:block/troll_block",
+        "west":     "minetraps:block/troll_block",
+        "south":    "minetraps:block/troll_block"
+    }
+}

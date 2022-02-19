@@ -35,6 +35,8 @@ public class Items extends ItemModelProvider {
         itemBlock(ModBlocks.SPIKES);
         itemBlock(ModBlocks.TOXIC_SPIKES);
         itemBlock(ModBlocks.PITFALL_TRAP);
+        itemBlock(ModBlocks.TROLL_BLOCK);
+        itemBlock(ModBlocks.GHOST_BLOCK);
     }
 
 

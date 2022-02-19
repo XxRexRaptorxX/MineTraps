@@ -29,6 +29,7 @@ public class CommonEvents {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TOXIC_MINE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXPLOSIVE_MINE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHEST_BOMB.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GHOST_BLOCK.get(), RenderType.cutoutMipped());
 
         ItemBlockRenderTypes.setRenderLayer(ModFluids.TOXIN.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_TOXIN.get(), RenderType.translucent());

@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "type=0": { "model": "minetraps:block/ghost_block" },
+        "type=1": { "model": "minetraps:block/ghost_block_dirt" },
+        "type=2": { "model": "minetraps:block/ghost_block_stone" },
+        "type=3": { "model": "minetraps:block/ghost_block_planks" },
+        "type=4": { "model": "minetraps:block/ghost_block_sand" },
+        "type=5": { "model": "minetraps:block/ghost_block_cobblestone" },
+        "type=6": { "model": "minetraps:block/ghost_block_stonebrick" }
+    }
+}

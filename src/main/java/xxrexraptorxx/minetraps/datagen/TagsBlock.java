@@ -23,7 +23,9 @@ public class TagsBlock extends BlockTagsProvider {
                         ModBlocks.BARBED_WIRE_FENCE.get(),
                         ModBlocks.RAZOR_WIRE.get(),
                         ModBlocks.BEAR_TRAP.get(),
-                        ModBlocks.OBSTACLE.get()
+                        ModBlocks.OBSTACLE.get(),
+                        ModBlocks.GHOST_BLOCK.get(),
+                        ModBlocks.TROLL_BLOCK.get()
                         );
 
 
@@ -59,7 +61,9 @@ public class TagsBlock extends BlockTagsProvider {
                         ModBlocks.TOXIC_NAIL_TRAP.get(),
                         ModBlocks.EXPLOSIVE_MINE.get(),
                         ModBlocks.TOXIC_MINE.get(),
-                        ModBlocks.PITFALL_TRAP.get()
+                        ModBlocks.PITFALL_TRAP.get(),
+                        ModBlocks.GHOST_BLOCK.get(),
+                        ModBlocks.TROLL_BLOCK.get()
                 );
 
 

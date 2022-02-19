@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "minetraps:block/ghost_block",
+        "up": "minetraps:block/ghost_block",
+        "down": "minetraps:block/ghost_block",
+        "north": "minetraps:block/ghost_block",
+        "east": "minetraps:block/ghost_block",
+        "west": "minetraps:block/ghost_block",
+        "south": "minetraps:block/ghost_block"
+    }
+}

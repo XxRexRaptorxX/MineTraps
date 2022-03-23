@@ -1,11 +1,11 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[40,)"
 license="All rights reserved"
 issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/minetraps/issues"
 
 [[mods]]
 modId="minetraps"
-version="2.1.0"
+version="2.1.1"
 displayName="MineTraps"
 itemIcon="minetraps:pitfall_trap"
 updateJSONURL="https://raw.githubusercontent.com/XxRexRaptorxX/Update-Checker/main/MineTraps.json"
@@ -20,13 +20,13 @@ This mod adds several new traps and blocks like mines, bear traps, nail traps, t
 [[dependencies.minetraps]]
     modId="forge"
     mandatory=true
-    versionRange="[38,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.minetraps]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18,1.19)"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"

@@ -1,20 +1,33 @@
-package xxrexraptorxx.minetraps.world;
+package xxrexraptorxx.minetraps.utils;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import xxrexraptorxx.minetraps.main.ModBlocks;
 import xxrexraptorxx.minetraps.main.ModFluids;
 import xxrexraptorxx.minetraps.main.References;
+import xxrexraptorxx.minetraps.world.OreGenerator;
 
 @Mod.EventBusSubscriber(modid = References.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CommonEvents {
+public class ModSetup {
+
+    public static void setup() {
+        IEventBus bus = MinecraftForge.EVENT_BUS;
+        bus.addListener(OreGenerator::onBiomeLoadingEvent);
+    }
+
 
     @SubscribeEvent
-    public static void commonSetup(FMLCommonSetupEvent event) {
+    public static void init(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            OreGenerator.registerConfiguredFeatures();
+        });
+
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.BARBED_WIRE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.BARBED_WIRE_FENCE.get(), RenderType.cutoutMipped());

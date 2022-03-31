@@ -74,17 +74,20 @@ public class BlockExplosiveMine extends FallingBlock {
 	@Override
 	public void onBlockExploded(BlockState state, Level world, BlockPos pos, Explosion explosion) {
 		AreaEffectCloud dummy = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
-		if(this == ModBlocks.TOXIC_MINE.get()) {
-			dummy.addEffect(new MobEffectInstance(MobEffects.POISON, 280, 1));
-			dummy.setDuration(50);
-			dummy.setRadius(10);
-			dummy.setFixedColor(0x27ae60);
-			dummy.setWaitTime(10);
-			world.addFreshEntity(dummy);
-		}
 
-		world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-		world.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 5.0F, true, Explosion.BlockInteraction.DESTROY);
+		if (!world.isClientSide) {
+			if (this == ModBlocks.TOXIC_MINE.get()) {
+				dummy.addEffect(new MobEffectInstance(MobEffects.POISON, 280, 1));
+				dummy.setDuration(50);
+				dummy.setRadius(10);
+				dummy.setFixedColor(0x27ae60);
+				dummy.setWaitTime(10);
+				world.addFreshEntity(dummy);
+			}
+
+			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+			world.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 5.0F, true, Explosion.BlockInteraction.DESTROY);
+		}
 	}
 
 

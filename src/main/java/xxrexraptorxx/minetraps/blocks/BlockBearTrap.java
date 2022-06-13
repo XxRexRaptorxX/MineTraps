@@ -68,15 +68,16 @@ public class BlockBearTrap extends FallingBlock {
 
 		if (entityIn instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) entityIn;
-			if(!entity.getActiveEffects().toString().contains("minecraft.slowness")) entity.hurt(DamageSource.GENERIC, 6.0F);
-			//TODO no hardcode
+			if(!entity.getActiveEffects().toString().contains(MobEffects.MOVEMENT_SLOWDOWN.getRegistryName().getNamespace() + "." + MobEffects.MOVEMENT_SLOWDOWN.getRegistryName().getPath())) entity.hurt(DamageSource.GENERIC, 6.0F);
+
 			entity.hurt(DamageSource.GENERIC, (float) Config.BEAR_TRAP_DAMAGE.get());
 			entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
 
 			if(!level.isClientSide) {
-				if(!entity.getActiveEffects().toString().contains("minecraft.slowness")) level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
-				entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0));
+				if(!entity.getActiveEffects().toString().contains(MobEffects.MOVEMENT_SLOWDOWN.getRegistryName().getNamespace() + "." + MobEffects.MOVEMENT_SLOWDOWN.getRegistryName().getPath())) level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
+				entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0, false, false, false));
 			}
+
 		}
 	}
 

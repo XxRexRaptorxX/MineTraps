@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CrossCollisionBlock;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -23,7 +24,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import xxrexraptorxx.minetraps.main.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWireFence extends CrossCollisionBlock {
@@ -91,7 +91,7 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 
 	public final boolean attachsTo(BlockState state, boolean p_54219_) {
-		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof net.minecraft.world.level.block.IronBarsBlock || state.is(BlockTags.WALLS);
+		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.is(BlockTags.WALLS);
 	}
 
 
@@ -107,11 +107,11 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 		if (!level.isClientSide) {
 			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
-				entity.hurt(DamageSource.GENERIC, 1.0F);
+				entity.hurt(DamageSource.GENERIC, (float) Config.BARBED_WIRE_FENCE_DAMAGE.get());
 
 			} else {
 				if (entity instanceof LivingEntity) {
-					entity.hurt(DamageSource.GENERIC, 1.0F);
+					entity.hurt(DamageSource.GENERIC, (float) Config.BARBED_WIRE_FENCE_DAMAGE.get());
 				}
 			}
 		}

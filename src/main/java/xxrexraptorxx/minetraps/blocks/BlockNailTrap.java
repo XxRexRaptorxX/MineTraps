@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockNailTrap extends FallingBlock {
@@ -68,9 +69,9 @@ public class BlockNailTrap extends FallingBlock {
 				LivingEntity entity = (LivingEntity) entityIn;
 
 				if (this == ModBlocks.TOXIC_NAIL_TRAP.get())
-					entity.addEffect(new MobEffectInstance(MobEffects.POISON, 150, 0));
+					entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_NAIL_TRAP_EFFECT_DURATION.get(), Config.TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER.get()));
 
-				entity.hurt(DamageSource.GENERIC, 1.0F);
+				entity.hurt(DamageSource.GENERIC, (float) Config.NAIL_TRAP_DAMAGE.get());
 			}
 		}
 	}

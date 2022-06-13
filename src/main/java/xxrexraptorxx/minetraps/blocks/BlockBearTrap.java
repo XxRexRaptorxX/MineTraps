@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.utils.Config;
 
 import java.util.Random;
 
@@ -68,8 +69,8 @@ public class BlockBearTrap extends FallingBlock {
 		if (entityIn instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) entityIn;
 			if(!entity.getActiveEffects().toString().contains("minecraft.slowness")) entity.hurt(DamageSource.GENERIC, 6.0F);
-
-			entity.hurt(DamageSource.GENERIC, 1.0F);
+			//TODO no hardcode
+			entity.hurt(DamageSource.GENERIC, (float) Config.BEAR_TRAP_DAMAGE.get());
 			entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
 
 			if(!level.isClientSide) {

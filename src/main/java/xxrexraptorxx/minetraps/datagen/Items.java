@@ -42,17 +42,17 @@ public class Items extends ItemModelProvider {
 
 
     private void itemGenerated(RegistryObject item) {
-        singleTexture(item.get().getRegistryName().getPath(), new ResourceLocation("item/generated"),"layer0", new ResourceLocation(References.MODID, "item/" + item.get().getRegistryName().toString().substring(References.MODID.length() + 1)));
+        singleTexture(item.getId().getPath(), new ResourceLocation("item/generated"),"layer0", new ResourceLocation(References.MODID, "item/" + item.getId().toString().substring(References.MODID.length() + 1)));
     }
 
 
     private void itemHandheld(RegistryObject item) {
-        singleTexture(item.get().getRegistryName().getPath(), new ResourceLocation("item/handheld"),"layer0", new ResourceLocation(References.MODID, "item/" + item.get().getRegistryName().toString().substring(References.MODID.length() + 1)));
+        singleTexture(item.getId().getPath(), new ResourceLocation("item/handheld"),"layer0", new ResourceLocation(References.MODID, "item/" + item.getId().toString().substring(References.MODID.length() + 1)));
     }
 
 
     private void itemBlock(RegistryObject item) {
-        withExistingParent(item.get().getRegistryName().getPath(), new ResourceLocation(References.MODID, "block/" + item.get().getRegistryName().toString().substring(References.MODID.length() + 1)));
+        withExistingParent(item.getId().getPath(), new ResourceLocation(References.MODID, "block/" + item.getId().toString().substring(References.MODID.length() + 1)));
     }
 
 }

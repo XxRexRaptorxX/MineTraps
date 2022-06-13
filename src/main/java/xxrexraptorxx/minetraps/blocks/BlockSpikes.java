@@ -34,6 +34,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.utils.Config;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -60,7 +61,7 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return Shapes.empty();
 	}
 
@@ -82,13 +83,13 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-		return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		return canSupportCenter(level, pos.below(), Direction.DOWN);
 	}
 
 
 	@Override
-	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> list, TooltipFlag pFlag) {
+	public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> list, TooltipFlag flag) {
 		list.add(new TranslatableComponent("message.minetraps.spike.desc").withStyle(ChatFormatting.GRAY));
 	}
 
@@ -104,16 +105,16 @@ public class BlockSpikes extends FallingBlock {
 		if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
 			LivingEntity entity = (LivingEntity) entityIn;
 
-			entity.hurt(DamageSource.GENERIC, 4.0F);
-			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, 250, 0));
+			entity.hurt(DamageSource.GENERIC, (float) Config.SPIKES_DAMAGE.get());
+			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION.get(), Config.TOXIC_SPIKES_EFFECT_AMPLIFIER.get()));
 		}
 	}
 
 
 	@Nullable
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-		return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())));
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
 	}
 
 
@@ -134,9 +135,9 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
-		if (pState.getValue(POWERED) && !pLevel.hasNeighborSignal(pPos)) {
-			pLevel.setBlock(pPos, pState.cycle(POWERED), 2);
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand) {
+		if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
+			level.setBlock(pos, state.cycle(POWERED), 2);
 		}
 	}
 

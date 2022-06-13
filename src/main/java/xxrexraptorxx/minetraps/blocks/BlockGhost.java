@@ -76,7 +76,7 @@ public class BlockGhost extends Block {
 
 	@Nullable
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return this.defaultBlockState().setValue(TYPE, 0);
 	}
 

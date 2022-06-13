@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockExplosiveMine extends FallingBlock {
@@ -56,37 +57,37 @@ public class BlockExplosiveMine extends FallingBlock {
 		if (!world.isClientSide) {
 			if(this == ModBlocks.TOXIC_MINE.get()) {
 				AreaEffectCloud cloud = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
-				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, 280, 1));
-				cloud.setDuration(50);
+				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.POSION_MINE_EFFECT_DURATION.get(), Config.POSION_MINE_EFFECT_AMPLIFIER.get()));
+				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION.get());
 				cloud.setRadius(10);
 				cloud.setFixedColor(0x27ae60);
 				cloud.setWaitTime(10);
 				world.addFreshEntity(cloud);
 			}
 
-			entity.hurt(DamageSource.GENERIC, 10.0F);
+			entity.hurt(DamageSource.GENERIC, (float) Config.MINE_DAMAGE.get());
 			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-			world.explode(entity, pos.getX(), pos.getY(), pos.getZ(), 5.0F, true, Explosion.BlockInteraction.DESTROY);
+			world.explode(entity, pos.getX(), pos.getY(), pos.getZ(), (float) Config.MINE_EXPLOSION_RADIUS.get(), true, Explosion.BlockInteraction.DESTROY);
 		}
 	}
 
 
 	@Override
 	public void onBlockExploded(BlockState state, Level world, BlockPos pos, Explosion explosion) {
-		AreaEffectCloud dummy = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
+		AreaEffectCloud cloud = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
 
 		if (!world.isClientSide) {
 			if (this == ModBlocks.TOXIC_MINE.get()) {
-				dummy.addEffect(new MobEffectInstance(MobEffects.POISON, 280, 1));
-				dummy.setDuration(50);
-				dummy.setRadius(10);
-				dummy.setFixedColor(0x27ae60);
-				dummy.setWaitTime(10);
-				world.addFreshEntity(dummy);
+				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.POSION_MINE_EFFECT_DURATION.get(), Config.POSION_MINE_EFFECT_AMPLIFIER.get()));
+				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION.get());
+				cloud.setRadius(10);
+				cloud.setFixedColor(0x27ae60);
+				cloud.setWaitTime(10);
+				world.addFreshEntity(cloud);
 			}
 
 			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-			world.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 5.0F, true, Explosion.BlockInteraction.DESTROY);
+			world.explode(cloud, pos.getX(), pos.getY(), pos.getZ(), Config.MINE_EXPLOSION_RADIUS.get(), true, Explosion.BlockInteraction.DESTROY);
 		}
 	}
 

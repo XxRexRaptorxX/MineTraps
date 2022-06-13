@@ -15,6 +15,7 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockQuicksand extends FallingBlock {
@@ -44,7 +45,7 @@ public class BlockQuicksand extends FallingBlock {
 			LivingEntity entity = (LivingEntity) entityIn;
 
 			entity.makeStuckInBlock(state, new Vec3(0.25D, 0.10D, 0.25D));
-			if(entity.getEyePosition().y < pos.getY() + 1) entity.hurt(DamageSource.IN_WALL, 1.0F);
+			if(entity.getEyePosition().y < pos.getY() + 1) entity.hurt(DamageSource.IN_WALL, (float) Config.QUICKSAND_DAMAGE.get());
 		}
 	}
 

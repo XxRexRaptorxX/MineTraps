@@ -4,11 +4,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -38,7 +37,6 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 public class BlockSpikes extends FallingBlock {
 
@@ -90,7 +88,7 @@ public class BlockSpikes extends FallingBlock {
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> list, TooltipFlag flag) {
-		list.add(new TranslatableComponent("message.minetraps.spike.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message.minetraps.spike.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 
@@ -135,7 +133,7 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
 			level.setBlock(pos, state.cycle(POWERED), 2);
 		}

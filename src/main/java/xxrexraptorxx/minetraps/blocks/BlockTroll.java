@@ -3,7 +3,6 @@ package xxrexraptorxx.minetraps.blocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -26,6 +25,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.registries.ForgeRegistries;
 import xxrexraptorxx.minetraps.main.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.utils.TrollHelper;
@@ -55,14 +55,14 @@ public class BlockTroll extends Block {
 				.strength(1.5F, 6.0F)
 				.sound(SoundType.STONE)
 				.color(MaterialColor.COLOR_GRAY)
-				.noDrops()
+				.noLootTable()
 		);
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));
 	}
 
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> list, TooltipFlag pFlag) {
-		list.add(new TranslatableComponent("message.minetraps.troll.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message.minetraps.troll.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 
@@ -113,7 +113,7 @@ public class BlockTroll extends Block {
 		if (state.getBlock() == ModBlocks.TROLL_BLOCK.get() && state.getValue(TYPE) == 0) {
 
 			if (TrollHelper.getTypeList().contains(player.getItemInHand(hand).getItem())) {
-				level.setBlock(pos, state.setValue(TYPE, TrollHelper.getStateFromBlock(player.getItemInHand(hand).getItem().getRegistryName().toString())), 2);
+				level.setBlock(pos, state.setValue(TYPE, TrollHelper.getStateFromBlock(ForgeRegistries.ITEMS.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
 
 				if (!player.isCreative()) {
 					player.getUseItem().shrink(1);

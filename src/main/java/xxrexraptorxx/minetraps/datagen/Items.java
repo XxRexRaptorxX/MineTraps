@@ -19,7 +19,7 @@ public class Items extends ItemModelProvider {
     protected void registerModels() {
         itemGenerated(ModItems.NAILS);
         itemGenerated(ModItems.TOXIN_BOTTLE);
-        itemGenerated(ModItems.TOXIN_BUCKET);
+        //itemGenerated(ModItems.TOXIN_BUCKET);
 
         itemBlock(ModBlocks.BARBED_WIRE);
         itemBlock(ModBlocks.RAZOR_WIRE);

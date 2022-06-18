@@ -50,8 +50,8 @@ public class MineTraps {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHEST_BOMB.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GHOST_BLOCK.get(), RenderType.cutoutMipped());
 
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.TOXIN.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_TOXIN.get(), RenderType.translucent());
+       //ItemBlockRenderTypes.setRenderLayer(ModFluids.TOXIN.get(), RenderType.translucent());
+       //ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_TOXIN.get(), RenderType.translucent());
     }
 
 }

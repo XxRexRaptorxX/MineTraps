@@ -3,7 +3,6 @@ package xxrexraptorxx.minetraps.blocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.registries.ForgeRegistries;
 import xxrexraptorxx.minetraps.main.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
@@ -64,7 +64,7 @@ public class BlockGhost extends Block {
 
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> list, TooltipFlag pFlag) {
-		list.add(new TranslatableComponent("message.minetraps.ghost.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message.minetraps.ghost.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 
@@ -88,7 +88,7 @@ public class BlockGhost extends Block {
 		if (state.getBlock() == ModBlocks.GHOST_BLOCK.get() && state.getValue(TYPE) == 0) {
 
 			if (TrapHelper.getTypeList().contains(player.getItemInHand(hand).getItem())) {
-				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(player.getItemInHand(hand).getItem().getRegistryName().toString())), 2);
+				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(ForgeRegistries.ITEMS.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
 
 				if (!player.isCreative()) {
 					player.getUseItem().shrink(1);

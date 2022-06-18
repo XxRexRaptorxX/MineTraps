@@ -2,6 +2,7 @@ package xxrexraptorxx.minetraps.datagen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 import xxrexraptorxx.minetraps.main.ModBlocks;
 
 public class LootTables extends BaseLootTableProvider {
@@ -35,6 +36,6 @@ public class LootTables extends BaseLootTableProvider {
 
 
     private void addBaseLootTable(Block block) {
-        lootTables.put(block, createStandardTable( block.getRegistryName().toString(), block));
+        lootTables.put(block, createSimpleTable(ForgeRegistries.BLOCKS.getKey(block).toString(), block));
     }
 }

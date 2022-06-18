@@ -16,7 +16,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '2.1.4'
+version = '2.2.0-pre1'
 group = 'xxrexraptorxx.minetraps.main' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'minetraps'
 
@@ -26,8 +26,8 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
 
-    //mappings channel: 'official', version: '1.18'
-    mappings channel: 'parchment', version: '2022.06.05-1.18.2'
+    mappings channel: 'official', version: '1.19'
+    //mappings channel: 'parchment', version: '2022.06.05-1.18.2'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -122,10 +122,10 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+    minecraft 'net.minecraftforge:forge:1.19-41.0.35'
 
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.4.3.122:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.4.3.122")
+    //compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.4.3.122:api")
+    //runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.4.3.122")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

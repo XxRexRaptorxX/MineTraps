@@ -2,9 +2,7 @@ package xxrexraptorxx.minetraps.world;
 
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -13,9 +11,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import xxrexraptorxx.minetraps.main.ModBlocks;
-import xxrexraptorxx.minetraps.utils.Config;
 
 public class OreGenerator {
 
@@ -47,7 +43,7 @@ public class OreGenerator {
         return PlacementUtils.register(registryName, Holder.direct(feature), placementModifiers);
     }
 
-
+/** TODO
     public static void onBiomeLoadingEvent(BiomeLoadingEvent event) {
         if (Config.WORLD_GENERATION.get()) {
             if (event.getCategory() == Biome.BiomeCategory.JUNGLE) {
@@ -58,5 +54,5 @@ public class OreGenerator {
             }
         }
     }
-
+**/
 }

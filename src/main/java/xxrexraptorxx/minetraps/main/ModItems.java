@@ -22,6 +22,6 @@ public class ModItems {
 
     public static final RegistryObject<ItemBasic> NAILS = ITEMS.register("nails", ItemBasic::new);
     public static final RegistryObject<ItemToxinBottle> TOXIN_BOTTLE = ITEMS.register("toxin_bottle", ItemToxinBottle::new);
-    public static final RegistryObject<ItemToxinBucket> TOXIN_BUCKET = ITEMS.register("toxin_bucket", () -> new ItemToxinBucket(new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(CreativeTab.MOD_TAB)));
+    //public static final RegistryObject<ItemToxinBucket> TOXIN_BUCKET = ITEMS.register("toxin_bucket", () -> new ItemToxinBucket(new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(CreativeTab.MOD_TAB)));
 
 }

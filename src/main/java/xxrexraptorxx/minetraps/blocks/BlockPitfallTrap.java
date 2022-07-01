@@ -45,6 +45,7 @@ public class BlockPitfallTrap extends Block {
 	 *  6 = stonebricks
 	 */
 	public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 6);
+	protected static final VoxelShape CUSTOM_COLLISION_AABB = Block.box(0.0625D, 0.0625D, 0.0625D, 15.9375D, 15.9375D, 15.9375D);
 
 
 	public BlockPitfallTrap() {
@@ -61,7 +62,7 @@ public class BlockPitfallTrap extends Block {
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return Shapes.empty();
+		return CUSTOM_COLLISION_AABB;
 	}
 
 
@@ -85,17 +86,7 @@ public class BlockPitfallTrap extends Block {
 
 
 	@Override
-	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-		level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
-
-		if (!level.isClientSide) {
-			level.removeBlock(pos, false);
-		}
-	}
-
-
-	@Override
-	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fall) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
 		level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
 
 		if (!level.isClientSide) {

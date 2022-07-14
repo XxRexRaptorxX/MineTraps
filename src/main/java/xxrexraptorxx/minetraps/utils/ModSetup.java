@@ -13,14 +13,14 @@ public class ModSetup {
 
     public static void setup() {
         IEventBus bus = MinecraftForge.EVENT_BUS;
-        //bus.addListener(OreGenerator::onBiomeLoadingEvent);
+        //bus.addListener(OreGenerator::onBiomeLoadingEvent); TODO
     }
 
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            OreGenerator.registerConfiguredFeatures();
+            //OreGenerator.registerConfiguredFeatures(); TODO!
         });
 
     }

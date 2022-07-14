@@ -1,17 +1,10 @@
 package xxrexraptorxx.minetraps.world;
 
 import net.minecraft.core.Holder;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
-import xxrexraptorxx.minetraps.main.ModBlocks;
 
 public class OreGenerator {
 
@@ -21,7 +14,7 @@ public class OreGenerator {
     public static Holder<PlacedFeature> MUD_GEN;
     public static Holder<PlacedFeature> QUICK_SAND_GEN;
 
-
+/**
     public static void registerConfiguredFeatures() {
         OreConfiguration mudConfig = new OreConfiguration(DIRT, ModBlocks.MUD.get().defaultBlockState(), 20);
         MUD_GEN = registerPlacedFeature("mud", new ConfiguredFeature<>(Feature.ORE, mudConfig),
@@ -43,7 +36,7 @@ public class OreGenerator {
         return PlacementUtils.register(registryName, Holder.direct(feature), placementModifiers);
     }
 
-/** TODO
+
     public static void onBiomeLoadingEvent(BiomeLoadingEvent event) {
         if (Config.WORLD_GENERATION.get()) {
             if (event.getCategory() == Biome.BiomeCategory.JUNGLE) {

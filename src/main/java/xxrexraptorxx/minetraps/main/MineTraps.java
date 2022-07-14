@@ -3,6 +3,7 @@ package xxrexraptorxx.minetraps.main;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraftforge.client.extensions.common.IClientBlockExtensions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -35,6 +36,7 @@ public class MineTraps {
 
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        /**
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.BARBED_WIRE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.BARBED_WIRE_FENCE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.RAZOR_WIRE.get(), RenderType.cutoutMipped());
@@ -52,6 +54,6 @@ public class MineTraps {
 
        //ItemBlockRenderTypes.setRenderLayer(ModFluids.TOXIN.get(), RenderType.translucent());
        //ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_TOXIN.get(), RenderType.translucent());
-    }
-
+        **/
+         }
 }

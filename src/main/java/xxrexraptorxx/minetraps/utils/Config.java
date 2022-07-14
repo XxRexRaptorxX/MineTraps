@@ -41,6 +41,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue TOXIC_SPIKES_EFFECT_DURATION;
     public static ForgeConfigSpec.IntValue TOXIC_SPIKES_EFFECT_AMPLIFIER;
     public static ForgeConfigSpec.IntValue EXPLOSIVE_BLOCK_RADIUS;
+    public static ForgeConfigSpec.BooleanValue PATREON_REWARDS;
 
 
 
@@ -93,7 +94,10 @@ public class Config {
         TOXIC_SPIKES_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the poison effect from the Toxic Spikes is").defineInRange("toxic_spikes_effect_amplifier", 0, 0, 10);
         QUICKSAND_DAMAGE = builder.comment("Defines how much damage the Quicksand do").defineInRange("quicksand_damage", 0, 1, 100);
         EXPLOSIVE_BLOCK_RADIUS = builder.comment("Defines how big the explosion radius from the Explosive Block is").defineInRange("explosive_block_radius", 3, 1, 100);
+        builder.pop();
 
+        builder.comment("General").push(CATEGORY_GENERAL);
+        PATREON_REWARDS = builder.comment("Enables ingame rewards on first spawn for Patreons").define("patreon_rewards", true);
         builder.pop();
 
         SERVER_CONFIG = builder.build();
@@ -105,6 +109,8 @@ public class Config {
 
         builder.comment("World").push(CATEGORY_WORLD);
         WORLD_GENERATION = builder.comment("Quicksand/Mud/Toxin generation in the world").define("world_generation", true);
+        builder.pop();
+
         COMMON_CONFIG = builder.build();
     }
 

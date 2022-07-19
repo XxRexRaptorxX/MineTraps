@@ -9,7 +9,6 @@ import net.minecraftforge.fml.config.ModConfig;
 public class Config {
 
     public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_WORLD = "world";
     public static final String CATEGORY_BLOCKS = "blocks";
 
     public static ForgeConfigSpec CLIENT_CONFIG;
@@ -17,7 +16,6 @@ public class Config {
     public static ForgeConfigSpec COMMON_CONFIG;
 
     public static ForgeConfigSpec.BooleanValue UPDATE_CHECKER;
-    public static ForgeConfigSpec.BooleanValue WORLD_GENERATION;
     public static ForgeConfigSpec.BooleanValue BARBED_WIRE_DESTROY_ITEMS;
     public static ForgeConfigSpec.IntValue BARBED_WIRE_DAMAGE;
     public static ForgeConfigSpec.IntValue BARBED_WIRE_FENCE_DAMAGE;
@@ -96,10 +94,6 @@ public class Config {
         EXPLOSIVE_BLOCK_RADIUS = builder.comment("Defines how big the explosion radius from the Explosive Block is").defineInRange("explosive_block_radius", 3, 1, 100);
         builder.pop();
 
-        builder.comment("General").push(CATEGORY_GENERAL);
-        PATREON_REWARDS = builder.comment("Enables ingame rewards on first spawn for Patreons").define("patreon_rewards", true);
-        builder.pop();
-
         SERVER_CONFIG = builder.build();
     }
 
@@ -107,8 +101,8 @@ public class Config {
     public static void initCommon() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
-        builder.comment("World").push(CATEGORY_WORLD);
-        WORLD_GENERATION = builder.comment("Quicksand/Mud/Toxin generation in the world").define("world_generation", true);
+        builder.comment("General").push(CATEGORY_GENERAL);
+        PATREON_REWARDS = builder.comment("Enables ingame rewards on first spawn for Patreons").define("patreon_rewards", true);
         builder.pop();
 
         COMMON_CONFIG = builder.build();

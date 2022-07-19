@@ -27,7 +27,6 @@ public class Items extends ItemModelProvider {
         itemBlock(ModBlocks.CHEST_BOMB);
         itemBlock(ModBlocks.EXPLOSIVE_MINE);
         itemBlock(ModBlocks.TOXIC_MINE);
-        itemBlock(ModBlocks.MUD);
         itemBlock(ModBlocks.QUICK_SAND);
         itemBlock(ModBlocks.OBSTACLE);
         itemBlock(ModBlocks.NAIL_TRAP);

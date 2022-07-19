@@ -41,8 +41,7 @@ public class TagsBlock extends BlockTagsProvider {
                         ModBlocks.EXPLOSIVE_MINE.get(),
                         ModBlocks.TOXIC_MINE.get(),
                         ModBlocks.PITFALL_TRAP.get(),
-                        ModBlocks.BEAR_TRAP.get(),
-                        ModBlocks.MUD.get()
+                        ModBlocks.BEAR_TRAP.get()
                 );
 
 

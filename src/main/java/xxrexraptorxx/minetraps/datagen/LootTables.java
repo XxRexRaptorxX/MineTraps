@@ -21,7 +21,6 @@ public class LootTables extends BaseLootTableProvider {
         addBaseLootTable(ModBlocks.CHEST_BOMB.get());
         addBaseLootTable(ModBlocks.EXPLOSIVE_MINE.get());
         addBaseLootTable(ModBlocks.TOXIC_MINE.get());
-        addBaseLootTable(ModBlocks.MUD.get());
         addBaseLootTable(ModBlocks.NAIL_TRAP.get());
         addBaseLootTable(ModBlocks.TOXIC_NAIL_TRAP.get());
         addBaseLootTable(ModBlocks.OBSTACLE.get());

@@ -3,8 +3,6 @@ package xxrexraptorxx.minetraps.main;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -43,9 +41,6 @@ public class ModBlocks {
 
     public static final RegistryObject<BlockExplosiveMine> TOXIC_MINE = BLOCKS.register("toxic_mine", BlockExplosiveMine::new);
     public static final RegistryObject<Item> TOXIC_MINE_BLOCKITEM = ITEMS.register("toxic_mine", () -> new BlockItem(TOXIC_MINE.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));
-
-    public static final RegistryObject<BlockMud> MUD = BLOCKS.register("mud", BlockMud::new);
-    public static final RegistryObject<Item> MUD_BLOCKITEM = ITEMS.register("mud", () -> new BlockItem(MUD.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));
 
     public static final RegistryObject<BlockQuicksand> QUICK_SAND = BLOCKS.register("quicksand", BlockQuicksand::new);
     public static final RegistryObject<Item> QUICK_SAND_BLOCKITEM = ITEMS.register("quicksand", () -> new BlockItem(QUICK_SAND.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));

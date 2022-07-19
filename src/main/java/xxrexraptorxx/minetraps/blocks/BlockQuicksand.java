@@ -32,6 +32,7 @@ public class BlockQuicksand extends FallingBlock {
 		);
 	}
 
+	//TODO waterlogging
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

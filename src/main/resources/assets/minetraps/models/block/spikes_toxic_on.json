@@ -1,5 +1,6 @@
 {
 	"__comment": "Designed by RexRaptor with Cubik Studio - https://cubik.studio",
+	"render_type": "cutout_mipped",
 	"parent": "block/block",
 	"textures": {
 		"particle": "minetraps:block/spikes_bottom",

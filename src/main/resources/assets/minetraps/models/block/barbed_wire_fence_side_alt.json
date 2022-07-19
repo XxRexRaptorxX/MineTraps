@@ -1,5 +1,6 @@
 {
     "ambientocclusion": false,
+    "render_type": "cutout_mipped",
     "textures": {
         "particle": "minetraps:block/barbed_wire_fence",
         "bars": "minetraps:block/barbed_wire_fence",

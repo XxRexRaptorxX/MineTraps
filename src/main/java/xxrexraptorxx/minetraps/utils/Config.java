@@ -13,7 +13,6 @@ public class Config {
 
     public static ForgeConfigSpec CLIENT_CONFIG;
     public static ForgeConfigSpec SERVER_CONFIG;
-    public static ForgeConfigSpec COMMON_CONFIG;
 
     public static ForgeConfigSpec.BooleanValue UPDATE_CHECKER;
     public static ForgeConfigSpec.BooleanValue BARBED_WIRE_DESTROY_ITEMS;
@@ -46,11 +45,9 @@ public class Config {
     public static void init() {
         initClient();
         initServer();
-        initCommon();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CLIENT_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, COMMON_CONFIG);
     }
 
 
@@ -67,6 +64,10 @@ public class Config {
 
     public static void initServer() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+
+        builder.comment("General").push(CATEGORY_GENERAL);
+        PATREON_REWARDS = builder.comment("Enables ingame rewards on first spawn for Patreons").define("patreon_rewards", true);
+        builder.pop();
 
         builder.comment("Blocks").push(CATEGORY_BLOCKS);
         BARBED_WIRE_DESTROY_ITEMS = builder.comment("If enabled, barbed wire and razor wire destroys items").define("barbed_wire_destroy_items", false);
@@ -95,17 +96,6 @@ public class Config {
         builder.pop();
 
         SERVER_CONFIG = builder.build();
-    }
-
-
-    public static void initCommon() {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-
-        builder.comment("General").push(CATEGORY_GENERAL);
-        PATREON_REWARDS = builder.comment("Enables ingame rewards on first spawn for Patreons").define("patreon_rewards", true);
-        builder.pop();
-
-        COMMON_CONFIG = builder.build();
     }
 
 

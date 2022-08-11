@@ -55,6 +55,8 @@
     "block.minetraps.minetraps.toxin": "Toxin",
     "block.minetraps.wall_spikes": "Wall Spikes",
     "block.minetraps.wall_spikes_on": "Wall Spikes",
+    "block.minetraps.toxin": "Toxin",
+    "block.minetraps.toxin_flowing": "Toxin",
 
     "fluid.minetraps.toxin": "Toxin",
     "fluid.minetraps.toxin_flowing": "Toxin"

@@ -3,6 +3,9 @@ package xxrexraptorxx.minetraps.main;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -69,6 +72,6 @@ public class ModBlocks {
     public static final RegistryObject<BlockTroll> TROLL_BLOCK = BLOCKS.register("troll_block", BlockTroll::new);
     public static final RegistryObject<Item> TROLL_BLOCKITEM = ITEMS.register("troll_block", () -> new BlockItem(TROLL_BLOCK.get(), new Item.Properties().tab(CreativeTab.MOD_TAB)));
 
-    //public static final RegistryObject<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.of(Material.WATER).noCollission().randomTicks().strength(100.0F).noLootTable()));
+    public static final RegistryObject<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
 }

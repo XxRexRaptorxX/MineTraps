@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import xxrexraptorxx.minetraps.fluids.ModFluidTypes;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.world.ModConfiguredFeatures;
 import xxrexraptorxx.minetraps.world.ModPlacedFeatures;
@@ -23,7 +24,9 @@ public class MineTraps {
 
         ModBlocks.init();
         ModItems.init();
-        //ModFluids.init();
+        ModFluids.init();
+        ModFluidTypes.init();
+
         Config.init();
 
         ModConfiguredFeatures.register(modbus);

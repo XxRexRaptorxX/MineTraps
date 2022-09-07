@@ -7,7 +7,6 @@
     "minetraps:explosive_mine",
     "minetraps:toxic_mine",
     "minetraps:pitfall_trap",
-    "minetraps:bear_trap",
-    "minetraps:mud"
+    "minetraps:bear_trap"
   ]
 }

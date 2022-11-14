@@ -17,6 +17,7 @@
   },
   
   "result": {
-    "item": "minetraps:barbed_wire"
+    "item": "minetraps:barbed_wire",
+    "count": 4
   }
 }

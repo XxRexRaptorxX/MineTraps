@@ -14,12 +14,12 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
-        if (event.includeServer()) {
-            generator.addProvider(event.includeServer(), new TagsBlock(generator, helper));
-            generator.addProvider(event.includeServer(), new LootTables(generator));
-        }
-        if (event.includeClient()) {
-            generator.addProvider(event.includeClient(), new Items(generator, helper));
-        }
+        //if (event.includeServer()) {
+        //    generator.addProvider(event.includeServer(), new TagsBlock(generator, helper));
+        //    generator.addProvider(event.includeServer(), new LootTables(generator));
+        //}
+        //if (event.includeClient()) {
+        //    generator.addProvider(event.includeClient(), new Items(generator, helper));
+        //}
     }
 }

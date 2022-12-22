@@ -54,7 +54,7 @@ public class BlockChestBomb extends Block {
 		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
 		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Explosion.BlockInteraction.BREAK);
+			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Level.ExplosionInteraction.TNT);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class BlockChestBomb extends Block {
 		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
 		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.CHEST_BOMB_EXPLOSION_RADIUS.get(), true, Explosion.BlockInteraction.BREAK);
+			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.CHEST_BOMB_EXPLOSION_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
 		}
 
 		return InteractionResult.SUCCESS;

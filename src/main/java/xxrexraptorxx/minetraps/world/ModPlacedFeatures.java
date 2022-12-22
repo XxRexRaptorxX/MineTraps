@@ -1,6 +1,7 @@
 package xxrexraptorxx.minetraps.world;
-
+/**
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class ModPlacedFeatures {
 
-    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, References.MODID);
+    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registries.PLACED_FEATURE, References.MODID);
 
 
     public static final RegistryObject<PlacedFeature> QUICKSAND_PLACED = PLACED_FEATURES.register("quicksand_placed",
@@ -37,4 +38,4 @@ public class ModPlacedFeatures {
     public static void register(IEventBus eventBus) {
         PLACED_FEATURES.register(eventBus);
     }
-}
+}**/

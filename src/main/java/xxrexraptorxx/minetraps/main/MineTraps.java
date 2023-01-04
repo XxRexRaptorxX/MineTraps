@@ -33,10 +33,6 @@ public class MineTraps {
         ModFluids.init();
         ModFluidTypes.init();
         Config.init();
-
-        //TODO!
-        //ModConfiguredFeatures.register(modbus);
-        //ModPlacedFeatures.register(modbus);
     }
 
 

@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "minecraft:jungle",
-  "features": "minetraps:quicksand_placed",
+  "features": "minetraps:quicksand_gen",
   "step": "underground_ores"
 }

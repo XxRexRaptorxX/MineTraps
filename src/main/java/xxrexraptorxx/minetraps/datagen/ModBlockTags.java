@@ -1,21 +1,24 @@
 package xxrexraptorxx.minetraps.datagen;
-/**
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import xxrexraptorxx.minetraps.main.ModBlocks;
 import xxrexraptorxx.minetraps.main.References;
 
-public class TagsBlock extends BlockTagsProvider {
+import java.util.concurrent.CompletableFuture;
 
-    public TagsBlock(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, References.MODID, helper);
+public class ModBlockTags extends BlockTagsProvider {
+
+    public ModBlockTags(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper helper) {
+        super(packOutput, lookupProvider, References.MODID, helper);
     }
 
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(   ModBlocks.TOXIC_SPIKES.get(),
                         ModBlocks.SPIKES.get(),
@@ -78,4 +81,4 @@ public class TagsBlock extends BlockTagsProvider {
 
 
     }
-}**/
+}

@@ -1,6 +1,6 @@
 package xxrexraptorxx.minetraps.datagen;
-/**
-import net.minecraft.data.DataGenerator;
+
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -9,10 +9,10 @@ import xxrexraptorxx.minetraps.main.ModBlocks;
 import xxrexraptorxx.minetraps.main.ModItems;
 import xxrexraptorxx.minetraps.main.References;
 
-public class Items extends ItemModelProvider {
+public class ModItemModels extends ItemModelProvider {
 
-    public Items(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, References.MODID, existingFileHelper);
+    public ModItemModels(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, References.MODID, existingFileHelper);
     }
 
     @Override
@@ -54,4 +54,4 @@ public class Items extends ItemModelProvider {
         withExistingParent(item.getId().getPath(), new ResourceLocation(References.MODID, "block/" + item.getId().toString().substring(References.MODID.length() + 1)));
     }
 
-}**/
+}

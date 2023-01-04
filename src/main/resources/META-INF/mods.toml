@@ -5,7 +5,7 @@ issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/minetraps/issues"
 
 [[mods]]
 modId="minetraps"
-version="2.2.5-pre1"
+version="2.2.5"
 displayName="MineTraps"
 itemIcon="minetraps:pitfall_trap"
 updateJSONURL="https://raw.githubusercontent.com/XxRexRaptorxX/Update-Checker/main/MineTraps.json"

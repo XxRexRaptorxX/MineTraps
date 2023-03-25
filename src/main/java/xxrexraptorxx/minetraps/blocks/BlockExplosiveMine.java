@@ -65,7 +65,7 @@ public class BlockExplosiveMine extends FallingBlock {
 				world.addFreshEntity(cloud);
 			}
 
-			entity.hurt(DamageSource.GENERIC, (float) Config.MINE_DAMAGE.get());
+			entity.hurt(world.damageSources().generic(), (float) Config.MINE_DAMAGE.get());
 			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 			world.explode(entity, pos.getX(), pos.getY(), pos.getZ(), (float) Config.MINE_EXPLOSION_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
 		}

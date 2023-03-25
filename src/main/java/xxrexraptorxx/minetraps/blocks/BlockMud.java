@@ -44,6 +44,6 @@ public class BlockMud extends FallingBlock {
 
 	@Override
 	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		entity.causeFallDamage(fallDistance, 0.8F, DamageSource.FALL);
+		entity.causeFallDamage(fallDistance, 0.8F, (level.damageSources().fall()));
 	}
 }

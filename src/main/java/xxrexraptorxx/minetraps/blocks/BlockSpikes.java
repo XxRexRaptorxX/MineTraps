@@ -103,7 +103,7 @@ public class BlockSpikes extends FallingBlock {
 		if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
 			LivingEntity entity = (LivingEntity) entityIn;
 
-			entity.hurt(DamageSource.GENERIC, (float) Config.SPIKES_DAMAGE.get());
+			entity.hurt(level.damageSources().generic(), (float) Config.SPIKES_DAMAGE.get());
 			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION.get(), Config.TOXIC_SPIKES_EFFECT_AMPLIFIER.get()));
 		}
 	}

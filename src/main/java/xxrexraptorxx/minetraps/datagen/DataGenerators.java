@@ -24,7 +24,6 @@ public class DataGenerators {
         ModBlockTags blockTags = new ModBlockTags(packOutput, lookupProvider, event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), blockTags);
         //generator.addProvider(event.includeServer(), new ModLootTables(packOutput)); TODO!
-
         generator.addProvider(event.includeClient(), new ModItemModels(packOutput, helper));
 
     }

@@ -40,7 +40,7 @@ public class MineTraps {
     @SubscribeEvent
     public static void registerTabs(final CreativeModeTabEvent.Register event) {
         event.registerCreativeModeTab(CREATIVE_TAB, (cf) -> cf.icon(() -> new ItemStack(ModBlocks.PITFALL_TRAP.get()))
-                .title(Component.translatable("itemGroup." + References.MODID + ".tab")).displayItems((flagSet, output, ifSth) -> {
+                .title(Component.translatable("itemGroup." + References.MODID + ".tab")).displayItems((p_270258_, output) -> {
                     output.accept(ModBlocks.BARBED_WIRE.get());
                     output.accept(ModBlocks.RAZOR_WIRE.get());
                     output.accept(ModBlocks.BARBED_WIRE_FENCE.get());

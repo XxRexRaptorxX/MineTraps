@@ -46,7 +46,7 @@ public class BlockQuicksand extends FallingBlock {
 			LivingEntity entity = (LivingEntity) entityIn;
 
 			entity.makeStuckInBlock(state, new Vec3(0.25D, 0.10D, 0.25D));
-			if(entity.getEyePosition().y < pos.getY() + 1) entity.hurt(DamageSource.IN_WALL, (float) Config.QUICKSAND_DAMAGE.get());
+			if(entity.getEyePosition().y < pos.getY() + 1) entity.hurt(level.damageSources().inWall(), (float) Config.QUICKSAND_DAMAGE.get());
 		}
 	}
 

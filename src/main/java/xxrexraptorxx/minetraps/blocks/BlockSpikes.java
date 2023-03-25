@@ -122,6 +122,7 @@ public class BlockSpikes extends FallingBlock {
 			boolean flag = state.getValue(POWERED);
 			if (flag != level.hasNeighborSignal(pos)) {
 				if (flag) {
+					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 1.0F, 3);
 					level.scheduleTick(pos, this, 4);
 				} else {
 					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);

@@ -14,6 +14,12 @@ Build your own bunker or save your base with barbed wire and obstacles.
 
 -----
 
+![Traps](https://i.imgur.com/NY47e9D.png)
+
+![Defense stuff](https://i.imgur.com/zSZsVwv.png)
+
+-----
+
 ## 🗒️ License
 
 All rights reserved.

@@ -11,12 +11,12 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 import javax.annotation.Nullable;
@@ -27,11 +27,12 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 	private static final VoxelShape RENDER_SHAPE = Shapes.empty();
 
 	public BlockBarbedWire() {
-		super(Properties.of(Material.STONE)
+		super(Properties.of()
 				.requiresCorrectToolForDrops()
 				.strength(5.0F, 10.0F)
 				.sound(SoundType.METAL)
-				.color(MaterialColor.METAL)
+				.mapColor(MapColor.METAL)
+				.instrument(NoteBlockInstrument.PLING)
 				.noCollission()
 				.noOcclusion()
 		);

@@ -13,12 +13,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 
@@ -28,11 +28,12 @@ public class BlockNailTrap extends FallingBlock {
 
 
 	public BlockNailTrap() {
-		super(Properties.of(Material.METAL)
+		super(Properties.of()
 				.requiresCorrectToolForDrops()
 				.strength(1.0F, 8.0F)
 				.sound(SoundType.GRAVEL)
-				.color(MaterialColor.METAL)
+				.mapColor(MapColor.METAL)
+				.instrument(NoteBlockInstrument.BELL)
 				.noOcclusion()
 				.noCollission()
 		);

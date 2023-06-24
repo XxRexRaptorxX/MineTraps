@@ -1,4 +1,4 @@
-package xxrexraptorxx.minetraps.main;
+package xxrexraptorxx.minetraps.registry;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xxrexraptorxx.minetraps.blocks.*;
+import xxrexraptorxx.minetraps.main.References;
 
 public class ModBlocks {
 

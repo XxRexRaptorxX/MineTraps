@@ -21,12 +21,12 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.ForgeRegistries;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.utils.TrollHelper;
 
@@ -51,10 +51,11 @@ public class BlockTroll extends Block {
 
 
 	public BlockTroll() {
-		super(Properties.of(Material.STONE)
+		super(Properties.of()
 				.strength(1.5F, 6.0F)
 				.sound(SoundType.STONE)
-				.color(MaterialColor.COLOR_GRAY)
+				.mapColor(MapColor.STONE)
+				.instrument(NoteBlockInstrument.BELL)
 				.noLootTable()
 		);
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));

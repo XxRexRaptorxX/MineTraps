@@ -5,8 +5,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import xxrexraptorxx.minetraps.main.ModBlocks;
-import xxrexraptorxx.minetraps.main.ModItems;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModItems;
 import xxrexraptorxx.minetraps.main.References;
 
 public class ModItemModels extends ItemModelProvider {

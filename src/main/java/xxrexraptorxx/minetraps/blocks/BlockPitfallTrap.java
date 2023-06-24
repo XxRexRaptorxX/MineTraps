@@ -21,13 +21,13 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.ForgeRegistries;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
 import javax.annotation.Nullable;
@@ -50,10 +50,11 @@ public class BlockPitfallTrap extends Block {
 
 
 	public BlockPitfallTrap() {
-		super(Properties.of(Material.WOOD)
+		super(Properties.of()
 				.strength(1.0F, 1.0F)
 				.sound(SoundType.WOOD)
-				.color(MaterialColor.WOOD)
+				.mapColor(MapColor.WOOD)
+				.instrument(NoteBlockInstrument.BASS)
 				.noOcclusion()
 				.noCollission()
 		);

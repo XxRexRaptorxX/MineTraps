@@ -1,4 +1,4 @@
-package xxrexraptorxx.minetraps.main;
+package xxrexraptorxx.minetraps.registry;
 
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xxrexraptorxx.minetraps.items.ItemBasic;
 import xxrexraptorxx.minetraps.items.ItemToxinBottle;
+import xxrexraptorxx.minetraps.main.References;
 
 public class ModItems {
 

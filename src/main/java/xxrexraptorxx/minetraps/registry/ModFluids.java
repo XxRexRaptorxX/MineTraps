@@ -1,4 +1,4 @@
-package xxrexraptorxx.minetraps.main;
+package xxrexraptorxx.minetraps.registry;
 
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xxrexraptorxx.minetraps.fluids.ModFluidTypes;
+import xxrexraptorxx.minetraps.main.References;
 
 public class ModFluids {
 

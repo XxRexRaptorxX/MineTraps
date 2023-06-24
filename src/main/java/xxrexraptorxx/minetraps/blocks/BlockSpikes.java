@@ -26,12 +26,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 import javax.annotation.Nullable;
@@ -44,11 +44,12 @@ public class BlockSpikes extends FallingBlock {
 	protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
 	public BlockSpikes() {
-		super(Properties.of(Material.METAL)
+		super(Properties.of()
 				.requiresCorrectToolForDrops()
 				.strength(1.8F, 7.0F)
 				.sound(SoundType.METAL)
-				.color(MaterialColor.METAL)
+				.mapColor(MapColor.METAL)
+				.instrument(NoteBlockInstrument.BELL)
 				.noCollission()
 				.noOcclusion()
 		);

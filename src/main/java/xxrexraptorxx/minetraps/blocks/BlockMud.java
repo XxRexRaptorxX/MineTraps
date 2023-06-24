@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -21,10 +21,11 @@ public class BlockMud extends FallingBlock {
 
 
 	public BlockMud() {
-		super(Properties.of(Material.DIRT)
+		super(Properties.of()
 				.strength(0.3F, 0.0F)
 				.sound(SoundType.SLIME_BLOCK)
-				.color(MaterialColor.COLOR_BROWN)
+				.mapColor(MapColor.DIRT)
+				.instrument(NoteBlockInstrument.SNARE)
 		);
 	}
 

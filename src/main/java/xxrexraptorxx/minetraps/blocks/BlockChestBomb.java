@@ -17,8 +17,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -33,11 +33,12 @@ public class BlockChestBomb extends Block {
 
 
 	public BlockChestBomb() {
-		super(Properties.of(Material.WOOD)
+		super(Properties.of()
 				.requiresCorrectToolForDrops()
 				.strength(2.5F, 0.0F)
 				.sound(SoundType.WOOD)
-				.color(MaterialColor.WOOD)
+				.mapColor(MapColor.WOOD)
+				.instrument(NoteBlockInstrument.BASS)
 		);
 	}
 

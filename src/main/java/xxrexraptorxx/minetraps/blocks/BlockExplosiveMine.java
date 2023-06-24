@@ -18,11 +18,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 
@@ -31,11 +31,12 @@ public class BlockExplosiveMine extends FallingBlock {
 	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
 
 	public BlockExplosiveMine() {
-		super(Properties.of(Material.METAL)
+		super(Properties.of()
 				.requiresCorrectToolForDrops()
 				.strength(1.0F, 0.0F)
 				.sound(SoundType.METAL)
-				.color(MaterialColor.METAL)
+				.mapColor(MapColor.METAL)
+				.instrument(NoteBlockInstrument.IRON_XYLOPHONE)
 				.noOcclusion()
 				.noCollission()
 		);

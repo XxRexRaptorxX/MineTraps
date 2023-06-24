@@ -3,7 +3,7 @@ package xxrexraptorxx.minetraps.datagen;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
-import xxrexraptorxx.minetraps.main.ModBlocks;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 
 public class ModLootTables extends BaseLootTableProvider {
 

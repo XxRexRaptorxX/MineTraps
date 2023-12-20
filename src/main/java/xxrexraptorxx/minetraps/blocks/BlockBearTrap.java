@@ -2,6 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,7 +23,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import xxrexraptorxx.minetraps.utils.Config;
 
 
@@ -66,13 +66,13 @@ public class BlockBearTrap extends FallingBlock {
 
 		if (entityIn instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) entityIn;
-			if(!entity.getActiveEffects().toString().contains(ForgeRegistries.MOB_EFFECTS.getKey(MobEffects.MOVEMENT_SLOWDOWN).getNamespace() + "." + ForgeRegistries.MOB_EFFECTS.getKey(MobEffects.MOVEMENT_SLOWDOWN).getPath())) entity.hurt(level.damageSources().generic(), 6.0F);
+			if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getPath())) entity.hurt(level.damageSources().generic(), 6.0F);
 
 			entity.hurt(level.damageSources().generic(), (float) Config.BEAR_TRAP_DAMAGE.get());
 			entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
 
 			if(!level.isClientSide) {
-				if(!entity.getActiveEffects().toString().contains(ForgeRegistries.MOB_EFFECTS.getKey(MobEffects.MOVEMENT_SLOWDOWN).getNamespace() + "." + ForgeRegistries.MOB_EFFECTS.getKey(MobEffects.MOVEMENT_SLOWDOWN).getPath())) level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
+				if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getPath())) level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
 				entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0, false, false, false));
 			}
 

@@ -1,44 +1,42 @@
 package xxrexraptorxx.minetraps.utils;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
-@Mod.EventBusSubscriber
 public class Config {
 
     public static final String CATEGORY_GENERAL = "general";
     public static final String CATEGORY_BLOCKS = "blocks";
 
-    public static ForgeConfigSpec CLIENT_CONFIG;
-    public static ForgeConfigSpec SERVER_CONFIG;
+    public static ModConfigSpec CLIENT_CONFIG;
+    public static ModConfigSpec SERVER_CONFIG;
 
-    public static ForgeConfigSpec.BooleanValue UPDATE_CHECKER;
-    public static ForgeConfigSpec.BooleanValue BARBED_WIRE_DESTROY_ITEMS;
-    public static ForgeConfigSpec.IntValue BARBED_WIRE_DAMAGE;
-    public static ForgeConfigSpec.IntValue BARBED_WIRE_FENCE_DAMAGE;
-    public static ForgeConfigSpec.IntValue RAZOR_WIRE_DAMAGE;
-    public static ForgeConfigSpec.IntValue BEAR_TRAP_DAMAGE;
-    public static ForgeConfigSpec.IntValue CHEST_BOMB_EXPLOSION_RADIUS;
-    public static ForgeConfigSpec.IntValue MINE_EXPLOSION_RADIUS;
-    public static ForgeConfigSpec.IntValue MINE_DAMAGE;
-    public static ForgeConfigSpec.IntValue NAIL_TRAP_DAMAGE;
-    public static ForgeConfigSpec.IntValue POSION_MINE_EFFECT_DURATION;
-    public static ForgeConfigSpec.IntValue POSION_MINE_EFFECT_AMPLIFIER;
-    public static ForgeConfigSpec.IntValue POSION_MINE_CLOUD_DURATION;
-    public static ForgeConfigSpec.IntValue TOXIC_NAIL_TRAP_EFFECT_DURATION;
-    public static ForgeConfigSpec.IntValue TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER;
-    public static ForgeConfigSpec.IntValue TOXIN_POISON_EFFECT_DURATION;
-    public static ForgeConfigSpec.IntValue TOXIN_POISON_EFFECT_AMPLIFIER;
-    public static ForgeConfigSpec.IntValue TOXIN_CONFUSION_EFFECT_DURATION;
-    public static ForgeConfigSpec.IntValue TOXIN_CONFUSION_EFFECT_AMPLIFIER;
-    public static ForgeConfigSpec.IntValue SPIKES_DAMAGE;
-    public static ForgeConfigSpec.IntValue QUICKSAND_DAMAGE;
-    public static ForgeConfigSpec.IntValue TOXIC_SPIKES_EFFECT_DURATION;
-    public static ForgeConfigSpec.IntValue TOXIC_SPIKES_EFFECT_AMPLIFIER;
-    public static ForgeConfigSpec.IntValue EXPLOSIVE_BLOCK_RADIUS;
-    public static ForgeConfigSpec.BooleanValue PATREON_REWARDS;
+    public static ModConfigSpec.BooleanValue UPDATE_CHECKER;
+    public static ModConfigSpec.BooleanValue BARBED_WIRE_DESTROY_ITEMS;
+    public static ModConfigSpec.IntValue BARBED_WIRE_DAMAGE;
+    public static ModConfigSpec.IntValue BARBED_WIRE_FENCE_DAMAGE;
+    public static ModConfigSpec.IntValue RAZOR_WIRE_DAMAGE;
+    public static ModConfigSpec.IntValue BEAR_TRAP_DAMAGE;
+    public static ModConfigSpec.IntValue CHEST_BOMB_EXPLOSION_RADIUS;
+    public static ModConfigSpec.IntValue MINE_EXPLOSION_RADIUS;
+    public static ModConfigSpec.IntValue MINE_DAMAGE;
+    public static ModConfigSpec.IntValue NAIL_TRAP_DAMAGE;
+    public static ModConfigSpec.IntValue POSION_MINE_EFFECT_DURATION;
+    public static ModConfigSpec.IntValue POSION_MINE_EFFECT_AMPLIFIER;
+    public static ModConfigSpec.IntValue POSION_MINE_CLOUD_DURATION;
+    public static ModConfigSpec.IntValue TOXIC_NAIL_TRAP_EFFECT_DURATION;
+    public static ModConfigSpec.IntValue TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER;
+    public static ModConfigSpec.IntValue TOXIN_POISON_EFFECT_DURATION;
+    public static ModConfigSpec.IntValue TOXIN_POISON_EFFECT_AMPLIFIER;
+    public static ModConfigSpec.IntValue TOXIN_CONFUSION_EFFECT_DURATION;
+    public static ModConfigSpec.IntValue TOXIN_CONFUSION_EFFECT_AMPLIFIER;
+    public static ModConfigSpec.IntValue SPIKES_DAMAGE;
+    public static ModConfigSpec.IntValue QUICKSAND_DAMAGE;
+    public static ModConfigSpec.IntValue TOXIC_SPIKES_EFFECT_DURATION;
+    public static ModConfigSpec.IntValue TOXIC_SPIKES_EFFECT_AMPLIFIER;
+    public static ModConfigSpec.IntValue EXPLOSIVE_BLOCK_RADIUS;
+    public static ModConfigSpec.BooleanValue PATREON_REWARDS;
 
 
 
@@ -52,7 +50,7 @@ public class Config {
 
 
     public static void initClient() {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
         builder.comment("General").push(CATEGORY_GENERAL);
         UPDATE_CHECKER = builder.comment("Activate the Update-Checker").define("update-checker", true);
@@ -63,7 +61,7 @@ public class Config {
 
 
     public static void initServer() {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
         builder.comment("General").push(CATEGORY_GENERAL);
         PATREON_REWARDS = builder.comment("Enables ingame rewards on first spawn for Patreons").define("patreon_rewards", true);

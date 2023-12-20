@@ -1,28 +1,27 @@
 package xxrexraptorxx.minetraps.registry;
 
-import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import xxrexraptorxx.minetraps.fluids.ModFluidTypes;
 import xxrexraptorxx.minetraps.main.References;
 
 public class ModFluids {
 
-    private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, References.MODID);
+    private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, References.MODID);
 
     public static void init() {
         FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<FlowingFluid> TOXIN = FLUIDS.register("toxin",() -> new ForgeFlowingFluid.Source(ModFluids.TOXIN_FLUID_PROPERTIES));
-    public static final RegistryObject<FlowingFluid> FLOWING_TOXIN = FLUIDS.register("toxin_flowing",() -> new ForgeFlowingFluid.Flowing(ModFluids.TOXIN_FLUID_PROPERTIES));
+    public static final DeferredHolder<Fluid, BaseFlowingFluid.Source> TOXIN = FLUIDS.register("toxin",() -> new BaseFlowingFluid.Source(ModFluids.TOXIN_FLUID_PROPERTIES));
+    public static final DeferredHolder<Fluid, BaseFlowingFluid.Flowing> FLOWING_TOXIN = FLUIDS.register("toxin_flowing",() -> new BaseFlowingFluid.Flowing(ModFluids.TOXIN_FLUID_PROPERTIES));
 
 
-    public static final ForgeFlowingFluid.Properties TOXIN_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(
+    public static final BaseFlowingFluid.Properties TOXIN_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(
             ModFluidTypes.TOXIN_FLUID_TYPE, TOXIN, FLOWING_TOXIN)
             .slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.TOXIN)
             .bucket(ModItems.TOXIN_BUCKET);

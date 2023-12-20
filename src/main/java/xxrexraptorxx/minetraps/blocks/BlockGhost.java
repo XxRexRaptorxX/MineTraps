@@ -2,6 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,7 +23,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
@@ -89,7 +89,7 @@ public class BlockGhost extends Block {
 		if (state.getBlock() == ModBlocks.GHOST_BLOCK.get() && state.getValue(TYPE) == 0) {
 
 			if (TrapHelper.getTypeList().contains(player.getItemInHand(hand).getItem())) {
-				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(ForgeRegistries.ITEMS.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
+				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(BuiltInRegistries.ITEM.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
 
 				if (!player.isCreative()) {
 					player.getUseItem().shrink(1);

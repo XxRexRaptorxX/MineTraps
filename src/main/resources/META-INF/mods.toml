@@ -17,7 +17,7 @@ description='''This mod adds several new traps and blocks like mines, bear traps
 
 
 [[dependencies.${mod_id}]]
-modId="forge"
+modId="neoforge"
 mandatory=true
 versionRange="${forge_version_range}"
 ordering="NONE"

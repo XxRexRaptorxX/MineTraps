@@ -2,6 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,7 +27,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
@@ -104,7 +104,7 @@ public class BlockPitfallTrap extends Block {
 		if (state.getBlock() == ModBlocks.PITFALL_TRAP.get() && state.getValue(TYPE) == 0) {
 
 			if (TrapHelper.getTypeList().contains(player.getItemInHand(hand).getItem())) {
-				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(ForgeRegistries.ITEMS.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
+				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(BuiltInRegistries.ITEM.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
 
 				if (!player.isCreative()) {
 					player.getUseItem().shrink(1);

@@ -1,9 +1,0 @@
-[
-    {
-        "name": "toxin_bucket",
-        "ingredient": {
-            "type": "minetraps:filled_universal_bucket",
-            "fluid": "toxin"
-        }
-    }
-]

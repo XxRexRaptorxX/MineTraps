@@ -1,5 +1,6 @@
 package xxrexraptorxx.minetraps.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
@@ -45,5 +46,11 @@ public class BlockMud extends FallingBlock {
 	@Override
 	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		entity.causeFallDamage(fallDistance, 0.8F, (level.damageSources().fall()));
+	}
+
+
+	@Override
+	protected MapCodec<? extends FallingBlock> codec() {
+		return null;
 	}
 }

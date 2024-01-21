@@ -2,7 +2,7 @@ package xxrexraptorxx.minetraps.fluids;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.SoundAction;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -20,8 +20,8 @@ public class ModFluidTypes {
 
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, References.MODID);
 
-    public static void init() {
-        FLUID_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    public static void init(IEventBus eventBus) {
+        FLUID_TYPES.register(eventBus);
     }
 
     public static final DeferredHolder<FluidType, BaseFluidType> TOXIN_FLUID_TYPE = register("toxin_fluid",

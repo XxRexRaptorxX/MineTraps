@@ -4,7 +4,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -16,9 +16,9 @@ public class ModBlocks {
     private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(References.MODID);
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(References.MODID);
 
-    public static void init() {
-        BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+    public static void init(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
+        ITEMS.register(eventBus);
     }
 
 
@@ -70,6 +70,6 @@ public class ModBlocks {
     public static final DeferredBlock<BlockTroll> TROLL_BLOCK = BLOCKS.register("troll_block", BlockTroll::new);
     public static final DeferredItem<Item> TROLL_BLOCKITEM = ITEMS.register("troll_block", () -> new BlockItem(TROLL_BLOCK.get(), new Item.Properties()));
 
-    public static final DeferredBlock<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.copy(Blocks.WATER)));
+    public static final DeferredBlock<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
 }

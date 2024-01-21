@@ -1,5 +1,6 @@
 package xxrexraptorxx.minetraps.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -73,4 +74,8 @@ public class BlockNailTrap extends FallingBlock {
 	}
 
 
+	@Override
+	protected MapCodec<? extends FallingBlock> codec() {
+		return null;
+	}
 }

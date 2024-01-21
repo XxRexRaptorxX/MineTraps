@@ -1,5 +1,6 @@
 package xxrexraptorxx.minetraps.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -96,4 +97,9 @@ public class BlockExplosiveMine extends FallingBlock {
 		return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
 	}
 
+
+	@Override
+	protected MapCodec<? extends FallingBlock> codec() {
+		return null;
+	}
 }

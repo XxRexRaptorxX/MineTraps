@@ -3,7 +3,7 @@ package xxrexraptorxx.minetraps.registry;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xxrexraptorxx.minetraps.items.ItemBasic;
@@ -15,8 +15,8 @@ public class ModItems {
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(References.MODID);
 
 
-    public static void init() {
-        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+    public static void init(IEventBus eventBus) {
+        ITEMS.register(eventBus);
     }
 
     public static final DeferredItem<ItemBasic> NAILS = ITEMS.register("nails", ItemBasic::new);

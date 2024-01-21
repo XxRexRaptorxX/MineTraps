@@ -71,6 +71,6 @@ public class ModBlocks {
     public static final RegistryObject<BlockTroll> TROLL_BLOCK = BLOCKS.register("troll_block", BlockTroll::new);
     public static final RegistryObject<Item> TROLL_BLOCKITEM = ITEMS.register("troll_block", () -> new BlockItem(TROLL_BLOCK.get(), new Item.Properties()));
 
-    public static final RegistryObject<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.copy(Blocks.WATER)));
+    public static final RegistryObject<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
 }

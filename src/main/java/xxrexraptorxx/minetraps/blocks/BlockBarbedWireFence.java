@@ -1,5 +1,6 @@
 package xxrexraptorxx.minetraps.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -118,4 +119,8 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 	}
 
 
+	@Override
+	protected MapCodec<? extends CrossCollisionBlock> codec() {
+		return null;
 	}
+}

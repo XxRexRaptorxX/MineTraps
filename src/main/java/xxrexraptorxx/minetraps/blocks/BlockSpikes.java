@@ -139,12 +139,12 @@ public class BlockSpikes extends FallingBlock {
 		return null;
 	}
 
+
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
 			level.setBlock(pos, state.cycle(POWERED), 2);
 		}
 	}
-
 
 }

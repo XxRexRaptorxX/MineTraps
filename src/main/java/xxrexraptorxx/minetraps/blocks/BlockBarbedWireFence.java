@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -122,5 +123,11 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 	@Override
 	protected MapCodec<? extends CrossCollisionBlock> codec() {
 		return null;
+	}
+
+
+	@Override
+	public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
+		return false;
 	}
 }

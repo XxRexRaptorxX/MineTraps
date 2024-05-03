@@ -69,7 +69,7 @@ public class ModBlockTags extends BlockTagsProvider {
                 );
 
 
-        tag(BlockTags.WALLS)
+        tag(BlockTags.FENCES)
                 .add(   ModBlocks.BARBED_WIRE_FENCE.get()
                 );
 

@@ -1,0 +1,19 @@
+// 1.20.4	2024-05-04T01:41:23.7066886	Item Models: minetraps
+ab75d695089983341ed64b9228914761e874bcd6 assets/minetraps/models/item/barbed_wire.json
+80b3b8de25e3f1b55535e928c86f89de80b36c9d assets/minetraps/models/item/bear_trap.json
+c540e6424087784c351ee6152ba774eb7f3f56d4 assets/minetraps/models/item/chest_bomb.json
+91f7d20c1a46e4c1a5c38e5488053ecd0406fe70 assets/minetraps/models/item/explosive_mine.json
+e1d1e317c83bd1e04205973935812b73b678f56a assets/minetraps/models/item/ghost_block.json
+6b02249946a56495e09b89e0e5b6a2ea099a4141 assets/minetraps/models/item/nails.json
+1cd9856694231a5d805b2b339a18be2bcceab5c2 assets/minetraps/models/item/nail_trap.json
+d51b3081c2398b4c6fbe8598f62b16037c9c78a2 assets/minetraps/models/item/obstacle.json
+eb987ec862b0c82c9f979cfc507028e1e1b2bece assets/minetraps/models/item/pitfall_trap.json
+802d5ae5c9c27822a444579969d407d64c599af7 assets/minetraps/models/item/quicksand.json
+8e439beb77c3ad8dcbaf5792c92e43f0264525c6 assets/minetraps/models/item/razor_wire.json
+7182e9c6c0d4be627a165e660b712cd20c437f22 assets/minetraps/models/item/spikes.json
+a7d58019bcd0f44ce145858ecd6b7386278e91c4 assets/minetraps/models/item/spikes_toxic.json
+42191b37f333e868858a2d0a1f1cc61e56f2f4df assets/minetraps/models/item/toxic_mine.json
+922436213b9471670708746c40feb1e543e99155 assets/minetraps/models/item/toxic_nail_trap.json
+9be21b4b6fd18d7dbebe87c9f046dad061770dc3 assets/minetraps/models/item/toxin_bottle.json
+506e19a0c091e9581fbed2058334560f9c14bf7f assets/minetraps/models/item/toxin_bucket.json
+90a8ac0e44cab74b7e945576956783b0329167a7 assets/minetraps/models/item/troll_block.json

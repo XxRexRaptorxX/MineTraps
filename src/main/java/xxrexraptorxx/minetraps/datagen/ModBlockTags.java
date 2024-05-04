@@ -5,8 +5,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.main.References;
+import xxrexraptorxx.minetraps.registry.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -69,7 +69,7 @@ public class ModBlockTags extends BlockTagsProvider {
                 );
 
 
-        tag(BlockTags.WALLS)
+        tag(BlockTags.FENCES)
                 .add(   ModBlocks.BARBED_WIRE_FENCE.get()
                 );
 

@@ -82,10 +82,10 @@ public class Config {
         POSION_MINE_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the poison effect from the mine is").defineInRange("poison_mine_effect_amplifier", 1, 0, 10);
         TOXIC_NAIL_TRAP_EFFECT_DURATION = builder.comment("Defines how long the duration of the poison effect from the Toxic Nail Trap is").defineInRange("toxic_nail_trap_effect_duration", 150, 0, 10000);
         TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the poison effect from the Toxic Nail Trap is").defineInRange("toxic_nail_trap_effect_amplifier", 0, 0, 10);
-        TOXIN_POISON_EFFECT_DURATION = builder.comment("Defines how long the duration of the poison effect from the Toxin is").defineInRange("toxin_effect_duration", 500, 0, 10000);
-        TOXIN_POISON_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the poison effect from the Toxin is").defineInRange("toxin_effect_amplifier", 0, 0, 10);
-        TOXIN_CONFUSION_EFFECT_DURATION = builder.comment("Defines how long the duration of the confusion effect from the Toxin is").defineInRange("toxin_effect_duration", 100, 0, 10000);
-        TOXIN_CONFUSION_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the confusion effect from the Toxin is").defineInRange("toxin_effect_amplifier", 0, 0, 10);
+        TOXIN_POISON_EFFECT_DURATION = builder.comment("Defines how long the duration of the poison effect from the Toxin is").defineInRange("toxin_poison_effect_duration", 500, 0, 10000);
+        TOXIN_POISON_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the poison effect from the Toxin is").defineInRange("toxin_poison_effect_amplifier", 0, 0, 10);
+        TOXIN_CONFUSION_EFFECT_DURATION = builder.comment("Defines how long the duration of the confusion effect from the Toxin is").defineInRange("toxin_confusion_effect_duration", 100, 0, 10000);
+        TOXIN_CONFUSION_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the confusion effect from the Toxin is").defineInRange("toxin_confusion_effect_amplifier", 0, 0, 10);
         SPIKES_DAMAGE = builder.comment("Defines how much damage the Spikes do").defineInRange("spikes_damage", 4, 1, 100);
         TOXIC_SPIKES_EFFECT_DURATION = builder.comment("Defines how long the duration of the poison effect from the Toxic Spikes is").defineInRange("toxic_spikes_effect_duration", 250, 0, 10000);
         TOXIC_SPIKES_EFFECT_AMPLIFIER = builder.comment("Defines how long the amplifier of the poison effect from the Toxic Spikes is").defineInRange("toxic_spikes_effect_amplifier", 0, 0, 10);

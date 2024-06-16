@@ -42,6 +42,7 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 	}
 
 
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockGetter blockgetter = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
@@ -91,7 +92,7 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 
 	public final boolean attachsTo(BlockState state, boolean p_54219_) {
-		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.is(BlockTags.WALLS);
+		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.getBlock() instanceof BlockBarbedWireFence || state.is(BlockTags.WALLS);
 	}
 
 

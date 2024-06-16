@@ -3,9 +3,8 @@
   "ingredients": [
 
     {
-      "type": "forge:nbt",
-      "item": "minecraft:potion",
-      "nbt": "{Potion:'minecraft:water'}"
+      "item": "minecraft:glass_bottle"
+
     },
     {
       "item": "minecraft:rotten_flesh"

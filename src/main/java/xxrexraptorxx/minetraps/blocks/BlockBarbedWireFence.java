@@ -44,6 +44,7 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 	}
 
 
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockGetter blockgetter = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
@@ -61,12 +62,12 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 
 	@Override
-	public BlockState updateShape(BlockState p_54211_, Direction p_54212_, BlockState p_54213_, LevelAccessor p_54214_, BlockPos p_54215_, BlockPos p_54216_) {
-		if (p_54211_.getValue(WATERLOGGED)) {
-			p_54214_.scheduleTick(p_54215_, Fluids.WATER, Fluids.WATER.getTickDelay(p_54214_));
+	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+		if (state.getValue(WATERLOGGED)) {
+			level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
 
-		return p_54212_.getAxis().isHorizontal() ? p_54211_.setValue(PROPERTY_BY_DIRECTION.get(p_54212_), Boolean.valueOf(this.attachsTo(p_54213_, p_54213_.isFaceSturdy(p_54214_, p_54216_, p_54212_.getOpposite())))) : super.updateShape(p_54211_, p_54212_, p_54213_, p_54214_, p_54215_, p_54216_);
+		return facing.getAxis().isHorizontal() ? state.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(this.attachsTo(facingState, facingState.isFaceSturdy(level, facingPos, facing.getOpposite())))) : super.updateShape(state, facing, facingState, level, currentPos, facingPos);
 	}
 
 
@@ -93,7 +94,7 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 
 	public final boolean attachsTo(BlockState state, boolean p_54219_) {
-		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.is(BlockTags.WALLS);
+		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.getBlock() instanceof BlockBarbedWireFence || state.is(BlockTags.WALLS);
 	}
 
 

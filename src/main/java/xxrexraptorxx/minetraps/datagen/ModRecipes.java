@@ -179,11 +179,11 @@ public class ModRecipes extends FabricRecipeProvider {
 
         // Toxin Bottle Recipe 1
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TOXIN_BOTTLE, 1)
-                .input(Items.POTION)
+                .input(Items.GLASS_BOTTLE)
                 .input(Items.ROTTEN_FLESH)
                 .input(Items.PUFFERFISH)
                 .input(Items.FERMENTED_SPIDER_EYE)
-                .criterion(FabricRecipeProvider.hasItem(Items.POTION), FabricRecipeProvider.conditionsFromItem(Items.POTION))
+                .criterion(FabricRecipeProvider.hasItem(Items.GLASS_BOTTLE), FabricRecipeProvider.conditionsFromItem(Items.GLASS_BOTTLE))
                 .criterion(FabricRecipeProvider.hasItem(Items.ROTTEN_FLESH), FabricRecipeProvider.conditionsFromItem(Items.ROTTEN_FLESH))
                 .criterion(FabricRecipeProvider.hasItem(Items.PUFFERFISH), FabricRecipeProvider.conditionsFromItem(Items.PUFFERFISH))
                 .criterion(FabricRecipeProvider.hasItem(Items.FERMENTED_SPIDER_EYE), FabricRecipeProvider.conditionsFromItem(Items.FERMENTED_SPIDER_EYE))

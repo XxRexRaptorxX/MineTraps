@@ -1,81 +1,75 @@
 package xxrexraptorxx.minetraps.blocks;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HalfTransparentBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
-import javax.annotation.Nullable;
+public class BlockBarbedWire extends HorizontalFacingBlock {
+	public static final MapCodec<BlockBarbedWire> CODEC = BlockBarbedWire.createCodec(BlockBarbedWire::new);
 
+	public MapCodec<BlockBarbedWire> getCodec() {
+		return CODEC;
+	}
 
-public class BlockBarbedWire extends HalfTransparentBlock {
+	public BlockBarbedWire(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.IRON_GRAY)
+				.nonOpaque()
+				.noCollision()
+				.requiresTool()
+				.strength(5.0f,10.0f)
+				.sounds(BlockSoundGroup.METAL));
 
-	private static final VoxelShape RENDER_SHAPE = Shapes.empty();
-
-	public BlockBarbedWire() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(5.0F, 10.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.PLING)
-				.noCollission()
-				.noOcclusion()
-		);
+		setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
 
-
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
-		if (!level.isClientSide) {
-			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
-				if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(level.damageSources().generic(), Config.BARBED_WIRE_DAMAGE.get());
-				if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(level.damageSources().generic(), Config.RAZOR_WIRE_DAMAGE.get());
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		entity.slowMovement(state, new Vec3d(0.25, 0.05f, 0.25));
+
+		if (!world.isClient()) {
+			if (Config.BARBED_WIRE_DESTROY_ITEMS) {
+				if (this == ModBlocks.BARBED_WIRE)
+					entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BARBED_WIRE_DAMAGE);
+				if (this == ModBlocks.RAZOR_WIRE)
+					entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.RAZOR_WIRE_DAMAGE);
 			} else {
 				if (entity instanceof LivingEntity) {
-					if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(level.damageSources().generic(), (float) Config.BARBED_WIRE_DAMAGE.get());
-					if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(level.damageSources().generic(), (float) Config.RAZOR_WIRE_DAMAGE.get());
+					if (this == ModBlocks.BARBED_WIRE)
+						entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BARBED_WIRE_DAMAGE);
+					if (this == ModBlocks.RAZOR_WIRE)
+						entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.RAZOR_WIRE_DAMAGE);
 				}
 			}
 		}
 	}
 
-
-	//Facing
-
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(BlockStateProperties.HORIZONTAL_FACING);
-
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(Properties.HORIZONTAL_FACING);
 	}
 
-
-	@Nullable
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
-
 }

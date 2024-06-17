@@ -1,84 +1,70 @@
 package xxrexraptorxx.minetraps.datagen;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
-import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import xxrexraptorxx.minetraps.main.References;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBlockTags extends BlockTagsProvider {
+public class ModBlockTags extends FabricTagProvider.BlockTagProvider {
 
-    public ModBlockTags(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper helper) {
-        super(packOutput, lookupProvider, References.MODID, helper);
+    public ModBlockTags(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
-
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
-        tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(   ModBlocks.TOXIC_SPIKES.get(),
-                        ModBlocks.SPIKES.get(),
-                        ModBlocks.BARBED_WIRE.get(),
-                        ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.RAZOR_WIRE.get(),
-                        ModBlocks.BEAR_TRAP.get(),
-                        ModBlocks.OBSTACLE.get(),
-                        ModBlocks.GHOST_BLOCK.get(),
-                        ModBlocks.TROLL_BLOCK.get()
-                        );
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(   ModBlocks.TOXIC_SPIKES,
+                        ModBlocks.SPIKES,
+                        ModBlocks.BARBED_WIRE,
+                        ModBlocks.BARBED_WIRE_FENCE,
+                        ModBlocks.RAZOR_WIRE,
+                        ModBlocks.BEAR_TRAP,
+                        ModBlocks.OBSTACLE,
+                        ModBlocks.GHOST_BLOCK,
+                        ModBlocks.TROLL_BLOCK);
 
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .add(   ModBlocks.CHEST_BOMB);
 
-        tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(   ModBlocks.CHEST_BOMB.get()
+        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+                .add(   ModBlocks.QUICK_SAND,
+                        ModBlocks.NAIL_TRAP,
+                        ModBlocks.TOXIC_NAIL_TRAP,
+                        ModBlocks.EXPLOSIVE_MINE,
+                        ModBlocks.TOXIC_MINE,
+                        ModBlocks.PITFALL_TRAP,
+                        ModBlocks.BEAR_TRAP
                 );
 
+        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+                .add(   ModBlocks.TOXIC_SPIKES,
+                        ModBlocks.SPIKES,
+                        ModBlocks.BARBED_WIRE,
+                        ModBlocks.BARBED_WIRE_FENCE,
+                        ModBlocks.RAZOR_WIRE,
+                        ModBlocks.BEAR_TRAP,
+                        ModBlocks.OBSTACLE,
+                        ModBlocks.CHEST_BOMB,
+                        ModBlocks.QUICK_SAND,
+                        ModBlocks.NAIL_TRAP,
+                        ModBlocks.NAIL_TRAP,
+                        ModBlocks.TOXIC_NAIL_TRAP,
+                        ModBlocks.EXPLOSIVE_MINE,
+                        ModBlocks.TOXIC_MINE,
+                        ModBlocks.PITFALL_TRAP,
+                        ModBlocks.GHOST_BLOCK,
+                        ModBlocks.TROLL_BLOCK);
 
-        tag(BlockTags.MINEABLE_WITH_SHOVEL)
-                .add(   ModBlocks.QUICK_SAND.get(),
-                        ModBlocks.NAIL_TRAP.get(),
-                        ModBlocks.TOXIC_NAIL_TRAP.get(),
-                        ModBlocks.EXPLOSIVE_MINE.get(),
-                        ModBlocks.TOXIC_MINE.get(),
-                        ModBlocks.PITFALL_TRAP.get(),
-                        ModBlocks.BEAR_TRAP.get()
+        getOrCreateTagBuilder(BlockTags.FENCES)
+                .add(   ModBlocks.BARBED_WIRE_FENCE
                 );
 
-
-        tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(   ModBlocks.TOXIC_SPIKES.get(),
-                        ModBlocks.SPIKES.get(),
-                        ModBlocks.BARBED_WIRE.get(),
-                        ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.RAZOR_WIRE.get(),
-                        ModBlocks.BEAR_TRAP.get(),
-                        ModBlocks.OBSTACLE.get(),
-                        ModBlocks.CHEST_BOMB.get(),
-                        ModBlocks.QUICK_SAND.get(),
-                        ModBlocks.NAIL_TRAP.get(),
-                        ModBlocks.NAIL_TRAP.get(),
-                        ModBlocks.TOXIC_NAIL_TRAP.get(),
-                        ModBlocks.EXPLOSIVE_MINE.get(),
-                        ModBlocks.TOXIC_MINE.get(),
-                        ModBlocks.PITFALL_TRAP.get(),
-                        ModBlocks.GHOST_BLOCK.get(),
-                        ModBlocks.TROLL_BLOCK.get()
+        getOrCreateTagBuilder(BlockTags.SAND)
+                .add(   ModBlocks.QUICK_SAND
                 );
-
-
-        tag(BlockTags.FENCES)
-                .add(   ModBlocks.BARBED_WIRE_FENCE.get()
-                );
-
-
-        tag(BlockTags.SAND)
-                .add(   ModBlocks.QUICK_SAND.get()
-                );
-
-
-
     }
 }

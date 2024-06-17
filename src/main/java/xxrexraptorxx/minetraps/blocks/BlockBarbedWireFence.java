@@ -1,133 +1,143 @@
 package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CrossCollisionBlock;
-import net.minecraft.world.level.block.IronBarsBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.LeadItem;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.Property;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.utils.Config;
 
-public class BlockBarbedWireFence extends CrossCollisionBlock {
 
-	public BlockBarbedWireFence() {
-		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(5.0F, 10.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.PLING)
-				.noOcclusion()
-				.noCollission()
+public class BlockBarbedWireFence extends HorizontalConnectingBlock {
+	public static final MapCodec<BlockBarbedWireFence> CODEC = BlockBarbedWireFence.createCodec(BlockBarbedWireFence::new);
+	private final VoxelShape[] cullingShapes;
+
+	@Override
+	protected MapCodec<? extends HorizontalConnectingBlock> getCodec() {
+		return CODEC;
+	}
+
+	public BlockBarbedWireFence(AbstractBlock.Settings settings) {
+		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, settings
+				.mapColor(MapColor.IRON_GRAY)
+				.nonOpaque()
+				.noCollision()
+				.requiresTool()
+				.strength(5.0f,10.0f)
+				.sounds(BlockSoundGroup.METAL)
+				.instrument(Instrument.CHIME)
 		);
 
-		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
+		this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(NORTH, false)).with(EAST, false)).with(SOUTH, false)).with(WEST, false)).with(WATERLOGGED, false));
+		this.cullingShapes = this.createShapes(2.0f, 1.0f, 16.0f, 6.0f, 15.0f);
 	}
-
-
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		BlockGetter blockgetter = context.getLevel();
-		BlockPos blockpos = context.getClickedPos();
-		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
-		BlockPos blockpos1 = blockpos.north();
-		BlockPos blockpos2 = blockpos.south();
-		BlockPos blockpos3 = blockpos.west();
-		BlockPos blockpos4 = blockpos.east();
-		BlockState blockstate = blockgetter.getBlockState(blockpos1);
-		BlockState blockstate1 = blockgetter.getBlockState(blockpos2);
-		BlockState blockstate2 = blockgetter.getBlockState(blockpos3);
-		BlockState blockstate3 = blockgetter.getBlockState(blockpos4);
-		return this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.attachsTo(blockstate, blockstate.isFaceSturdy(blockgetter, blockpos1, Direction.SOUTH)))).setValue(SOUTH, Boolean.valueOf(this.attachsTo(blockstate1, blockstate1.isFaceSturdy(blockgetter, blockpos2, Direction.NORTH)))).setValue(WEST, Boolean.valueOf(this.attachsTo(blockstate2, blockstate2.isFaceSturdy(blockgetter, blockpos3, Direction.EAST)))).setValue(EAST, Boolean.valueOf(this.attachsTo(blockstate3, blockstate3.isFaceSturdy(blockgetter, blockpos4, Direction.WEST)))).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
-	}
-
 
 	@Override
-	public BlockState updateShape(BlockState p_54211_, Direction p_54212_, BlockState p_54213_, LevelAccessor p_54214_, BlockPos p_54215_, BlockPos p_54216_) {
-		if (p_54211_.getValue(WATERLOGGED)) {
-			p_54214_.scheduleTick(p_54215_, Fluids.WATER, Fluids.WATER.getTickDelay(p_54214_));
-		}
-
-		return p_54212_.getAxis().isHorizontal() ? p_54211_.setValue(PROPERTY_BY_DIRECTION.get(p_54212_), Boolean.valueOf(this.attachsTo(p_54213_, p_54213_.isFaceSturdy(p_54214_, p_54216_, p_54212_.getOpposite())))) : super.updateShape(p_54211_, p_54212_, p_54213_, p_54214_, p_54215_, p_54216_);
+	public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
+		return this.cullingShapes[this.getShapeIndex(state)];
 	}
 
-
 	@Override
-	public VoxelShape getVisualShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-		return Shapes.empty();
+	public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return this.getOutlineShape(state, world, pos, context);
 	}
 
+	@Override
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
+	}
+
+	public boolean canConnect(BlockState state, boolean neighborIsFullSquare, Direction dir) {
+		Block block = state.getBlock();
+		boolean bl = this.canConnectToFence(state);
+		boolean bl2 = block instanceof FenceGateBlock && FenceGateBlock.canWallConnect(state, dir);
+		return !FenceBlock.cannotConnect(state) && neighborIsFullSquare || bl || bl2;
+	}
+
+	private boolean canConnectToFence(BlockState state) {
+		return state.isIn(BlockTags.FENCES) && state.isIn(BlockTags.WOODEN_FENCES) == this.getDefaultState().isIn(BlockTags.WOODEN_FENCES);
+	}
 
 	@Override
-	public boolean skipRendering(BlockState state, BlockState state2, Direction direction) {
-		if (state2.is(this)) {
-			if (!direction.getAxis().isHorizontal()) {
-				return true;
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (world.isClient) {
+			ItemStack itemStack = player.getStackInHand(hand);
+			if (itemStack.isOf(Items.LEAD)) {
+				return ActionResult.SUCCESS;
 			}
-
-			if (state.getValue(PROPERTY_BY_DIRECTION.get(direction)) && state2.getValue(PROPERTY_BY_DIRECTION.get(direction.getOpposite()))) {
-				return true;
-			}
+			return ActionResult.PASS;
 		}
-
-		return super.skipRendering(state, state2, direction);
+		return LeadItem.attachHeldMobsToBlock(player, world, pos);
 	}
-
-
-	public final boolean attachsTo(BlockState state, boolean p_54219_) {
-		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.is(BlockTags.WALLS);
-	}
-
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
-		state.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		World blockView = ctx.getWorld();
+		BlockPos blockPos = ctx.getBlockPos();
+		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+		BlockPos blockPos2 = blockPos.north();
+		BlockPos blockPos3 = blockPos.east();
+		BlockPos blockPos4 = blockPos.south();
+		BlockPos blockPos5 = blockPos.west();
+		BlockState blockState = blockView.getBlockState(blockPos2);
+		BlockState blockState2 = blockView.getBlockState(blockPos3);
+		BlockState blockState3 = blockView.getBlockState(blockPos4);
+		BlockState blockState4 = blockView.getBlockState(blockPos5);
+		return (BlockState)((BlockState)((BlockState)((BlockState)((BlockState)super.getPlacementState(ctx).with(NORTH, this.canConnect(blockState, blockState.isSideSolidFullSquare(blockView, blockPos2, Direction.SOUTH), Direction.SOUTH))).with(EAST, this.canConnect(blockState2, blockState2.isSideSolidFullSquare(blockView, blockPos3, Direction.WEST), Direction.WEST))).with(SOUTH, this.canConnect(blockState3, blockState3.isSideSolidFullSquare(blockView, blockPos4, Direction.NORTH), Direction.NORTH))).with(WEST, this.canConnect(blockState4, blockState4.isSideSolidFullSquare(blockView, blockPos5, Direction.EAST), Direction.EAST))).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
 	}
 
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (state.get(WATERLOGGED).booleanValue()) {
+			world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+		}
+		if (direction.getAxis().getType() == Direction.Type.HORIZONTAL) {
+			return (BlockState)state.with((Property)FACING_PROPERTIES.get(direction), this.canConnect(neighborState, neighborState.isSideSolidFullSquare(world, neighborPos, direction.getOpposite()), direction.getOpposite()));
+		}
+		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	}
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
+	}
 
-		if (!level.isClientSide) {
-			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
-				entity.hurt(level.damageSources().generic(), (float) Config.BARBED_WIRE_FENCE_DAMAGE.get());
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		entity.slowMovement(state, new Vec3d(0.25, 0.05f, 0.25));
 
+		if (!world.isClient()) {
+			if (Config.BARBED_WIRE_DESTROY_ITEMS) {
+				entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BARBED_WIRE_FENCE_DAMAGE);
 			} else {
 				if (entity instanceof LivingEntity) {
-					entity.hurt(level.damageSources().generic(), (float) Config.BARBED_WIRE_FENCE_DAMAGE.get());
+					entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BARBED_WIRE_FENCE_DAMAGE);
 				}
 			}
 		}
-	}
-
-
-	@Override
-	protected MapCodec<? extends CrossCollisionBlock> codec() {
-		return null;
-	}
-
-
-	@Override
-	public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
-		return false;
 	}
 }

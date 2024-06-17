@@ -1,9 +1,10 @@
 package xxrexraptorxx.minetraps.utils;
 
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 
 import java.util.ArrayList;
+
 
 public class TrollHelper {
 

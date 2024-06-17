@@ -1,74 +1,70 @@
 package xxrexraptorxx.minetraps.items;
 
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
+import net.minecraft.world.World;
+
 
 public class ItemToxinBottle extends Item {
-
-    public ItemToxinBottle() {
-        super(new Properties()
-                .stacksTo(1)
-                .craftRemainder(Items.GLASS_BOTTLE)
-        );
-
+    public ItemToxinBottle(Item.Settings settings) {
+        super(settings
+                .maxCount(1)
+                .recipeRemainder(Items.GLASS_BOTTLE));
     }
 
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        super.finishUsingItem(pStack, pLevel, pEntityLiving);
-            ServerPlayer serverplayer = (ServerPlayer) pEntityLiving;
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, pStack);
-            pStack.shrink(1);
-            serverplayer.awardStat(Stats.ITEM_USED.get(this));
-
-
-        if (!pLevel.isClientSide) {
-            pEntityLiving.addEffect(new MobEffectInstance(MobEffects.POISON, 800, 1));
-            pEntityLiving.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        super.finishUsing(stack, world, user);
+        if (user instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) user;
+            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
+            stack.decrement(1);
+            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
-            return new ItemStack(Items.GLASS_BOTTLE);
+        if (!world.isClient) {
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 800, 1));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 400, 1));
+        }
+        return new ItemStack(Items.GLASS_BOTTLE);
     }
 
-
     @Override
-    public int getUseDuration(ItemStack pStack) {
+    public int getMaxUseTime(ItemStack stack) {
         return 40;
     }
 
-
     @Override
-    public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.DRINK;
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.DRINK;
     }
 
-
     @Override
-    public SoundEvent getDrinkingSound() {
-        return SoundEvents.GENERIC_DRINK;
+    public SoundEvent getDrinkSound() {
+        return SoundEvents.ENTITY_GENERIC_DRINK;
     }
 
-
     @Override
-    public SoundEvent getEatingSound() {
-        return SoundEvents.GENERIC_DRINK;
+    public SoundEvent getEatSound() {
+        return SoundEvents.ENTITY_GENERIC_DRINK;
     }
 
-
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        return ItemUtils.startUsingInstantly(pLevel, pPlayer, pHand);
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        return ItemUsage.consumeHeldItem(world, user, hand);
     }
-
 }

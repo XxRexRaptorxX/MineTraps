@@ -5,7 +5,6 @@
     "message.minetraps.troll.desc": "Right click with ores on the trap to hide it.",
     "message.minetraps.ghost.desc": "Right click with dirt, sand, stone, cobble or bricks on the block to hide it.",
 
-
     "item.minetraps.nails": "Nails",
     "item.minetraps.toxin_bottle": "Toxin",
     "item.minetraps.toxin_bucket": "Toxin Bucket",
@@ -59,5 +58,7 @@
     "block.minetraps.toxin_flowing": "Toxin",
 
     "fluid.minetraps.toxin": "Toxin",
-    "fluid.minetraps.toxin_flowing": "Toxin"
+    "fluid.minetraps.toxin_flowing": "Toxin",
+
+    "death.attack.spikes": "%1$s came to close to a trap and died."
 }

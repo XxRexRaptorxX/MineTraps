@@ -1,30 +1,27 @@
 package xxrexraptorxx.minetraps.datagen;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
-import xxrexraptorxx.minetraps.main.References;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
+import xxrexraptorxx.minetraps.world.MineTrapsConfiguredFeatures;
+import xxrexraptorxx.minetraps.world.MineTrapsPlacedFeatures;
 
-import java.util.concurrent.CompletableFuture;
+public class DataGenerators implements DataGeneratorEntrypoint {
+	@Override
+	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-@Mod.EventBusSubscriber(modid = References.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
+		pack.addProvider(ModBlockTags::new);
+		pack.addProvider(ModItemModels::new);
+		pack.addProvider(ModLootTables::new);
+		pack.addProvider(ModRecipes::new);
+		pack.addProvider(ModWorldGenerator::new);
+	}
 
-    @SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput packOutput = generator.getPackOutput();
-        ExistingFileHelper helper = event.getExistingFileHelper();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-
-        ModBlockTags blockTags = new ModBlockTags(packOutput, lookupProvider, event.getExistingFileHelper());
-        generator.addProvider(event.includeServer(), blockTags);
-        //generator.addProvider(event.includeServer(), new ModLootTables(packOutput)); TODO!
-        generator.addProvider(event.includeClient(), new ModItemModels(packOutput, helper));
-
-    }
+	@Override
+	public void buildRegistry(RegistryBuilder registryBuilder) {
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, MineTrapsConfiguredFeatures::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, MineTrapsPlacedFeatures::boostrap);
+	}
 }

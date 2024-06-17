@@ -1,74 +1,76 @@
 package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
+import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
+
 public class BlockSpikes extends FallingBlock {
+	public static final MapCodec<BlockSpikes> CODEC = BlockSpikes.createCodec(BlockSpikes::new);
 
-	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	protected static final VoxelShape OM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
-	protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+	public MapCodec<BlockSpikes> getCodec() {
+		return CODEC;
+	}
 
-	public BlockSpikes() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
+	public static final BooleanProperty POWERED = Properties.POWERED;
+	private final VoxelShape ON_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
+	private final VoxelShape OFF_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+
+	public BlockSpikes(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.IRON_GRAY)
+				.nonOpaque()
+				.noCollision()
+				.requiresTool()
 				.strength(1.8F, 7.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.BELL)
-				.noCollission()
-				.noOcclusion()
+				.sounds(BlockSoundGroup.METAL)
+				.instrument(Instrument.BELL)
 		);
-
-		this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));
+		this.setDefaultState((BlockState) this.getDefaultState().with(POWERED, false));
 	}
 
 
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return Shapes.empty();
+	@Deprecated
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return VoxelShapes.empty();
 	}
 
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		if (state.getValue(POWERED)) {
-			return OM_SHAPE;
+	@Deprecated
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		if (state.get(POWERED)) {
+			return ON_SHAPE;
 		} else {
 			return OFF_SHAPE;
 		}
@@ -76,58 +78,48 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public boolean canConnectRedstone(BlockState state, BlockGetter world, BlockPos pos, @Nullable Direction direction) {
-		return true;
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return Block.sideCoversSmallSquare(world, pos.down(), Direction.DOWN);
+	}
+
+
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		tooltip.add(Text.translatable("message.minetraps.spike.desc").withColor(Colors.GRAY));
+	}
+
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(POWERED);
 	}
 
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-		return canSupportCenter(level, pos.below(), Direction.DOWN);
-	}
-
-
-	@Override
-	public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> list, TooltipFlag flag) {
-		list.add(Component.translatable("message.minetraps.spike.desc").withStyle(ChatFormatting.GRAY));
-	}
-
-
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-		pBuilder.add(POWERED);
-	}
-
-
-	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
-		if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
-			LivingEntity entity = (LivingEntity) entityIn;
-
-			entity.hurt(level.damageSources().generic(), (float) Config.SPIKES_DAMAGE.get());
-			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION.get(), Config.TOXIC_SPIKES_EFFECT_AMPLIFIER.get()));
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+		if ((entityIn instanceof LivingEntity entity) && !world.isClient() && state.get(POWERED)) {
+			entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), (float) Config.SPIKES_DAMAGE);
+			if(this == ModBlocks.TOXIC_SPIKES) entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION, Config.TOXIC_SPIKES_EFFECT_AMPLIFIER));
 		}
 	}
 
 
-	@Nullable
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
+	@Nullable
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return (BlockState)this.getDefaultState().with(POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
 	}
 
 
 	@Override
-	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-		if (!level.isClientSide) {
-			boolean flag = state.getValue(POWERED);
-			if (flag != level.hasNeighborSignal(pos)) {
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+		if (!world.isClient()) {
+			boolean flag = state.get(POWERED);
+			if (flag != world.isReceivingRedstonePower(pos)) {
 				if (flag) {
-					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 1.0F, 3);
-					level.scheduleTick(pos, this, 4);
+					world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_PISTON_CONTRACT, SoundCategory.BLOCKS, 1.0F, 3);
+					world.scheduleBlockTick(pos, this, 4);
 				} else {
-					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
-					level.setBlock(pos, state.cycle(POWERED), 2);
+					world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 3);
+					world.setBlockState(pos, state.cycle(POWERED), 2);
 				}
 			}
 		}
@@ -135,16 +127,9 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return null;
-	}
-
-
-	@Override
-	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
-			level.setBlock(pos, state.cycle(POWERED), 2);
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if (state.get(POWERED) && !world.isReceivingRedstonePower(pos)) {
+			world.setBlockState(pos, state.cycle(POWERED), 2);
 		}
 	}
-
 }

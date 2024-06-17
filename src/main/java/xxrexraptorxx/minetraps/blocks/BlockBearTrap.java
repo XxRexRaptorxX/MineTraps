@@ -1,88 +1,84 @@
 package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+
+import net.minecraft.entity.Entity;
+
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
+
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+
+import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockBearTrap extends FallingBlock {
+	public static final MapCodec<BlockBearTrap> CODEC = BlockBearTrap.createCodec(BlockBearTrap::new);
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
+	public MapCodec<BlockBearTrap> getCodec() {
+		return CODEC;
+	}
 
-	public BlockBearTrap() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(5.0F, 10.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.PLING)
-				.noOcclusion()
-				.noCollission()
+	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
+
+	public BlockBearTrap(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.IRON_GRAY)
+				.nonOpaque()
+				.noCollision()
+				.requiresTool()
+				.strength(5.0f, 10.0f)
+				.sounds(BlockSoundGroup.METAL)
+				.instrument(Instrument.CHIME)
 		);
 	}
 
-
-	@Override
-	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	@Deprecated
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CUSTOM_SHAPE;
 	}
 
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return Shapes.empty();
+	@Deprecated
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return VoxelShapes.empty();
 	}
 
-
 	@Override
-	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-		return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return Block.sideCoversSmallSquare(world, pos.down(), Direction.DOWN);
 	}
 
-
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+		if (entityIn instanceof LivingEntity entity) {
+            if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {
+                entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), 6.0f);
+            }
 
-		if (entityIn instanceof LivingEntity) {
-			LivingEntity entity = (LivingEntity) entityIn;
-			if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getPath())) entity.hurt(level.damageSources().generic(), 6.0F);
+            entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BEAR_TRAP_DAMAGE);
+            entityIn.slowMovement(state, new Vec3d(0.1D, 0.25D, 0.1D));
 
-			entity.hurt(level.damageSources().generic(), (float) Config.BEAR_TRAP_DAMAGE.get());
-			entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
-
-			if(!level.isClientSide) {
-				if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.MOVEMENT_SLOWDOWN).getPath())) level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
-				entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0, false, false, false));
-			}
-
+            if (!world.isClient()) {
+                if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {
+                    world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS, 1.0F, 3);
+                }
+                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 5, 0, false, false, false));
+            }
 		}
-	}
-
-
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return null;
 	}
 }

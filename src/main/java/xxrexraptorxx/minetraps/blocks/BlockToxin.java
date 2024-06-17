@@ -1,31 +1,28 @@
 package xxrexraptorxx.minetraps.blocks;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import xxrexraptorxx.minetraps.utils.Config;
 
-import java.util.function.Supplier;
 
-public class BlockToxin extends LiquidBlock {
-
-    public BlockToxin(Supplier<? extends FlowingFluid> fluid, Properties properties) {
-        super(fluid, properties);
+public class BlockToxin extends FluidBlock {
+    public BlockToxin(FlowableFluid fluid, AbstractBlock.Settings settings) {
+        super(fluid, settings);
     }
 
-
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
-            if(entityIn instanceof LivingEntity) {
-                LivingEntity entity = (LivingEntity) entityIn;
-                entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIN_POISON_EFFECT_DURATION.get(), Config.TOXIN_POISON_EFFECT_AMPLIFIER.get()));
-                entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, Config.TOXIN_CONFUSION_EFFECT_DURATION.get(), Config.TOXIN_CONFUSION_EFFECT_AMPLIFIER.get()));
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+            if(entityIn instanceof LivingEntity entity) {
+                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, Config.TOXIN_POISON_EFFECT_DURATION, Config.TOXIN_POISON_EFFECT_AMPLIFIER));
+                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, Config.TOXIN_CONFUSION_EFFECT_DURATION, Config.TOXIN_CONFUSION_EFFECT_AMPLIFIER));
             }
         }
 }

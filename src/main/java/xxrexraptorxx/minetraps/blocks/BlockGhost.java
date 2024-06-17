@@ -1,37 +1,39 @@
 package xxrexraptorxx.minetraps.blocks;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Colors;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 
 public class BlockGhost extends Block {
+	public static final MapCodec<BlockGhost> CODEC = BlockGhost.createCodec(BlockGhost::new);
 
+	public MapCodec<BlockGhost> getCodec() {
+		return CODEC;
+	}
 	/**
 	 * 	0 = empty
 	 *  1 = dirt
@@ -41,62 +43,56 @@ public class BlockGhost extends Block {
 	 *  5 = cobblestone
 	 *  6 = stonebricks
 	 */
-	public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 6);
+	public static final IntProperty TYPE = IntProperty.of("type", 0, 6);
 
-
-	public BlockGhost() {
-		super(Properties.of()
+	public BlockGhost(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.STONE_GRAY)
+				.nonOpaque()
+				.noCollision()
 				.strength(1.5F, 6.0F)
-				.sound(SoundType.STONE)
-				.mapColor(MapColor.STONE)
-				.instrument(NoteBlockInstrument.XYLOPHONE)
-				.noCollission()
-				.noOcclusion()
+				.sounds(BlockSoundGroup.STONE)
+				.instrument(Instrument.XYLOPHONE)
 		);
-		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));
+		this.setDefaultState((BlockState) this.getDefaultState().with(TYPE, 0));
+	}
+
+
+	@Deprecated
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return VoxelShapes.empty();
 	}
 
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return Shapes.empty();
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		tooltip.add(Text.translatable("message.minetraps.ghost.desc").withColor(Colors.GRAY));
 	}
 
 
 	@Override
-	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> list, TooltipFlag pFlag) {
-		list.add(Component.translatable("message.minetraps.ghost.desc").withStyle(ChatFormatting.GRAY));
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(TYPE);
 	}
 
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-		pBuilder.add(TYPE);
-	}
-
-
 	@Nullable
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(TYPE, 0);
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return (BlockState)this.getDefaultState().with(TYPE, 0);
 	}
 
 
-
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-
-		if (state.getBlock() == ModBlocks.GHOST_BLOCK.get() && state.getValue(TYPE) == 0) {
-
-			if (TrapHelper.getTypeList().contains(player.getItemInHand(hand).getItem())) {
-				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(BuiltInRegistries.ITEM.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
-
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (state.getBlock() == ModBlocks.GHOST_BLOCK && state.get(TYPE) == 0) {
+			if (TrapHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
+				world.setBlockState(pos, state.with(TYPE, TrapHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
 				if (!player.isCreative()) {
-					player.getUseItem().shrink(1);
+					player.getActiveItem().decrement(1);
 				}
 			}
 		}
-		return InteractionResult.SUCCESS;
+		return ActionResult.SUCCESS;
 	}
-
 }

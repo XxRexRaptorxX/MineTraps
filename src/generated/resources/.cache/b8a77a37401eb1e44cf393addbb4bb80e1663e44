@@ -1,7 +1,0 @@
-// 1.20.4	2024-05-04T01:41:23.7046941	Tags for minecraft:block mod id minetraps
-65b19dce820be099cdf1413219703aef0c6c4757 data/minecraft/tags/blocks/fences.json
-6024d30b62b014a4d681bbedfb83b927959af08d data/minecraft/tags/blocks/mineable/axe.json
-5998ae2941b7bb18bdbb5ec1ecdbd902e8ff086a data/minecraft/tags/blocks/mineable/pickaxe.json
-91fa28ec242f42c296ac9d322e17cb6ee7c51e2b data/minecraft/tags/blocks/mineable/shovel.json
-48662df1bc021f97f6a5d560febb9a8b15ebbe3d data/minecraft/tags/blocks/needs_iron_tool.json
-a32459fc4a1bae99a1d8355eef01fa41c633bfe2 data/minecraft/tags/blocks/sand.json

@@ -1,90 +1,82 @@
 package xxrexraptorxx.minetraps.blocks;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 import xxrexraptorxx.minetraps.utils.Config;
-
-import javax.annotation.Nullable;
 
 
 public class BlockChestBomb extends Block {
+	public static final MapCodec<BlockChestBomb> CODEC = BlockChestBomb.createCodec(BlockChestBomb::new);
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(	1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+	public MapCodec<BlockChestBomb> getCodec() {
+		return CODEC;
+	}
 
+	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
-	public BlockChestBomb() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(2.5F, 0.0F)
-				.sound(SoundType.WOOD)
-				.mapColor(MapColor.WOOD)
-				.instrument(NoteBlockInstrument.BASS)
+	public BlockChestBomb(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.OAK_TAN)
+				.requiresTool()
+				.strength(2.5f, 0.0f)
+				.sounds(BlockSoundGroup.WOOD)
+				.instrument(Instrument.BASS)
 		);
 	}
 
-
-	@Override
-	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	@Deprecated
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CUSTOM_SHAPE;
 	}
 
-
 	@Override
-	public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
-		AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
+		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
-		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Level.ExplosionInteraction.TNT);
+		if (!world.isClient()) {
+			world.createExplosion(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, World.ExplosionSourceType.TNT);
 		}
 	}
 
-
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-		level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
-		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
+		world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 1.0F, 3);
+		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
-		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.CHEST_BOMB_EXPLOSION_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+		if (!world.isClient()) {
+			world.createExplosion(dummy, pos.getX(), pos.getY(), pos.getZ(), Config.CHEST_BOMB_EXPLOSION_RADIUS, true, World.ExplosionSourceType.TNT);
 		}
 
-		return InteractionResult.SUCCESS;
+		return ActionResult.SUCCESS;
 	}
-
 
 	//Facing
-
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(BlockStateProperties.HORIZONTAL_FACING);
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(Properties.HORIZONTAL_FACING);
 	}
 
-
-	@Nullable
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
 }

@@ -1,5 +1,9 @@
 package xxrexraptorxx.minetraps.world;
 
+/*
+
+TODO port to fabric
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
@@ -33,7 +37,10 @@ import java.util.Scanner;
 @Mod.EventBusSubscriber(modid = References.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class Events {
 
+
+ */
     /** Update-Checker **/
+    /*
     private static boolean hasShownUp = false;
 
     @SubscribeEvent
@@ -60,10 +67,13 @@ public class Events {
         }
     }
 
+     */
+
 
     /**
      * Distributes the supporter rewards on first join.
      */
+    /*
     @SubscribeEvent
     public static void SupporterRewards(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
@@ -118,6 +128,8 @@ public class Events {
         }
     }
 
+     */
+
 
     /**
      * Tests if a player is a supporter
@@ -126,6 +138,7 @@ public class Events {
      * @param player ingame player
      * @return true/false
      */
+    /*
     private static boolean SupporterCheck(URL url, Player player) {
         try {
             Scanner scanner = new Scanner(url.openStream());
@@ -152,3 +165,5 @@ public class Events {
 
 
 }
+
+     */

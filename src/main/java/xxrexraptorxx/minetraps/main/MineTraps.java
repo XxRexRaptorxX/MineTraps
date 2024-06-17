@@ -1,33 +1,31 @@
 package xxrexraptorxx.minetraps.main;
 
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import xxrexraptorxx.minetraps.fluids.ModFluidTypes;
+import net.fabricmc.api.ModInitializer;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.CreativeModeTabs;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.registry.ModFluids;
 import xxrexraptorxx.minetraps.registry.ModItems;
 import xxrexraptorxx.minetraps.utils.Config;
+import xxrexraptorxx.minetraps.world.gen.ModWorldGeneration;
 
-/**
- * @author XxRexRaptorxX (RexRaptor)
- * @projectPage https://www.curseforge.com/minecraft/mc-mods/minetraps
- **/
-@Mod(References.MODID)
-public class MineTraps {
+public class MineTraps implements ModInitializer {
+	// This logger is used to write text to the console and the log file.
+	// It is considered best practice to use your mod id as the logger's name.
+	// That way, it's clear which mod wrote info, warnings, and errors.
+	public static final Logger LOGGER = LoggerFactory.getLogger(References.MODID);
 
-    public static final Logger LOGGER = LogManager.getLogger();
-
-
-    public MineTraps(IEventBus eventBus) {
-        ModBlocks.init(eventBus);
-        ModItems.init(eventBus);
-        ModFluids.init(eventBus);
-        ModFluidTypes.init(eventBus);
-        CreativeModeTabs.init(eventBus);
-        Config.init();
-    }
-
+	@Override
+	public void onInitialize() {
+		Config.initServer();
+		ModBlocks.registerModBlocks();
+		ModFluids.registerModFluids();
+		ModItems.registerModItems();
+		CreativeModeTabs.registerItemGroups();
+		MineTrapsDamageTypes.registerDamageTypes();
+		ModWorldGeneration.generateModWorldGen();
+	}
 }

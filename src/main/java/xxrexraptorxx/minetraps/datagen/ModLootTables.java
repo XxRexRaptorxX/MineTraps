@@ -1,41 +1,32 @@
 package xxrexraptorxx.minetraps.datagen;
-/**
-import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 
-public class ModLootTables extends BaseLootTableProvider {
+public class ModLootTables extends FabricBlockLootTableProvider {
 
-    public ModLootTables(DataGenerator dataGeneratorIn) {
-        super(dataGeneratorIn);
+    protected ModLootTables(FabricDataOutput dataOutput) {
+        super(dataOutput);
     }
-
 
     @Override
-    protected void addTables() {
-        addBaseLootTable(ModBlocks.BARBED_WIRE.get());
-        addBaseLootTable(ModBlocks.BARBED_WIRE_FENCE.get());
-        addBaseLootTable(ModBlocks.RAZOR_WIRE.get());
-        addBaseLootTable(ModBlocks.BEAR_TRAP.get());
-        addBaseLootTable(ModBlocks.CHEST_BOMB.get());
-        addBaseLootTable(ModBlocks.EXPLOSIVE_MINE.get());
-        addBaseLootTable(ModBlocks.TOXIC_MINE.get());
-        addBaseLootTable(ModBlocks.NAIL_TRAP.get());
-        addBaseLootTable(ModBlocks.TOXIC_NAIL_TRAP.get());
-        addBaseLootTable(ModBlocks.OBSTACLE.get());
-        addBaseLootTable(ModBlocks.PITFALL_TRAP.get());
-        addBaseLootTable(ModBlocks.QUICK_SAND.get());
-        addBaseLootTable(ModBlocks.SPIKES.get());
-        addBaseLootTable(ModBlocks.TOXIC_SPIKES.get());
-        addBaseLootTable(ModBlocks.GHOST_BLOCK.get());
-        addBaseLootTable(ModBlocks.TROLL_BLOCK.get());
-    }
-
-
-
-    private void addBaseLootTable(Block block) {
-        lootTables.put(block, createSimpleTable(ForgeRegistries.BLOCKS.getKey(block).toString(), block));
+    public void generate() {
+        addDrop(ModBlocks.BARBED_WIRE);
+        addDrop(ModBlocks.BARBED_WIRE_FENCE);
+        addDrop(ModBlocks.RAZOR_WIRE);
+        addDrop(ModBlocks.BEAR_TRAP);
+        addDrop(ModBlocks.CHEST_BOMB);
+        addDrop(ModBlocks.EXPLOSIVE_MINE);
+        addDrop(ModBlocks.TOXIC_MINE);
+        addDrop(ModBlocks.NAIL_TRAP);
+        addDrop(ModBlocks.TOXIC_NAIL_TRAP);
+        addDrop(ModBlocks.OBSTACLE);
+        addDrop(ModBlocks.PITFALL_TRAP);
+        addDrop(ModBlocks.QUICK_SAND);
+        addDrop(ModBlocks.SPIKES);
+        addDrop(ModBlocks.TOXIC_SPIKES);
+        addDrop(ModBlocks.GHOST_BLOCK);
+        addDrop(ModBlocks.TROLL_BLOCK);
     }
 }
- **/

@@ -1,0 +1,16 @@
+// 1.20.4	2024-06-17T18:14:52.15535324	MineTraps/Block Loot Tables
+0b41b72faa226f762f5e3f5db5050c4ad8a0476a data/minetraps/loot_tables/blocks/ghost_block.json
+fdcc6a8b32dc1e3fc5fa1770efdd16387989ce43 data/minetraps/loot_tables/blocks/barbed_wire.json
+b7fd77d1961105995584a68624d291e5f5886fdb data/minetraps/loot_tables/blocks/pitfall_trap.json
+dcfcd1b775d1d68f4d3db3d35cd749d421031813 data/minetraps/loot_tables/blocks/obstacle.json
+a572fa04a82bd95f4c22019e502db2948e83e508 data/minetraps/loot_tables/blocks/nail_trap.json
+c2285e993c8bda57208edeaf1c79e4944bd443dd data/minetraps/loot_tables/blocks/toxic_mine.json
+a7a0bd47b72bc2d0bcb886b031a7ae601a019bf1 data/minetraps/loot_tables/blocks/quicksand.json
+8d8437ac285a5d90c14b58aff916f50f36cfffff data/minetraps/loot_tables/blocks/razor_wire.json
+1b8e2c563178e8c9e47d5086a0abbce029df7773 data/minetraps/loot_tables/blocks/explosive_mine.json
+c17121e6ac38ce193b8559b52697e7875aad072e data/minetraps/loot_tables/blocks/spikes.json
+7866e5c4441c07d7e934104e6422a0c7aa2e7b14 data/minetraps/loot_tables/blocks/barbed_wire_fence.json
+c8f83fc72c240efd1ec4ef81047c02eda4a37cb1 data/minetraps/loot_tables/blocks/bear_trap.json
+0bd862a5a066bf5fb798ba8f33030a8c473cd1a2 data/minetraps/loot_tables/blocks/chest_bomb.json
+4681539253b4fc23d363b2b9e224357984769c50 data/minetraps/loot_tables/blocks/spikes_toxic.json
+f1b106d81d909f6b3b789a9792215af3b2af08e0 data/minetraps/loot_tables/blocks/toxic_nail_trap.json

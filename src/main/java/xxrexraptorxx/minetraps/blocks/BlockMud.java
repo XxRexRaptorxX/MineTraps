@@ -1,56 +1,49 @@
 package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.entity.Entity;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 
 public class BlockMud extends FallingBlock {
+	public static final MapCodec<BlockMud> CODEC = BlockMud.createCodec(BlockMud::new);
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+	public MapCodec<BlockMud> getCodec() {
+		return CODEC;
+	}
 
+	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
-	public BlockMud() {
-		super(Properties.of()
+	public BlockMud(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.DIRT_BROWN)
 				.strength(0.3F, 0.0F)
-				.sound(SoundType.SLIME_BLOCK)
-				.mapColor(MapColor.DIRT)
-				.instrument(NoteBlockInstrument.SNARE)
+				.sounds(BlockSoundGroup.SLIME)
+				.instrument(Instrument.SNARE)
 		);
 	}
 
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	@Deprecated
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CUSTOM_SHAPE;
 	}
 
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		entity.makeStuckInBlock(state, new Vec3(0.6D, 0.6D, 0.6D));
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+		entityIn.slowMovement(state, new Vec3d(0.6D, 0.6D, 0.6D));
 	}
 
 
 	@Override
-	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		entity.causeFallDamage(fallDistance, 0.8F, (level.damageSources().fall()));
-	}
-
-
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return null;
+	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+		entity.handleFallDamage(fallDistance, 0.8F, (world.getDamageSources().fall()));
 	}
 }

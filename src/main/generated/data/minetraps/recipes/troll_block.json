@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "O": {
+      "item": "minecraft:tnt"
+    },
+    "X": {
+      "item": "minecraft:stone_button"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "XOX",
+    "#X#"
+  ],
+  "result": {
+    "item": "minetraps:troll_block"
+  }
+}

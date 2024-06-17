@@ -1,81 +1,72 @@
 package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockNailTrap extends FallingBlock {
+	public static final MapCodec<BlockNailTrap> CODEC = BlockNailTrap.createCodec(BlockNailTrap::new);
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
+	public MapCodec<BlockNailTrap> getCodec() {
+		return CODEC;
+	}
 
+	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
 
-	public BlockNailTrap() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
+	public BlockNailTrap(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.IRON_GRAY)
+				.requiresTool()
+				.nonOpaque()
+				.noCollision()
 				.strength(1.0F, 8.0F)
-				.sound(SoundType.GRAVEL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.BELL)
-				.noOcclusion()
-				.noCollission()
+				.sounds(BlockSoundGroup.GRAVEL)
+				.instrument(Instrument.BELL)
 		);
 	}
 
 
-	@Override
-	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	@Deprecated
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CUSTOM_SHAPE;
 	}
 
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return Shapes.empty();
+	@Deprecated
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return VoxelShapes.empty();
 	}
 
-
 	@Override
-	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-		return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return Block.sideCoversSmallSquare(world, pos.down(), Direction.DOWN);
 	}
 
-
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
-		if (!level.isClientSide && !entityIn.isCrouching()) {
-			if (entityIn instanceof LivingEntity) {
-				LivingEntity entity = (LivingEntity) entityIn;
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+		if (!world.isClient() && !entityIn.isCrawling()) {
+			if (entityIn instanceof LivingEntity entity) {
 
-				if (this == ModBlocks.TOXIC_NAIL_TRAP.get())
-					entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_NAIL_TRAP_EFFECT_DURATION.get(), Config.TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER.get()));
+				if (this == ModBlocks.TOXIC_NAIL_TRAP)
+					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, Config.TOXIC_NAIL_TRAP_EFFECT_DURATION, Config.TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER));
 
-				entity.hurt(level.damageSources().generic(), (float) Config.NAIL_TRAP_DAMAGE.get());
+				entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.NAIL_TRAP_DAMAGE);
 			}
 		}
-	}
-
-
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return null;
 	}
 }

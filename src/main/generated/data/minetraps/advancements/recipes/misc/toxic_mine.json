@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_explosive_mine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minetraps:explosive_mine"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:toxic_mine"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_toxin_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minetraps:toxin_bottle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_toxin_bottle",
+      "has_explosive_mine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:toxic_mine"
+    ]
+  }
+}

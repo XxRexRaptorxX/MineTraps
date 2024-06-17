@@ -1,41 +1,42 @@
 package xxrexraptorxx.minetraps.blocks;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.BlockHitResult;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Colors;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
+import org.jetbrains.annotations.Nullable;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.utils.TrollHelper;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 
 public class BlockTroll extends Block {
+	public static final MapCodec<BlockTroll> CODEC = BlockTroll.createCodec(BlockTroll::new);
 
+	public MapCodec<BlockTroll> getCodec() {
+		return CODEC;
+	}
 	/**
 	 * 	0 = empty
 	 *  1 = diamond
@@ -47,80 +48,75 @@ public class BlockTroll extends Block {
 	 *  7 = deepslate iron
 	 *  8 = deepslate gold
 	 */
-	public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 8);
+	public static final IntProperty TYPE = IntProperty.of("type", 0, 8);
 
-
-	public BlockTroll() {
-		super(Properties.of()
+	public BlockTroll(AbstractBlock.Settings settings) {
+		super(settings
+				.mapColor(MapColor.STONE_GRAY)
 				.strength(1.5F, 6.0F)
-				.sound(SoundType.STONE)
-				.mapColor(MapColor.STONE)
-				.instrument(NoteBlockInstrument.BELL)
-				.noLootTable()
+				.sounds(BlockSoundGroup.STONE)
+				.instrument(Instrument.BELL)
+				.dropsNothing()
 		);
-		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));
+		this.setDefaultState((BlockState) this.getDefaultState().with(TYPE, 0));
 	}
 
 	@Override
-	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> list, TooltipFlag pFlag) {
-		list.add(Component.translatable("message.minetraps.troll.desc").withStyle(ChatFormatting.GRAY));
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		tooltip.add(Text.translatable("message.minetraps.troll.desc").withColor(Colors.GRAY));
 	}
 
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-		pBuilder.add(TYPE);
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(TYPE);
 	}
 
 
+	@Override
 	@Nullable
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-		return this.defaultBlockState().setValue(TYPE, 0);
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return (BlockState)this.getDefaultState().with(TYPE, 0);
 	}
 
 
 	//Functions
 
 	@Override
-	public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
-		AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
+		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
-		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.EXPLOSIVE_BLOCK_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+		if (!world.isClient()) {
+			world.createExplosion(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.EXPLOSIVE_BLOCK_RADIUS, true, World.ExplosionSourceType.TNT);
 		}
 	}
 
 
 	@Override
-	public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
+	public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
+		world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 1.0F, 3);
+		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
-		AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-		level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
-		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-
-		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.EXPLOSIVE_BLOCK_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+		if (!world.isClient()) {
+			world.createExplosion(dummy, pos.getX(), pos.getY(), pos.getZ(), Config.EXPLOSIVE_BLOCK_RADIUS, true, World.ExplosionSourceType.TNT);
 		}
 
-		return true;
+		return state;
 	}
 
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-
-		if (state.getBlock() == ModBlocks.TROLL_BLOCK.get() && state.getValue(TYPE) == 0) {
-
-			if (TrollHelper.getTypeList().contains(player.getItemInHand(hand).getItem())) {
-				level.setBlock(pos, state.setValue(TYPE, TrollHelper.getStateFromBlock(BuiltInRegistries.ITEM.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
-
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (state.getBlock() == ModBlocks.TROLL_BLOCK && state.get(TYPE) == 0) {
+			if (TrollHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
+				world.setBlockState(pos, state.with(TYPE, TrollHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
 				if (!player.isCreative()) {
-					player.getUseItem().shrink(1);
+					player.getActiveItem().decrement(1);
 				}
 			}
 		}
-		return InteractionResult.SUCCESS;
+		return ActionResult.SUCCESS;
 	}
 }

@@ -1,42 +1,44 @@
 package xxrexraptorxx.minetraps.registry;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import xxrexraptorxx.minetraps.main.MineTraps;
 import xxrexraptorxx.minetraps.main.References;
 
+
 public class CreativeModeTabs {
+    public static final ItemGroup MINETRAPS_TAB = Registry.register(Registries.ITEM_GROUP,
+            new Identifier(References.MODID),
+            FabricItemGroup.builder().displayName(Text.translatable("itemGroup." + References.MODID + ".tab"))
+                    .icon(() -> new ItemStack(ModBlocks.PITFALL_TRAP.asItem())).entries((displayContext, entries) -> {
+                        entries.add(ModBlocks.BARBED_WIRE);
+                        entries.add(ModBlocks.BARBED_WIRE_FENCE);
+                        entries.add(ModBlocks.RAZOR_WIRE);
+                        entries.add(ModBlocks.BEAR_TRAP);
+                        entries.add(ModBlocks.CHEST_BOMB);
+                        entries.add(ModBlocks.EXPLOSIVE_MINE);
+                        entries.add(ModBlocks.TOXIC_MINE);
+                        entries.add(ModBlocks.QUICK_SAND);
+                        entries.add(ModBlocks.OBSTACLE);
+                        entries.add(ModBlocks.NAIL_TRAP);
+                        entries.add(ModBlocks.TOXIC_NAIL_TRAP);
+                        entries.add(ModBlocks.SPIKES);
+                        entries.add(ModBlocks.TOXIC_SPIKES);
+                        entries.add(ModBlocks.PITFALL_TRAP);
+                        entries.add(ModBlocks.GHOST_BLOCK);
+                        entries.add(ModBlocks.TROLL_BLOCK);
+                        entries.add(ModItems.NAILS);
+                        entries.add(ModItems.TOXIN_BUCKET);
+                        entries.add(ModItems.TOXIN_BOTTLE);
 
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, References.MODID) ;
+                    }).build());
 
-    public static void init(IEventBus eventBus) { CREATIVE_MODE_TABS.register(eventBus); }
-
-
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register(References.MODID, () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup." + References.MODID + ".tab"))
-            .icon(() -> ModBlocks.PITFALL_TRAP_BLOCKITEM.get().getDefaultInstance())
-            .displayItems((params, output) -> {
-                output.accept(ModBlocks.BARBED_WIRE.get());
-                output.accept(ModBlocks.RAZOR_WIRE.get());
-                output.accept(ModBlocks.BARBED_WIRE_FENCE.get());
-                output.accept(ModBlocks.BEAR_TRAP.get());
-                output.accept(ModBlocks.CHEST_BOMB.get());
-                output.accept(ModBlocks.EXPLOSIVE_MINE.get());
-                output.accept(ModBlocks.TOXIC_MINE.get());
-                output.accept(ModBlocks.QUICK_SAND.get());
-                output.accept(ModBlocks.OBSTACLE.get());
-                output.accept(ModBlocks.NAIL_TRAP.get());
-                output.accept(ModBlocks.TOXIC_NAIL_TRAP.get());
-                output.accept(ModBlocks.SPIKES.get());
-                output.accept(ModBlocks.TOXIC_SPIKES.get());
-                output.accept(ModBlocks.PITFALL_TRAP.get());
-                output.accept(ModBlocks.GHOST_BLOCK.get());
-                output.accept(ModBlocks.TROLL_BLOCK.get());
-                output.accept(ModItems.NAILS.get());
-                output.accept(ModItems.TOXIN_BOTTLE.get());
-                output.accept(ModItems.TOXIN_BUCKET.get());
-            }).build());
+    public static void registerItemGroups() {
+        MineTraps.LOGGER.info("Registering Item Groups for " + References.MODID);
+    }
 }

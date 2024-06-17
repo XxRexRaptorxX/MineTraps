@@ -14,23 +14,23 @@ import xxrexraptorxx.minetraps.main.References;
 
 
 public class ModBlocks {
-    public static final Block BARBED_WIRE = registerBlock("barbed_wire", (Block) new BlockBarbedWire(AbstractBlock.Settings.create()));
+    public static final Block BARBED_WIRE = registerBlock("barbed_wire", new BlockBarbedWire(AbstractBlock.Settings.create()));
     public static final Block BARBED_WIRE_FENCE = registerBlock("barbed_wire_fence", new BlockBarbedWireFence(AbstractBlock.Settings.create()));
-    public static final Block RAZOR_WIRE = registerBlock("razor_wire", (Block) new BlockBarbedWire(AbstractBlock.Settings.create()));
-    public static final Block BEAR_TRAP = registerBlock("bear_trap", (Block) new BlockBearTrap(AbstractBlock.Settings.create()));
-    public static final Block CHEST_BOMB = registerBlock("chest_bomb", (Block) new BlockChestBomb(AbstractBlock.Settings.create()));
-    public static final Block EXPLOSIVE_MINE = registerBlock("explosive_mine", (Block) new BlockExplosiveMine(AbstractBlock.Settings.create()));
-    public static final Block TOXIC_MINE = registerBlock("toxic_mine", (Block) new BlockExplosiveMine(AbstractBlock.Settings.create()));
-    public static final Block QUICK_SAND = registerBlock("quicksand", (Block) new BlockQuicksand(AbstractBlock.Settings.create()));
-    public static final Block OBSTACLE = registerBlock("obstacle", (Block) new BlockObstacle(AbstractBlock.Settings.create()));
-    public static final Block NAIL_TRAP = registerBlock("nail_trap", (Block) new BlockNailTrap(AbstractBlock.Settings.create()));
-    public static final Block TOXIC_NAIL_TRAP = registerBlock("toxic_nail_trap", (Block) new BlockNailTrap(AbstractBlock.Settings.create()));
-    public static final Block SPIKES = registerBlock("spikes", (Block) new BlockSpikes(AbstractBlock.Settings.create()));
-    public static final Block TOXIC_SPIKES = registerBlock("spikes_toxic", (Block) new BlockSpikes(AbstractBlock.Settings.create()));
-    public static final Block PITFALL_TRAP = registerBlock("pitfall_trap", (Block) new BlockPitfallTrap(AbstractBlock.Settings.create()));
-    public static final Block GHOST_BLOCK = registerBlock("ghost_block", (Block) new BlockGhost(AbstractBlock.Settings.create()));
-    public static final Block TROLL_BLOCK = registerBlock("troll_block", (Block) new BlockTroll(AbstractBlock.Settings.create()));
-    public static final Block TOXIN = registerBlock("toxin", (Block) new BlockToxin(ModFluids.TOXIN, FabricBlockSettings.copy(Blocks.WATER)){});
+    public static final Block RAZOR_WIRE = registerBlock("razor_wire", new BlockBarbedWire(AbstractBlock.Settings.create()));
+    public static final Block BEAR_TRAP = registerBlock("bear_trap", new BlockBearTrap(AbstractBlock.Settings.create()));
+    public static final Block CHEST_BOMB = registerBlock("chest_bomb", new BlockChestBomb(AbstractBlock.Settings.create()));
+    public static final Block EXPLOSIVE_MINE = registerBlock("explosive_mine", new BlockExplosiveMine(AbstractBlock.Settings.create()));
+    public static final Block TOXIC_MINE = registerBlock("toxic_mine", new BlockExplosiveMine(AbstractBlock.Settings.create()));
+    public static final Block QUICK_SAND = registerBlock("quicksand", new BlockQuicksand(AbstractBlock.Settings.create()));
+    public static final Block OBSTACLE = registerBlock("obstacle", new BlockObstacle(AbstractBlock.Settings.create()));
+    public static final Block NAIL_TRAP = registerBlock("nail_trap", new BlockNailTrap(AbstractBlock.Settings.create()));
+    public static final Block TOXIC_NAIL_TRAP = registerBlock("toxic_nail_trap", new BlockNailTrap(AbstractBlock.Settings.create()));
+    public static final Block SPIKES = registerBlock("spikes", new BlockSpikes(AbstractBlock.Settings.create()));
+    public static final Block TOXIC_SPIKES = registerBlock("spikes_toxic", new BlockSpikes(AbstractBlock.Settings.create()));
+    public static final Block PITFALL_TRAP = registerBlock("pitfall_trap", new BlockPitfallTrap(AbstractBlock.Settings.create()));
+    public static final Block GHOST_BLOCK = registerBlock("ghost_block", new BlockGhost(AbstractBlock.Settings.create()));
+    public static final Block TROLL_BLOCK = registerBlock("troll_block", new BlockTroll(AbstractBlock.Settings.create()));
+    public static final Block TOXIN = registerBlock("toxin", new BlockToxin(ModFluids.TOXIN, FabricBlockSettings.copy(Blocks.WATER)){});
 
 
     private static Block registerBlock(String name, Block block) {

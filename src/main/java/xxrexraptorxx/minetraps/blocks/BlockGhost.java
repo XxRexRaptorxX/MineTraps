@@ -54,7 +54,7 @@ public class BlockGhost extends Block {
 				.sounds(BlockSoundGroup.STONE)
 				.instrument(Instrument.XYLOPHONE)
 		);
-		this.setDefaultState((BlockState) this.getDefaultState().with(TYPE, 0));
+		this.setDefaultState(this.getDefaultState().with(TYPE, 0));
 	}
 
 
@@ -79,7 +79,7 @@ public class BlockGhost extends Block {
 	@Override
 	@Nullable
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState)this.getDefaultState().with(TYPE, 0);
+		return this.getDefaultState().with(TYPE, 0);
 	}
 
 

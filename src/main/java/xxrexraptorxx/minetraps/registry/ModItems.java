@@ -12,9 +12,9 @@ import xxrexraptorxx.minetraps.main.MineTraps;
 import xxrexraptorxx.minetraps.main.References;
 
 public class ModItems {
-    public static final Item NAILS = registerItem("nails", (Item)new Item(new FabricItemSettings()));
-    public static final Item TOXIN_BUCKET = registerItem("toxin_bucket", (Item)new BucketItem(ModFluids.TOXIN, new FabricItemSettings().recipeRemainder(Items.BUCKET).maxCount(1)));
-    public static final Item TOXIN_BOTTLE = registerItem("toxin_bottle", (Item)new ItemToxinBottle(new FabricItemSettings()));
+    public static final Item NAILS = registerItem("nails", new Item(new FabricItemSettings()));
+    public static final Item TOXIN_BUCKET = registerItem("toxin_bucket", new BucketItem(ModFluids.TOXIN, new FabricItemSettings().recipeRemainder(Items.BUCKET).maxCount(1)));
+    public static final Item TOXIN_BOTTLE = registerItem("toxin_bottle", new ItemToxinBottle(new FabricItemSettings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(References.MODID, name), item);

@@ -9,8 +9,8 @@ public class Config {
     public static SimpleConfig CONFIG_FILE;
     private static MineTrapsConfigProvider configs;
 
-    public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_BLOCKS = "blocks";
+    //public static final String CATEGORY_GENERAL = "general";
+    //public static final String CATEGORY_BLOCKS = "blocks";
 
     public static Boolean UPDATE_CHECKER;
     public static Boolean BARBED_WIRE_DESTROY_ITEMS;

@@ -10,22 +10,22 @@ public class TrollHelper {
 
 
     public static int getStateFromBlock(String inputBlock) {
-        switch (inputBlock) {
-            case "minecraft:diamond_ore": 		    	return 1;
-            case "minecraft:emerald_ore": 	    	    return 2;
-            case "minecraft:iron_ore":              	return 3;
-            case "minecraft:gold_ore": 			        return 4;
-            case "minecraft:deepslate_diamond_ore": 	return 5;
-            case "minecraft:deepslate_emerald_ore": 	return 6;
-            case "minecraft:deepslate_gold_ore": 	    return 7;
-            case "minecraft:deepslate_iron_ore": 	    return 8;
-            default:		        		            return 0;
-        }
+        return switch (inputBlock) {
+            case "minecraft:diamond_ore" -> 1;
+            case "minecraft:emerald_ore" -> 2;
+            case "minecraft:iron_ore" -> 3;
+            case "minecraft:gold_ore" -> 4;
+            case "minecraft:deepslate_diamond_ore" -> 5;
+            case "minecraft:deepslate_emerald_ore" -> 6;
+            case "minecraft:deepslate_gold_ore" -> 7;
+            case "minecraft:deepslate_iron_ore" -> 8;
+            default -> 0;
+        };
     }
 
 
     public static ArrayList<Item> getTypeList() {
-        ArrayList<Item> types = new ArrayList<Item>();
+        ArrayList<Item> types = new ArrayList<>();
             types.add(Blocks.DIAMOND_ORE.asItem());
             types.add(Blocks.EMERALD_ORE.asItem());
             types.add(Blocks.IRON_ORE.asItem());

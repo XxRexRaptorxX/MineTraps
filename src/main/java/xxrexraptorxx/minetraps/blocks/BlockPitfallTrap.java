@@ -60,7 +60,7 @@ public class BlockPitfallTrap extends Block {
 				.sounds(BlockSoundGroup.WOOD)
 				.instrument(Instrument.BASS)
 		);
-		this.setDefaultState((BlockState) this.getDefaultState().with(TYPE, 0));
+		this.setDefaultState(this.getDefaultState().with(TYPE, 0));
 	}
 
 
@@ -84,13 +84,13 @@ public class BlockPitfallTrap extends Block {
 	@Override
 	@Nullable
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState)this.getDefaultState().with(TYPE, 0);
+		return this.getDefaultState().with(TYPE, 0);
 	}
 
 
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
-		world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 3);
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 3);
 
 		if (!world.isClient()) {
 			world.removeBlock(pos, false);

@@ -75,7 +75,7 @@ public class BlockBearTrap extends FallingBlock {
 
             if (!world.isClient()) {
                 if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {
-                    world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS, 1.0F, 3);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS, 1.0F, 3);
                 }
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 5, 0, false, false, false));
             }

@@ -57,7 +57,7 @@ public class BlockSpikes extends FallingBlock {
 				.sounds(BlockSoundGroup.METAL)
 				.instrument(Instrument.BELL)
 		);
-		this.setDefaultState((BlockState) this.getDefaultState().with(POWERED, false));
+		this.setDefaultState(this.getDefaultState().with(POWERED, false));
 	}
 
 
@@ -105,7 +105,7 @@ public class BlockSpikes extends FallingBlock {
 	@Override
 	@Nullable
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState)this.getDefaultState().with(POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
+		return this.getDefaultState().with(POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
 	}
 
 
@@ -115,10 +115,10 @@ public class BlockSpikes extends FallingBlock {
 			boolean flag = state.get(POWERED);
 			if (flag != world.isReceivingRedstonePower(pos)) {
 				if (flag) {
-					world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_PISTON_CONTRACT, SoundCategory.BLOCKS, 1.0F, 3);
+					world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_PISTON_CONTRACT, SoundCategory.BLOCKS, 1.0F, 3);
 					world.scheduleBlockTick(pos, this, 4);
 				} else {
-					world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 3);
+					world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 3);
 					world.setBlockState(pos, state.cycle(POWERED), 2);
 				}
 			}

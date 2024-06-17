@@ -58,7 +58,7 @@ public class BlockTroll extends Block {
 				.instrument(Instrument.BELL)
 				.dropsNothing()
 		);
-		this.setDefaultState((BlockState) this.getDefaultState().with(TYPE, 0));
+		this.setDefaultState(this.getDefaultState().with(TYPE, 0));
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class BlockTroll extends Block {
 	@Override
 	@Nullable
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState)this.getDefaultState().with(TYPE, 0);
+		return this.getDefaultState().with(TYPE, 0);
 	}
 
 
@@ -96,7 +96,7 @@ public class BlockTroll extends Block {
 	@Override
 	public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
-		world.playSound((PlayerEntity) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 1.0F, 3);
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 1.0F, 3);
 		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
 		if (!world.isClient()) {

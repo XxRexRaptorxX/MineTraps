@@ -160,7 +160,7 @@ jar {
         attributes([
                 "Specification-Title"     : "${mod_id}",
                 "Specification-Vendor"    : "XxRexRaptorxX",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Specification-Version"   : project.version,
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "XxRexRaptorxX",
@@ -186,4 +186,8 @@ publishing {
             url "file://${project.projectDir}/mcmodsrepo"
         }
     }
+}
+
+//Dummy task to fix post sync error caused by NeoGradle
+tasks.register("idePostSync") {
 }

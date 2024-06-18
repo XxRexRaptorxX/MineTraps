@@ -89,7 +89,7 @@ public class BlockGhost extends Block {
 			if (TrapHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrapHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
 				if (!player.isCreative()) {
-					player.getActiveItem().decrement(1);
+					player.getStackInHand(hand).decrement(1);
 				}
 			}
 		}

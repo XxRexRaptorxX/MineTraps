@@ -113,7 +113,7 @@ public class BlockTroll extends Block {
 			if (TrollHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrollHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
 				if (!player.isCreative()) {
-					player.getActiveItem().decrement(1);
+					player.getStackInHand(hand).decrement(1);
 				}
 			}
 		}

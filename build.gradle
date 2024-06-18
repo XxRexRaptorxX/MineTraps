@@ -16,7 +16,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '2.1.4'
+version = '2.1.4a'
 group = 'xxrexraptorxx.minetraps.main' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'minetraps'
 
@@ -134,7 +134,7 @@ jar {
         attributes([
                 "Specification-Title"     : "minetraps",
                 "Specification-Vendor"    : "XxRexRaptorxX",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Specification-Version"   : project.version,
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "XxRexRaptorxX",
@@ -160,4 +160,8 @@ publishing {
             url "file://${project.projectDir}/mcmodsrepo"
         }
     }
+}
+
+//Dummy task to fix post sync error caused by NeoGradle
+tasks.register("idePostSync") {
 }

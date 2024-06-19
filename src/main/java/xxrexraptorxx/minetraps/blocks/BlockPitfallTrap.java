@@ -107,7 +107,7 @@ public class BlockPitfallTrap extends Block {
 				level.setBlock(pos, state.setValue(TYPE, TrapHelper.getStateFromBlock(ForgeRegistries.ITEMS.getKey(player.getItemInHand(hand).getItem()).toString())), 2);
 
 				if (!player.isCreative()) {
-					player.getUseItem().shrink(1);
+					player.getItemInHand(hand).shrink(1);
 				}
 			}
 		}

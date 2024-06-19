@@ -17,6 +17,7 @@
     "#O#"
   ],
   "result": {
-    "item": "minetraps:explosive_mine"
+    "count": 1,
+    "id": "minetraps:explosive_mine"
   }
 }

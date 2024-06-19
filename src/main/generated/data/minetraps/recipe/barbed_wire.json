@@ -5,19 +5,17 @@
     "#": {
       "item": "minetraps:nails"
     },
-    "O": {
-      "item": "minecraft:heavy_weighted_pressure_plate"
-    },
     "X": {
       "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "###",
-    "XOX",
-    "###"
+    "#X#",
+    "X#X",
+    "#X#"
   ],
   "result": {
-    "item": "minetraps:bear_trap"
+    "count": 4,
+    "id": "minetraps:barbed_wire"
   }
 }

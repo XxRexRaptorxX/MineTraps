@@ -1,25 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_barbed_wire": {
+    "has_glass": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minetraps:barbed_wire"
-            ]
+            "items": "minecraft:glass"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_iron_ingot": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:iron_ingot"
-            ]
+            "items": "minecraft:stick"
           }
         ]
       },
@@ -27,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:barbed_wire_fence"
+        "recipe": "minecraft:ghost_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -35,13 +31,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_ingot",
-      "has_barbed_wire"
+      "has_glass",
+      "has_stick"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:barbed_wire_fence"
+      "minecraft:ghost_block"
     ]
   }
 }

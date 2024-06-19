@@ -15,6 +15,7 @@
     "X#X"
   ],
   "result": {
-    "item": "minetraps:ghost_block"
+    "count": 1,
+    "id": "minetraps:ghost_block"
   }
 }

@@ -1,47 +1,43 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_barbed_wire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minetraps:barbed_wire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_iron_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:iron_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:chest_bomb"
+        "recipe": "minecraft:barbed_wire_fence"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_tnt": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:tnt"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_trapped_chest": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:trapped_chest"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_trapped_chest",
-      "has_tnt"
+      "has_iron_ingot",
+      "has_barbed_wire"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:chest_bomb"
+      "minecraft:barbed_wire_fence"
     ]
   }
 }

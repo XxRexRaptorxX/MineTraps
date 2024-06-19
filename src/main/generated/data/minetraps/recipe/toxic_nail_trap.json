@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minetraps:toxin_bottle"
+    },
+    {
+      "item": "minetraps:nail_trap"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minetraps:toxic_nail_trap"
+  }
+}

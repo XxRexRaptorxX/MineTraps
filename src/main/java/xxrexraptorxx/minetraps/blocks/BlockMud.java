@@ -2,7 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +26,7 @@ public class BlockMud extends FallingBlock {
 				.mapColor(MapColor.DIRT_BROWN)
 				.strength(0.3F, 0.0F)
 				.sounds(BlockSoundGroup.SLIME)
-				.instrument(Instrument.SNARE)
+				.instrument(NoteBlockInstrument.SNARE)
 		);
 	}
 

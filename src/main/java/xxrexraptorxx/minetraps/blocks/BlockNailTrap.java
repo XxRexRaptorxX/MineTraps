@@ -2,7 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -37,7 +37,7 @@ public class BlockNailTrap extends FallingBlock {
 				.noCollision()
 				.strength(1.0F, 8.0F)
 				.sounds(BlockSoundGroup.GRAVEL)
-				.instrument(Instrument.BELL)
+				.instrument(NoteBlockInstrument.BELL)
 		);
 	}
 

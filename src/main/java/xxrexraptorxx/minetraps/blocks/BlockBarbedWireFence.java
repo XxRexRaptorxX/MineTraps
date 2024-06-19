@@ -2,8 +2,8 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
 
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -19,7 +19,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -49,7 +48,7 @@ public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 				.requiresTool()
 				.strength(5.0f,10.0f)
 				.sounds(BlockSoundGroup.METAL)
-				.instrument(Instrument.CHIME)
+				.instrument(NoteBlockInstrument.CHIME)
 		);
 
 		this.setDefaultState(this.stateManager.getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
@@ -67,8 +66,8 @@ public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 	}
 
 	@Override
-	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return false;
+	protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+		return false; //super.canPathfindThrough(state, type);
 	}
 
 	public boolean canConnect(BlockState state, boolean neighborIsFullSquare, Direction dir) {
@@ -83,9 +82,9 @@ public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 	}
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+	protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 		if (world.isClient) {
-			ItemStack itemStack = player.getStackInHand(hand);
+			ItemStack itemStack = player.getStackInHand(player.getActiveHand());
 			if (itemStack.isOf(Items.LEAD)) {
 				return ActionResult.SUCCESS;
 			}

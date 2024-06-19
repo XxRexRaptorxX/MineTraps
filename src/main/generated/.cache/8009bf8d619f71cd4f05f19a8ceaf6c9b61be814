@@ -1,7 +1,7 @@
-// 1.20.4	2024-06-17T18:14:52.154762706	MineTraps/Tags for minecraft:block
-9c693a379b0c9580f0555fe80832897058d330b1 data/minecraft/tags/blocks/mineable/pickaxe.json
-aed492a18e4e989e995fb6f1dfad11fc62b8b3c8 data/minecraft/tags/blocks/mineable/shovel.json
-7aaae97d01e840f9efde5b13530930666d462237 data/minecraft/tags/blocks/needs_iron_tool.json
-c0b08365521f8fa1af94f9862b0f55e2ca2c92c7 data/minecraft/tags/blocks/fences.json
-eb214b14832b8807b5ce4e7aeb5240420b2daca6 data/minecraft/tags/blocks/sand.json
-7476f1b3a6a07f1c817c31e74047140d57318aa5 data/minecraft/tags/blocks/mineable/axe.json
+// 1.21	2024-06-18T21:43:53.853483951	MineTraps/Tags for minecraft:block
+6024d30b62b014a4d681bbedfb83b927959af08d data/minecraft/tags/block/mineable/axe.json
+65b19dce820be099cdf1413219703aef0c6c4757 data/minecraft/tags/block/fences.json
+5998ae2941b7bb18bdbb5ec1ecdbd902e8ff086a data/minecraft/tags/block/mineable/pickaxe.json
+48662df1bc021f97f6a5d560febb9a8b15ebbe3d data/minecraft/tags/block/needs_iron_tool.json
+a32459fc4a1bae99a1d8355eef01fa41c633bfe2 data/minecraft/tags/block/sand.json
+91fa28ec242f42c296ac9d322e17cb6ee7c51e2b data/minecraft/tags/block/mineable/shovel.json

@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minetraps:spikes_toxic",
+    "minetraps:spikes",
+    "minetraps:barbed_wire",
+    "minetraps:barbed_wire_fence",
+    "minetraps:razor_wire",
+    "minetraps:bear_trap",
+    "minetraps:obstacle",
+    "minetraps:ghost_block",
+    "minetraps:troll_block"
+  ]
+}

@@ -2,12 +2,13 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -20,7 +21,6 @@ import net.minecraft.util.Colors;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
@@ -55,14 +55,14 @@ public class BlockTroll extends Block {
 				.mapColor(MapColor.STONE_GRAY)
 				.strength(1.5F, 6.0F)
 				.sounds(BlockSoundGroup.STONE)
-				.instrument(Instrument.BELL)
+				.instrument(NoteBlockInstrument.BELL)
 				.dropsNothing()
 		);
 		this.setDefaultState(this.getDefaultState().with(TYPE, 0));
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
 		tooltip.add(Text.translatable("message.minetraps.troll.desc").withColor(Colors.GRAY));
 	}
 
@@ -108,10 +108,12 @@ public class BlockTroll extends Block {
 
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+	protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 		if (state.getBlock() == ModBlocks.TROLL_BLOCK && state.get(TYPE) == 0) {
+			Hand hand = player.getActiveHand();
 			if (TrollHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrollHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 3);
 				if (!player.isCreative()) {
 					player.getStackInHand(hand).decrement(1);
 				}

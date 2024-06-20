@@ -22,7 +22,7 @@ public class MineTrapsPlacedFeatures {
 
         register(context, QUICKSAND_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(MineTrapsConfiguredFeatures.QUICKSAND_KEY),
                 MineTrapsOrePlacement.modifiersWithCount(20, // Veins per Chunk
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(50), YOffset.fixed(100))));
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(100))));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

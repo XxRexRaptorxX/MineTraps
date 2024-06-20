@@ -12,6 +12,13 @@
 		"homepage": "https://www.curseforge.com/minecraft/mc-mods/minetraps",
 		"sources": "https://github.com/XxRexRaptorxX/MineTraps"
 	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.com/invite/ycRJJk8EXV"
+			}
+		}
+	},
 	"license": "All Rights Reserved",
 	"icon": "logo.png",
 	"environment": "*",
@@ -26,9 +33,13 @@
 			"xxrexraptorxx.minetraps.datagen.DataGenerators"
 		]
 	},
+
+
 	"mixins": [
 		"minetraps.mixins.json"
 	],
+
+
 	"depends": {
 		"fabricloader": "${fabric_version_range}",
 		"minecraft": "${mc_version_range}",

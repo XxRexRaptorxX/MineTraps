@@ -2,7 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -25,7 +25,7 @@ public class BlockObstacle extends Block {
 				.nonOpaque()
 				.strength(20.0F, 20.0F)
 				.sounds(BlockSoundGroup.METAL)
-				.instrument(Instrument.IRON_XYLOPHONE)
+				.instrument(NoteBlockInstrument.IRON_XYLOPHONE)
 		);
 	}
 

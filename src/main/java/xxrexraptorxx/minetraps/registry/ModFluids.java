@@ -14,7 +14,7 @@ public class ModFluids {
     public static final FlowableFluid FLOWING_TOXIN = ModFluids.registerFluid("toxin_flowing", new ToxinFluid.Flowing());
 
     private static FlowableFluid registerFluid(String name, FlowableFluid fluid) {
-        return Registry.register(Registries.FLUID, new Identifier(References.MODID, name), fluid);
+        return Registry.register(Registries.FLUID, Identifier.of(References.MODID, name), fluid);
     }
 
     public static void registerModFluids() {

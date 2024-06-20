@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "I": {
+      "item": "minecraft:redstone"
+    },
+    "O": {
+      "item": "minecraft:piston"
+    },
+    "X": {
+      "item": "minetraps:nails"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "IOI",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minetraps:spikes"
+  }
+}

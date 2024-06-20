@@ -31,8 +31,8 @@ public class MineTrapsClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), ModFluids.TOXIN, ModFluids.FLOWING_TOXIN);
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.TOXIN, ModFluids.FLOWING_TOXIN, new SimpleFluidRenderHandler(
-                new Identifier("minecraft:block/water_still"),
-                new Identifier("minecraft:block/water_flow"),
+                Identifier.of("minecraft:block/water_still"),
+                Identifier.of("minecraft:block/water_flow"),
                 0x3F7529
         ));
     }

@@ -2,7 +2,8 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageTypes;
@@ -22,6 +23,9 @@ import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
+import java.util.List;
+import java.util.Optional;
+
 
 public class BlockExplosiveMine extends FallingBlock {
 	public static final MapCodec<BlockExplosiveMine> CODEC = BlockExplosiveMine.createCodec(BlockExplosiveMine::new);
@@ -40,7 +44,7 @@ public class BlockExplosiveMine extends FallingBlock {
 				.requiresTool()
 				.strength(1.0f, 0.0f)
 				.sounds(BlockSoundGroup.METAL)
-				.instrument(Instrument.IRON_XYLOPHONE)
+				.instrument(NoteBlockInstrument.IRON_XYLOPHONE)
 		);
 	}
 
@@ -57,10 +61,9 @@ public class BlockExplosiveMine extends FallingBlock {
 		if (!world.isClient()) {
 			if(this == ModBlocks.TOXIC_MINE) {
 				AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
-				cloud.addEffect(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER));
 				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION);
 				cloud.setRadius(10);
-				cloud.setColor(0x27ae60);
+				cloud.setPotionContents(new PotionContentsComponent(Optional.empty(), Optional.of(0x27ae60), List.of(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER))));
 				cloud.setWaitTime(10);
 				world.spawnEntity(cloud);
 			}
@@ -77,10 +80,9 @@ public class BlockExplosiveMine extends FallingBlock {
 
 		if (!world.isClient()) {
 			if (this == ModBlocks.TOXIC_MINE) {
-				cloud.addEffect(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER));
 				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION);
 				cloud.setRadius(10);
-				cloud.setColor(0x27ae60);
+				cloud.setPotionContents(new PotionContentsComponent(Optional.empty(), Optional.of(0x27ae60), List.of(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER))));
 				cloud.setWaitTime(10);
 				world.spawnEntity(cloud);
 			}

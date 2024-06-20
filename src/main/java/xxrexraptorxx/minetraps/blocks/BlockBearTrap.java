@@ -2,8 +2,8 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
 
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 
 import net.minecraft.entity.LivingEntity;
@@ -43,7 +43,7 @@ public class BlockBearTrap extends FallingBlock {
 				.requiresTool()
 				.strength(5.0f, 10.0f)
 				.sounds(BlockSoundGroup.METAL)
-				.instrument(Instrument.CHIME)
+				.instrument(NoteBlockInstrument.CHIME)
 		);
 	}
 

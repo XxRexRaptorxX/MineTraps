@@ -13,7 +13,7 @@ import xxrexraptorxx.minetraps.main.References;
 
 public class CreativeModeTabs {
     public static final ItemGroup MINETRAPS_TAB = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(References.MODID),
+            Identifier.of(References.MODID),
             FabricItemGroup.builder().displayName(Text.translatable("itemGroup." + References.MODID + ".tab"))
                     .icon(() -> new ItemStack(ModBlocks.PITFALL_TRAP.asItem())).entries((displayContext, entries) -> {
                         entries.add(ModBlocks.BARBED_WIRE);

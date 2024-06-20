@@ -2,14 +2,15 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -58,7 +59,7 @@ public class BlockPitfallTrap extends Block {
 				.noCollision()
 				.strength(1.0F, 1.0F)
 				.sounds(BlockSoundGroup.WOOD)
-				.instrument(Instrument.BASS)
+				.instrument(NoteBlockInstrument.BASS)
 		);
 		this.setDefaultState(this.getDefaultState().with(TYPE, 0));
 	}
@@ -71,7 +72,7 @@ public class BlockPitfallTrap extends Block {
 
 
 	@Override
-	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
 		tooltip.add(Text.translatable("message.minetraps.pitfall.desc").withColor(Colors.GRAY));
 	}
 
@@ -102,10 +103,12 @@ public class BlockPitfallTrap extends Block {
 
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+	protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 		if (state.getBlock() == ModBlocks.PITFALL_TRAP && state.get(TYPE) == 0) {
+			Hand hand = player.getActiveHand();
 			if (TrapHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrapHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 3);
 				if (!player.isCreative()) {
 					player.getStackInHand(hand).decrement(1);
 				}

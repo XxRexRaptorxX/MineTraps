@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class ItemToxinBottle extends Item {
     public ItemToxinBottle(Item.Settings settings) {
         super(settings
-                .maxCount(1)
+                .maxCount(4)
                 .recipeRemainder(Items.GLASS_BOTTLE));
     }
 
@@ -32,18 +32,32 @@ public class ItemToxinBottle extends Item {
         super.finishUsing(stack, world, user);
         if (user instanceof ServerPlayerEntity serverPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            stack.decrement(1);
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
+
         if (!world.isClient) {
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 800, 1));
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 400, 1));
         }
-        return new ItemStack(Items.GLASS_BOTTLE);
+
+        if (user instanceof PlayerEntity playerEntity) {
+            if (!playerEntity.isInCreativeMode()) {
+                stack.decrement(1);
+                if (!stack.isEmpty()) {
+                    ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
+                    if (!playerEntity.getInventory().insertStack(itemStack)) {
+                        playerEntity.dropItem(itemStack, false);
+                    }
+                } else {
+                    return new ItemStack(Items.GLASS_BOTTLE);
+                }
+            }
+        }
+        return stack;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return 40;
     }
 

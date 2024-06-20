@@ -2,7 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
@@ -31,7 +31,7 @@ public class BlockQuicksand extends FallingBlock {
 				.nonOpaque()
 				.strength(0.65F, 0.0F)
 				.sounds(BlockSoundGroup.SAND)
-				.instrument(Instrument.SNARE)
+				.instrument(NoteBlockInstrument.SNARE)
 		);
 	}
 

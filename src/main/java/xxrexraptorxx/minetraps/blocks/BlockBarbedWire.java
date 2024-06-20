@@ -12,7 +12,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
@@ -38,8 +37,8 @@ public class BlockBarbedWire extends HorizontalFacingBlock {
 	}
 
 	@Override
-	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return false;
+	protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+		return false; //super.canPathfindThrough(state, type);
 	}
 
 	@Override

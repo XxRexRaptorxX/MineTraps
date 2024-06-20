@@ -1,4 +1,4 @@
-// 1.21	2024-06-18T21:43:53.853973557	MineTraps/Block Loot Tables
+// 1.21	2024-06-20T22:47:05.086552075	MineTraps/Block Loot Tables
 b7fd77d1961105995584a68624d291e5f5886fdb data/minetraps/loot_table/blocks/pitfall_trap.json
 c2285e993c8bda57208edeaf1c79e4944bd443dd data/minetraps/loot_table/blocks/toxic_mine.json
 f1b106d81d909f6b3b789a9792215af3b2af08e0 data/minetraps/loot_table/blocks/toxic_nail_trap.json

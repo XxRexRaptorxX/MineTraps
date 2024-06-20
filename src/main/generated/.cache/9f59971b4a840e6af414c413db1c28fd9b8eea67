@@ -1,8 +1,8 @@
-// 1.21	2024-06-18T21:43:53.851697178	MineTraps/Recipes
+// 1.21	2024-06-20T22:47:05.083777564	MineTraps/Recipes
 22b5aac5616cce8a27ee8355ed900f27039bf6ac data/minetraps/recipe/quicksand.json
 f97860226eb936902a5f018896248ec7cdbc830b data/minetraps/recipe/toxin_bucket.json
 8663104713b097e738b4b2cda3e186b5dc2dd0a1 data/minetraps/recipe/pitfall_trap.json
-2fdf3dde06486d35146bef1a92d84eb3119d621f data/minetraps/recipe/toxin_bottle_alt.json
+d921e56402d56fcc246a2799907bbe99c754b34f data/minetraps/recipe/toxin_bottle_alt.json
 38ea6615187a4fc63fb9527efe49fbbfec3ed416 data/minetraps/advancement/recipes/misc/barbed_wire_fence.json
 39054c50382c612b6686b1a8b312e6f789fba0d9 data/minetraps/advancement/recipes/misc/explosive_mine.json
 a60fc68f7a5bd818a335f1fd887c1016be05155e data/minetraps/recipe/razor_wire.json

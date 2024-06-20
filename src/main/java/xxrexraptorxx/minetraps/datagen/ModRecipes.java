@@ -195,7 +195,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .offerTo(exporter, Identifier.of(getRecipeName(ModItems.TOXIN_BOTTLE)));
 
         // Toxin Bottle Recipe 2
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TOXIN_BOTTLE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TOXIN_BOTTLE, 4)
                 .input(ModItems.TOXIN_BUCKET)
                 .input(Items.GLASS_BOTTLE)
                 .input(Items.GLASS_BOTTLE)

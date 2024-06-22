@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
 	"id": "${mod_id}",
-	"version": "${version}",
-	"name": "${mod_name]",
+	"version": "${mod_version}",
+	"name": "${mod_name}",
 	"description": "This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!",
 	"authors": [
 		"XxRexRaptorxX (RexRaptor), owner of all the rights to the MineTraps mod",

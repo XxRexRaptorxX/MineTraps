@@ -13,10 +13,10 @@ import xxrexraptorxx.minetraps.main.References;
 
 public class ModFluidTypes {
 
-    public static final ResourceLocation WATER_STILL = new ResourceLocation("block/water_still");
-    public static final ResourceLocation WATER_FLOWING = new ResourceLocation("block/water_flow");
-    public static final ResourceLocation TOXIN_STILL = new ResourceLocation(References.MODID, "block/toxin_still");
-    public static final ResourceLocation TOXIN_FLOWING = new ResourceLocation(References.MODID , "block/toxin_flow");
+    public static final ResourceLocation WATER_STILL = ResourceLocation.withDefaultNamespace("block/water_still");
+    public static final ResourceLocation WATER_FLOWING = ResourceLocation.withDefaultNamespace("block/water_flow");
+    public static final ResourceLocation TOXIN_STILL = ResourceLocation.fromNamespaceAndPath(References.MODID, "block/toxin_still");
+    public static final ResourceLocation TOXIN_FLOWING = ResourceLocation.fromNamespaceAndPath(References.MODID , "block/toxin_flow");
 
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, References.MODID);
 

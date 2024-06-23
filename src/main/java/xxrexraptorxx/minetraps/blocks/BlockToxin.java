@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 public class BlockToxin extends LiquidBlock {
 
     public BlockToxin(Supplier<? extends FlowingFluid> fluid, Properties properties) {
-        super(fluid, properties);
+        super(fluid.get(), properties);
     }
 
 

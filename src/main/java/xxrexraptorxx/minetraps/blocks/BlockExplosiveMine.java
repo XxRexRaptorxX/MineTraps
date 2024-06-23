@@ -60,7 +60,7 @@ public class BlockExplosiveMine extends FallingBlock {
 				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.POSION_MINE_EFFECT_DURATION.get(), Config.POSION_MINE_EFFECT_AMPLIFIER.get()));
 				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION.get());
 				cloud.setRadius(10);
-				cloud.setFixedColor(0x27ae60);
+				//cloud.setFixedColor(0x27ae60);		//TODO
 				cloud.setWaitTime(10);
 				world.addFreshEntity(cloud);
 			}
@@ -81,7 +81,7 @@ public class BlockExplosiveMine extends FallingBlock {
 				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.POSION_MINE_EFFECT_DURATION.get(), Config.POSION_MINE_EFFECT_AMPLIFIER.get()));
 				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION.get());
 				cloud.setRadius(10);
-				cloud.setFixedColor(0x27ae60);
+				//cloud.setFixedColor(0x27ae60); TODO
 				cloud.setWaitTime(10);
 				world.addFreshEntity(cloud);
 			}

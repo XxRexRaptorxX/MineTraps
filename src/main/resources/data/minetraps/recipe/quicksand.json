@@ -10,15 +10,16 @@
     
   "key": {
     "#": {
-      "item": "minetraps:nails"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "X": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:gravel"
     }
   },
   
   "result": {
-    "item": "minetraps:barbed_wire",
+    "id": "minetraps:quicksand",
     "count": 4
   }
 }

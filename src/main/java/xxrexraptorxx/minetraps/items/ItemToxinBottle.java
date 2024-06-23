@@ -18,7 +18,7 @@ public class ItemToxinBottle extends Item {
 
     public ItemToxinBottle() {
         super(new Properties()
-                .stacksTo(1)
+                .stacksTo(4)
                 .craftRemainder(Items.GLASS_BOTTLE)
         );
 
@@ -41,9 +41,8 @@ public class ItemToxinBottle extends Item {
             return new ItemStack(Items.GLASS_BOTTLE);
     }
 
-
     @Override
-    public int getUseDuration(ItemStack pStack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 40;
     }
 
@@ -67,8 +66,8 @@ public class ItemToxinBottle extends Item {
 
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        return ItemUtils.startUsingInstantly(pLevel, pPlayer, pHand);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(level, player, hand);
     }
 
 }

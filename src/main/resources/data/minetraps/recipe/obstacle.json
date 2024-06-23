@@ -3,18 +3,18 @@
   "category": "misc",
   "pattern": [
   
-    "###",
-    "###",
-    "###"
+    "# #",
+    " # ",
+    "# #"
   ],
   
   "key": {
     "#": {
-      "item": "minetraps:nails"
+      "item": "minecraft:iron_ingot"
     }
   },
   
   "result": {
-    "item": "minetraps:nail_trap"
+    "id": "minetraps:obstacle"
   }
 }

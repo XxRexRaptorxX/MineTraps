@@ -4,15 +4,14 @@
   "ingredients": [
 
     {  
-      "item": "minecraft:trapped_chest"
+      "item": "minetraps:toxin_bottle"
     },
     {
-      "item": "minecraft:tnt"
+      "item": "minetraps:explosive_mine"
     }
-    
     
   ],
   "result": {
-    "item": "minetraps:chest_bomb"
+    "id": "minetraps:toxic_mine"
   }
 }

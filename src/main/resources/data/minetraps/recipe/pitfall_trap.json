@@ -3,18 +3,18 @@
   "category": "misc",
   "pattern": [
   
-    " # ",
-    "# #",
-    " # "
+    "###",
+    "###",
+    "###"
   ],
   
   "key": {
     "#": {
-      "item": "minetraps:barbed_wire"
+      "item": "minecraft:stick"
     }
   },
   
   "result": {
-    "item": "minetraps:razor_wire"
+    "id": "minetraps:pitfall_trap"
   }
 }

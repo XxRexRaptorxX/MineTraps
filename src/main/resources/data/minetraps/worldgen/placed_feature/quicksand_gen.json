@@ -2,14 +2,8 @@
   "feature": "minetraps:quicksand_gen",
   "placement": [
     {
-      "count": {
-        "type": "minecraft:uniform",
-        "value": {
-          "min_inclusive": 15,
-          "max_inclusive": 20
-        }
-      },
-      "type": "minecraft:count"
+      "type": "minecraft:count",
+      "count": 18
     },
     {
       "type": "minecraft:in_square"
@@ -17,7 +11,7 @@
     {
       "height": {
         "min_inclusive": {
-          "absolute": 50
+          "absolute": 64
         },
         "max_inclusive": {
           "absolute": 100

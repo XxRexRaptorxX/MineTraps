@@ -10,11 +10,11 @@
   
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "item": "minetraps:nails"
     }
   },
   
   "result": {
-    "item": "minetraps:pitfall_trap"
+    "id": "minetraps:nail_trap"
   }
 }

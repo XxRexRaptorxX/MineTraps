@@ -3,23 +3,21 @@
   "category": "misc",
   "pattern": [
   
-    "#X#",
     "X#X",
-    "#X#" 
+    "X#X"
   ],
     
   "key": {
     "#": {
-      "item": "minecraft:sand",
-      "data": 0
+      "item": "minetraps:barbed_wire"
     },
     "X": {
-      "item": "minecraft:gravel"
+      "item": "minecraft:iron_ingot"
     }
   },
   
   "result": {
-    "item": "minetraps:quicksand",
-    "count": 4
+    "id": "minetraps:barbed_wire_fence",
+    "count": 3
   }
 }

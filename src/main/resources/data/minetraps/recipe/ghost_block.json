@@ -3,18 +3,21 @@
   "category": "misc",
   "pattern": [
   
+    "X#X",
     "# #",
-    " # ",
-    "# #"
+    "X#X"
   ],
-  
+    
   "key": {
+    "X": {
+      "item": "minecraft:stick"
+    },
     "#": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:glass"
     }
   },
   
   "result": {
-    "item": "minetraps:obstacle"
+    "id": "minetraps:ghost_block"
   }
 }

@@ -3,21 +3,18 @@
   "category": "misc",
   "pattern": [
   
-    "X#X",
+    " # ",
     "# #",
-    "X#X"
+    " # "
   ],
-    
+  
   "key": {
-    "X": {
-      "item": "minecraft:stick"
-    },
     "#": {
-      "item": "minecraft:glass"
+      "item": "minetraps:barbed_wire"
     }
   },
   
   "result": {
-    "item": "minetraps:ghost_block"
+    "id": "minetraps:razor_wire"
   }
 }

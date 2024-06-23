@@ -3,13 +3,14 @@
   "category": "misc",
   "pattern": [
   
+    "#X#",
     "X#X",
-    "X#X"
+    "#X#" 
   ],
     
   "key": {
     "#": {
-      "item": "minetraps:barbed_wire"
+      "item": "minetraps:nails"
     },
     "X": {
       "item": "minecraft:iron_ingot"
@@ -17,7 +18,7 @@
   },
   
   "result": {
-    "item": "minetraps:barbed_wire_fence",
-    "count": 3
+    "id": "minetraps:barbed_wire",
+    "count": 4
   }
 }

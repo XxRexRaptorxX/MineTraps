@@ -6,9 +6,6 @@ plugins {
     id 'net.neoforged.gradle.userdev' version '7.0.145'
 }
 
-version = mod_version
-group = "xxrexraptorxx.${mod_id}.main"
-
 repositories {
     //JEI
     maven { url "https://maven.blamejared.com/" }
@@ -20,6 +17,7 @@ repositories {
         dir 'libs'
     }
 }
+
 
 base {
     archivesName = mod_id
@@ -133,19 +131,14 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
+group = "xxrexraptorxx.${mod_id}.main"
+archivesBaseName = "${mod_id}"
+version = "${mc_version}-${mod_version}"
 
 jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : mod_id,
-                "Specification-Vendor"    : mod_authors,
-                "Specification-Version"   : project.version,
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : mod_authors,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
+    archiveClassifier = ''
+    archiveBaseName = "${mod_name}".replace(" ", "")
+    archiveVersion = "${mc_version}-(v.${mod_version})"
 }
 
 

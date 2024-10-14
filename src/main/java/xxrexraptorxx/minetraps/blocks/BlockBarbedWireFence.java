@@ -33,13 +33,7 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockBarbedWireFence extends HorizontalConnectingBlock {
-	public static final MapCodec<BlockBarbedWireFence> CODEC = BlockBarbedWireFence.createCodec(BlockBarbedWireFence::new);
 	private final VoxelShape[] cullingShapes;
-
-	@Override
-	protected MapCodec<? extends HorizontalConnectingBlock> getCodec() {
-		return CODEC;
-	}
 
 	public BlockBarbedWireFence(AbstractBlock.Settings settings) {
 		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, settings

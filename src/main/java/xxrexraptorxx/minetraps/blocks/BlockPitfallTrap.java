@@ -16,6 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Colors;
@@ -33,11 +34,6 @@ import java.util.List;
 
 
 public class BlockPitfallTrap extends Block {
-	public static final MapCodec<BlockPitfallTrap> CODEC = BlockPitfallTrap.createCodec(BlockPitfallTrap::new);
-
-	public MapCodec<BlockPitfallTrap> getCodec() {
-		return CODEC;
-	}
 
 	/**
 	 * 	0 = empty
@@ -72,7 +68,7 @@ public class BlockPitfallTrap extends Block {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(Text.translatable("message.minetraps.pitfall.desc").withColor(Colors.GRAY));
+		tooltip.add(Text.translatable("message.minetraps.pitfall.desc").setStyle(Style.EMPTY.withColor(Colors.GRAY)));
 	}
 
 	@Override

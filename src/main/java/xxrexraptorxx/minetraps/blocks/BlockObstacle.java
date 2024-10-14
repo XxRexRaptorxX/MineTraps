@@ -10,11 +10,6 @@ import net.minecraft.world.BlockView;
 
 
 public class BlockObstacle extends Block {
-	public static final MapCodec<BlockObstacle> CODEC = BlockObstacle.createCodec(BlockObstacle::new);
-
-	public MapCodec<BlockObstacle> getCodec() {
-		return CODEC;
-	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 24.0D, 16.0D);
 

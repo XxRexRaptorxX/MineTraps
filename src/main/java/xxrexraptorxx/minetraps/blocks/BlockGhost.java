@@ -11,6 +11,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Colors;
@@ -29,11 +30,6 @@ import java.util.List;
 
 
 public class BlockGhost extends Block {
-	public static final MapCodec<BlockGhost> CODEC = BlockGhost.createCodec(BlockGhost::new);
-
-	public MapCodec<BlockGhost> getCodec() {
-		return CODEC;
-	}
 	/**
 	 * 	0 = empty
 	 *  1 = dirt
@@ -66,7 +62,7 @@ public class BlockGhost extends Block {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(Text.translatable("message.minetraps.ghost.desc").withColor(Colors.GRAY));
+		tooltip.add(Text.translatable("message.minetraps.ghost.desc").setStyle(Style.EMPTY.withColor(Colors.GRAY)));
 	}
 
 

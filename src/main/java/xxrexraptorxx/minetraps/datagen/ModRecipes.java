@@ -2,7 +2,7 @@ package xxrexraptorxx.minetraps.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
@@ -11,13 +11,15 @@ import net.minecraft.util.Identifier;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.registry.ModItems;
 
+import java.util.function.Consumer;
+
 public class ModRecipes extends FabricRecipeProvider {
     public ModRecipes(FabricDataOutput output) {
         super(output);
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
+    public void generate(Consumer<RecipeJsonProvider> exporter) {
         // Nails Recipe
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NAILS, 9)
                 .pattern("#")

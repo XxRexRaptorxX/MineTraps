@@ -17,6 +17,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.math.BlockPos;
@@ -36,11 +37,6 @@ import java.util.List;
 
 
 public class BlockSpikes extends FallingBlock {
-	public static final MapCodec<BlockSpikes> CODEC = BlockSpikes.createCodec(BlockSpikes::new);
-
-	public MapCodec<BlockSpikes> getCodec() {
-		return CODEC;
-	}
 
 	public static final BooleanProperty POWERED = Properties.POWERED;
 	private final VoxelShape ON_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
@@ -83,7 +79,7 @@ public class BlockSpikes extends FallingBlock {
 
 
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(Text.translatable("message.minetraps.spike.desc").withColor(Colors.GRAY));
+		tooltip.add(Text.translatable("message.minetraps.spike.desc").setStyle(Style.EMPTY.withColor(Colors.GRAY)));
 	}
 
 	@Override

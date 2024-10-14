@@ -27,11 +27,6 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockBearTrap extends FallingBlock {
-	public static final MapCodec<BlockBearTrap> CODEC = BlockBearTrap.createCodec(BlockBearTrap::new);
-
-	public MapCodec<BlockBearTrap> getCodec() {
-		return CODEC;
-	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
 

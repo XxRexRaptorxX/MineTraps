@@ -19,11 +19,6 @@ import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWire extends HorizontalFacingBlock {
-	public static final MapCodec<BlockBarbedWire> CODEC = BlockBarbedWire.createCodec(BlockBarbedWire::new);
-
-	public MapCodec<BlockBarbedWire> getCodec() {
-		return CODEC;
-	}
 
 	public BlockBarbedWire(AbstractBlock.Settings settings) {
 		super(settings

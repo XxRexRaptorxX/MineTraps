@@ -17,11 +17,6 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockQuicksand extends FallingBlock {
-	public static final MapCodec<BlockQuicksand> CODEC = BlockQuicksand.createCodec(BlockQuicksand::new);
-
-	public MapCodec<BlockQuicksand> getCodec() {
-		return CODEC;
-	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 

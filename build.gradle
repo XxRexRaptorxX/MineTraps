@@ -1,13 +1,17 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.7.2'
 	id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
+mod_name = project.mod_name
+fabric_version_range = project.fabric_version_range
+mc_version_range = project.mc_version_range
+java_version_range = project.java_version_range
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = project.mod_id
 }
 
 repositories {
@@ -63,10 +67,16 @@ dependencies {
 }
 
 processResources {
-	inputs.property "version", project.version
+	inputs.property "mod_version", version
+	inputs.property "mod_name", mod_name
+	inputs.property "mod_id", mod_id
+	inputs.property "fabric_version_range", fabric_version_range
+	inputs.property "mc_version_range", mc_version_range
+	inputs.property "java_version_range", java_version_range
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "mod_version": version, "mod_id": mod_id, "mod_name": mod_name, "fabric_version_range": fabric_version_range,
+				"mc_version_range": mc_version_range, "java_version_range": java_version_range
 	}
 }
 
@@ -94,7 +104,7 @@ jar {
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
-			artifactId = project.archives_base_name
+			artifactId = project.mod_id
 			from components.java
 		}
 	}

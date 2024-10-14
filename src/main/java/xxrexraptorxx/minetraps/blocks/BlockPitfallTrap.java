@@ -102,6 +102,7 @@ public class BlockPitfallTrap extends Block {
 		if (state.getBlock() == ModBlocks.PITFALL_TRAP && state.get(TYPE) == 0) {
 			if (TrapHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrapHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 3);
 				if (!player.isCreative()) {
 					player.getStackInHand(hand).decrement(1);
 				}

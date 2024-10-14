@@ -1,6 +1,5 @@
 package xxrexraptorxx.minetraps.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.client.item.TooltipContext;
@@ -9,6 +8,8 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Style;
@@ -84,6 +85,7 @@ public class BlockGhost extends Block {
 		if (state.getBlock() == ModBlocks.GHOST_BLOCK && state.get(TYPE) == 0) {
 			if (TrapHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrapHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 3);
 				if (!player.isCreative()) {
 					player.getStackInHand(hand).decrement(1);
 				}

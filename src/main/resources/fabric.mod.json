@@ -44,8 +44,7 @@
 		"fabricloader": "${fabric_version_range}",
 		"minecraft": "${mc_version_range}",
 		"java": "${java_version_range}",
-		"fabric-api": "*",
-		"cloth-config": ">=11.1.118"
+		"fabric-api": "*"
 	},
 	"suggests": {
 		"modmenu": ">=7.0.1",

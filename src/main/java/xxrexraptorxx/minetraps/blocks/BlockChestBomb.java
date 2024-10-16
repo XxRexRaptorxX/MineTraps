@@ -23,11 +23,6 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockChestBomb extends Block {
-	public static final MapCodec<BlockChestBomb> CODEC = BlockChestBomb.createCodec(BlockChestBomb::new);
-
-	public MapCodec<BlockChestBomb> getCodec() {
-		return CODEC;
-	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 

@@ -12,6 +12,10 @@ import xxrexraptorxx.minetraps.registry.ModItems;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.world.gen.ModWorldGeneration;
 
+/**
+ * @author XxRexRaptorxX (RexRaptor), MC Mods Pete [>Fabric Port]
+ * @projectPage https://www.curseforge.com/minecraft/mc-mods/minetraps-fabric
+ **/
 public class MineTraps implements ModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(References.MODID);

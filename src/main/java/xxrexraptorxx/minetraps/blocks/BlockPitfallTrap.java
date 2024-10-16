@@ -16,6 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Colors;
@@ -33,11 +34,6 @@ import java.util.List;
 
 
 public class BlockPitfallTrap extends Block {
-	public static final MapCodec<BlockPitfallTrap> CODEC = BlockPitfallTrap.createCodec(BlockPitfallTrap::new);
-
-	public MapCodec<BlockPitfallTrap> getCodec() {
-		return CODEC;
-	}
 
 	/**
 	 * 	0 = empty
@@ -72,7 +68,7 @@ public class BlockPitfallTrap extends Block {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(Text.translatable("message.minetraps.pitfall.desc").withColor(Colors.GRAY));
+		tooltip.add(Text.translatable("message.minetraps.pitfall.desc").setStyle(Style.EMPTY.withColor(Colors.GRAY)));
 	}
 
 	@Override
@@ -106,6 +102,7 @@ public class BlockPitfallTrap extends Block {
 		if (state.getBlock() == ModBlocks.PITFALL_TRAP && state.get(TYPE) == 0) {
 			if (TrapHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrapHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 3);
 				if (!player.isCreative()) {
 					player.getStackInHand(hand).decrement(1);
 				}

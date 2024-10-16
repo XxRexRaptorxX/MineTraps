@@ -24,11 +24,6 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 
 public class BlockExplosiveMine extends FallingBlock {
-	public static final MapCodec<BlockExplosiveMine> CODEC = BlockExplosiveMine.createCodec(BlockExplosiveMine::new);
-
-	public MapCodec<BlockExplosiveMine> getCodec() {
-		return CODEC;
-	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
 

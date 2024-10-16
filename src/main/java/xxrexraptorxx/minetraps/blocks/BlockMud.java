@@ -13,11 +13,6 @@ import net.minecraft.world.World;
 
 
 public class BlockMud extends FallingBlock {
-	public static final MapCodec<BlockMud> CODEC = BlockMud.createCodec(BlockMud::new);
-
-	public MapCodec<BlockMud> getCodec() {
-		return CODEC;
-	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 

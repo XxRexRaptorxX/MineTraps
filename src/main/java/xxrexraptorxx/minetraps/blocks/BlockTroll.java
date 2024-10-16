@@ -14,6 +14,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Colors;
@@ -32,11 +33,6 @@ import java.util.List;
 
 
 public class BlockTroll extends Block {
-	public static final MapCodec<BlockTroll> CODEC = BlockTroll.createCodec(BlockTroll::new);
-
-	public MapCodec<BlockTroll> getCodec() {
-		return CODEC;
-	}
 	/**
 	 * 	0 = empty
 	 *  1 = diamond
@@ -63,7 +59,7 @@ public class BlockTroll extends Block {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(Text.translatable("message.minetraps.troll.desc").withColor(Colors.GRAY));
+		tooltip.add(Text.translatable("message.minetraps.troll.desc").setStyle(Style.EMPTY.withColor(Colors.GRAY)));
 	}
 
 
@@ -94,7 +90,7 @@ public class BlockTroll extends Block {
 
 
 	@Override
-	public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 1.0F, 3);
 		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
@@ -102,8 +98,6 @@ public class BlockTroll extends Block {
 		if (!world.isClient()) {
 			world.createExplosion(dummy, pos.getX(), pos.getY(), pos.getZ(), Config.EXPLOSIVE_BLOCK_RADIUS, true, World.ExplosionSourceType.TNT);
 		}
-
-		return state;
 	}
 
 
@@ -112,6 +106,7 @@ public class BlockTroll extends Block {
 		if (state.getBlock() == ModBlocks.TROLL_BLOCK && state.get(TYPE) == 0) {
 			if (TrollHelper.getTypeList().contains(player.getStackInHand(hand).getItem())) {
 				world.setBlockState(pos, state.with(TYPE, TrollHelper.getStateFromBlock(Registries.ITEM.getId(player.getStackInHand(hand).getItem()).toString())), 2);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 3);
 				if (!player.isCreative()) {
 					player.getStackInHand(hand).decrement(1);
 				}

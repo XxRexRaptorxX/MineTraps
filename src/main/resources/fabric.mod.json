@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "minetraps",
-	"version": "${version}",
-	"name": "MineTraps",
+	"id": "${mod_id}",
+	"version": "${mod_version}",
+	"name": "${mod_name}",
 	"description": "This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!",
 	"authors": [
 		"XxRexRaptorxX (RexRaptor), owner of all the rights to the MineTraps mod",
@@ -11,6 +11,13 @@
 	"contact": {
 		"homepage": "https://www.curseforge.com/minecraft/mc-mods/minetraps",
 		"sources": "https://github.com/XxRexRaptorxX/MineTraps"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.com/invite/ycRJJk8EXV"
+			}
+		}
 	},
 	"license": "All Rights Reserved",
 	"icon": "logo.png",
@@ -26,16 +33,21 @@
 			"xxrexraptorxx.minetraps.datagen.DataGenerators"
 		]
 	},
+
+
 	"mixins": [
 		"minetraps.mixins.json"
 	],
+
+
 	"depends": {
-		"fabricloader": ">=0.15.11",
-		"minecraft": "=1.20.4",
-		"java": ">=17",
+		"fabricloader": "${fabric_version_range}",
+		"minecraft": "${mc_version_range}",
+		"java": "${java_version_range}",
 		"fabric-api": "*"
 	},
 	"suggests": {
+		"modmenu": ">=7.0.1",
 		"another-mod": "*"
 	}
 }

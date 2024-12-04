@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -65,7 +66,7 @@ public class BlockNailTrap extends FallingBlock {
 				if (this == ModBlocks.TOXIC_NAIL_TRAP)
 					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, Config.TOXIC_NAIL_TRAP_EFFECT_DURATION, Config.TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER));
 
-				entity.damage(MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.NAIL_TRAP_DAMAGE);
+				entity.damage((ServerWorld) world, MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.NAIL_TRAP_DAMAGE);
 			}
 		}
 	}

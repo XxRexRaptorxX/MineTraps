@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -68,7 +69,7 @@ extends FlowableFluid {
 
 
     @Override
-    protected boolean isInfinite(World world) {
+    protected boolean isInfinite(ServerWorld world) {
         return false;//world.getGameRules().getBoolean(GameRules.WATER_SOURCE_CONVERSION);
     }
 
@@ -79,7 +80,7 @@ extends FlowableFluid {
     }
 
     @Override
-    public int getFlowSpeed(WorldView world) {
+    public int getMaxFlowDistance(WorldView world) {
         return 4;
     }
 

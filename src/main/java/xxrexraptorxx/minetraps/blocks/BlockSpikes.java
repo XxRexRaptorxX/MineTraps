@@ -28,6 +28,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
@@ -96,7 +97,7 @@ public class BlockSpikes extends FallingBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
 		if ((entityIn instanceof LivingEntity entity) && !world.isClient() && state.get(POWERED)) {
-			entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), (float) Config.SPIKES_DAMAGE);
+			entityIn.damage((ServerWorld) world, MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), (float) Config.SPIKES_DAMAGE);
 			if(this == ModBlocks.TOXIC_SPIKES) entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION, Config.TOXIC_SPIKES_EFFECT_AMPLIFIER));
 		}
 	}
@@ -110,7 +111,7 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
 		if (!world.isClient()) {
 			boolean flag = state.get(POWERED);
 			if (flag != world.isReceivingRedstonePower(pos)) {

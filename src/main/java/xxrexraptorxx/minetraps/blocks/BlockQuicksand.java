@@ -6,6 +6,7 @@ import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -48,8 +49,10 @@ public class BlockQuicksand extends FallingBlock {
 		if (entityIn instanceof LivingEntity entity) {
 
 			entity.slowMovement(state, new Vec3d(0.25D, 0.10D, 0.25D));
-			if (entity.getEyePos().y < pos.getY() + 1) {
-				entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), DamageTypes.IN_WALL), Config.QUICKSAND_DAMAGE);
+			if (world instanceof ServerWorld) {
+				if (entity.getEyePos().y < pos.getY() + 1) {
+					entityIn.damage((ServerWorld) world, MineTrapsDamageTypes.of(entityIn.getWorld(), DamageTypes.IN_WALL), Config.QUICKSAND_DAMAGE);
+				}
 			}
 		}
 	}

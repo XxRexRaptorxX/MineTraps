@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 
 import net.minecraft.sound.SoundCategory;
@@ -65,14 +66,15 @@ public class BlockBearTrap extends FallingBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
 		if (entityIn instanceof LivingEntity entity) {
-            if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {
-                entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), 6.0f);
-            }
+			if (!world.isClient()) {
+            	if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {
+                	entityIn.damage((ServerWorld) world, MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), 6.0f);
+            	}
 
-            entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BEAR_TRAP_DAMAGE);
-            entityIn.slowMovement(state, new Vec3d(0.1D, 0.25D, 0.1D));
+            	entityIn.damage((ServerWorld) world, MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BEAR_TRAP_DAMAGE);
+            	entityIn.slowMovement(state, new Vec3d(0.1D, 0.25D, 0.1D));
 
-            if (!world.isClient()) {
+
                 if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS, 1.0F, 3);
                 }

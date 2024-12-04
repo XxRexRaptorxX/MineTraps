@@ -10,6 +10,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -83,7 +84,7 @@ public class BlockTroll extends Block {
 	//Functions
 
 	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+	public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion) {
 		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
 		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 

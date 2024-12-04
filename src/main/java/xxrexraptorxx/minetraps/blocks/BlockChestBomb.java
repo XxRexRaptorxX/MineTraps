@@ -6,6 +6,7 @@ import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -18,6 +19,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import org.apache.logging.log4j.core.jmx.Server;
 import xxrexraptorxx.minetraps.utils.Config;
 
 
@@ -46,7 +48,7 @@ public class BlockChestBomb extends Block {
 	}
 
 	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+	public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion) {
 		AreaEffectCloudEntity dummy = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
 		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 

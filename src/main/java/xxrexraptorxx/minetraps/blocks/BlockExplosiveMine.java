@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -63,26 +64,26 @@ public class BlockExplosiveMine extends FallingBlock {
 				AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
 				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION);
 				cloud.setRadius(10);
-				cloud.setPotionContents(new PotionContentsComponent(Optional.empty(), Optional.of(0x27ae60), List.of(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER))));
+				cloud.setPotionContents(new PotionContentsComponent(Optional.empty(), Optional.of(0x27ae60), List.of(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER)), Optional.empty()));
 				cloud.setWaitTime(10);
 				world.spawnEntity(cloud);
 			}
 
-			entityIn.damage(MineTrapsDamageTypes.of(entityIn.getWorld(), DamageTypes.GENERIC), Config.MINE_DAMAGE);
+			entityIn.damage((ServerWorld) world, MineTrapsDamageTypes.of(entityIn.getWorld(), DamageTypes.GENERIC), Config.MINE_DAMAGE);
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 			world.createExplosion(entityIn, pos.getX(), pos.getY(), pos.getZ(), Config.MINE_EXPLOSION_RADIUS, true, World.ExplosionSourceType.TNT);
 		}
 	}
 
 	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+	public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion) {
 		AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, pos.getX(), pos.getY(), pos.getZ());
 
 		if (!world.isClient()) {
 			if (this == ModBlocks.TOXIC_MINE) {
 				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION);
 				cloud.setRadius(10);
-				cloud.setPotionContents(new PotionContentsComponent(Optional.empty(), Optional.of(0x27ae60), List.of(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER))));
+				cloud.setPotionContents(new PotionContentsComponent(Optional.empty(), Optional.of(0x27ae60), List.of(new StatusEffectInstance(StatusEffects.POISON, Config.POSION_MINE_EFFECT_DURATION, Config.POSION_MINE_EFFECT_AMPLIFIER)), Optional.empty()));
 				cloud.setWaitTime(10);
 				world.spawnEntity(cloud);
 			}

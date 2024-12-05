@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "O": {
-      "item": "minecraft:tnt"
-    },
-    "X": {
-      "item": "minecraft:stone_button"
-    }
+    "#": "minecraft:stick",
+    "O": "minecraft:tnt",
+    "X": "minecraft:stone_button"
   },
   "pattern": [
     "#X#",

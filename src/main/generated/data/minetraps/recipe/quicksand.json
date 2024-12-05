@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:sand"
-    },
-    "X": {
-      "item": "minecraft:gravel"
-    }
+    "#": "minecraft:sand",
+    "X": "minecraft:gravel"
   },
   "pattern": [
     "#X#",

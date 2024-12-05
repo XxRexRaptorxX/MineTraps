@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minetraps:nails"
-    },
-    "O": {
-      "item": "minecraft:heavy_weighted_pressure_plate"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minetraps:nails",
+    "O": "minecraft:heavy_weighted_pressure_plate",
+    "X": "minecraft:iron_ingot"
   },
   "pattern": [
     "###",

@@ -9,7 +9,6 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModLootTables extends FabricBlockLootTableProvider {
 
-
     protected ModLootTables(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }

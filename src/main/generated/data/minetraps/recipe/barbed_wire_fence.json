@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minetraps:barbed_wire"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minetraps:barbed_wire",
+    "X": "minecraft:iron_ingot"
   },
   "pattern": [
     "X#X",

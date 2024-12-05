@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minetraps:toxin_bottle"
-    },
-    {
-      "item": "minetraps:spikes"
-    }
+    "minetraps:toxin_bottle",
+    "minetraps:spikes"
   ],
   "result": {
     "count": 1,

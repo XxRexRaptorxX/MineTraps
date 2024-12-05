@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minetraps:nails"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minetraps:nails",
+    "X": "minecraft:iron_ingot"
   },
   "pattern": [
     "#X#",

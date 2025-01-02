@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#forge:chests/bomb"
+    "#c:chests/bomb"
   ]
 }

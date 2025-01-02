@@ -1,18 +1,14 @@
 package xxrexraptorxx.minetraps.items;
 
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
 public class ItemToxinBottle extends Item {
 
@@ -20,54 +16,24 @@ public class ItemToxinBottle extends Item {
         super(new Properties()
                 .stacksTo(4)
                 .craftRemainder(Items.GLASS_BOTTLE)
+                .usingConvertsTo(Items.GLASS_BOTTLE)
+                .component(DataComponents.CONSUMABLE,
+                        Consumable.builder()
+                                .consumeSeconds(1.6f)
+                                .animation(ItemUseAnimation.DRINK)
+                                .sound(SoundEvents.GENERIC_DRINK)
+                                .soundAfterConsume(SoundEvents.GENERIC_DRINK)
+                                .hasConsumeParticles(true)
+                                .onConsume(
+                                        new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 800, 1), 1.0F)
+                                )
+                                .onConsume(
+                                        new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 400, 0), 0.95F)
+                                )
+                                .build()
+                )
         );
 
-    }
-
-
-    @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        super.finishUsingItem(pStack, pLevel, pEntityLiving);
-            ServerPlayer serverplayer = (ServerPlayer) pEntityLiving;
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, pStack);
-            pStack.shrink(1);
-            serverplayer.awardStat(Stats.ITEM_USED.get(this));
-
-
-        if (!pLevel.isClientSide) {
-            pEntityLiving.addEffect(new MobEffectInstance(MobEffects.POISON, 800, 1));
-            pEntityLiving.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
-        }
-            return new ItemStack(Items.GLASS_BOTTLE);
-    }
-
-    @Override
-    public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return 40;
-    }
-
-
-    @Override
-    public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.DRINK;
-    }
-
-
-    @Override
-    public SoundEvent getDrinkingSound() {
-        return SoundEvents.GENERIC_DRINK;
-    }
-
-
-    @Override
-    public SoundEvent getEatingSound() {
-        return SoundEvents.GENERIC_DRINK;
-    }
-
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        return ItemUtils.startUsingInstantly(level, player, hand);
     }
 
 }

@@ -14,7 +14,7 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 /**
  * @author XxRexRaptorxX (RexRaptor)
- * @projectPage https://www.curseforge.com/minecraft/mc-mods/minetraps
+ * @projectPage <a href="https://www.curseforge.com/minecraft/mc-mods/minetraps">...</a>
  **/
 @Mod(References.MODID)
 public class MineTraps {

@@ -3,6 +3,7 @@ package xxrexraptorxx.minetraps.blocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -73,7 +74,7 @@ public class BlockExplosiveMine extends FallingBlock {
 
 
 	@Override
-	public void onBlockExploded(BlockState state, Level world, BlockPos pos, Explosion explosion) {
+	public void onBlockExploded(BlockState state, ServerLevel world, BlockPos pos, Explosion explosion) {
 		AreaEffectCloud cloud = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
 
 		if (!world.isClientSide) {

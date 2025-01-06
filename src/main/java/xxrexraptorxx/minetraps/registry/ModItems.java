@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,7 +24,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> NAILS = ITEMS.register("nails", () -> new Item(new Item.Properties().setId(itemId("nails"))));
     public static final DeferredItem<ItemToxinBottle> TOXIN_BOTTLE = ITEMS.register("toxin_bottle", ItemToxinBottle::new);
-    public static final DeferredItem<BucketItem> TOXIN_BUCKET = ITEMS.register("toxin_bucket", () -> new BucketItem(ModFluids.TOXIN.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).setId(itemId("toxin_bucket"))));
+    public static final DeferredItem<BucketItem> TOXIN_BUCKET = ITEMS.register("toxin_bucket", () -> new BucketItem(Fluids.WATER, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).setId(itemId("toxin_bucket")))); //Todo: WIP! Fluid port
 
 
     public static ResourceKey<Item> itemId(String name) {

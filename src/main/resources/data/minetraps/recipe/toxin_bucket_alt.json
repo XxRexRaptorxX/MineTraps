@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bucket",
+    "minetraps:toxin_bottle",
+    "minetraps:toxin_bottle",
+    "minetraps:toxin_bottle",
+    "minetraps:toxin_bottle"
+  ],
+
+  "result": {
+    "id": "minetraps:toxin_bucket"
+  }
+}

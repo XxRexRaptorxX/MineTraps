@@ -1,5 +1,9 @@
 package xxrexraptorxx.minetraps.datagen;
-
+/*
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.ItemModelOutput;
+import net.minecraft.client.data.models.model.ModelInstance;
+import net.minecraft.client.renderer.block.model.ItemModelGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -10,10 +14,12 @@ import xxrexraptorxx.minetraps.main.References;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.registry.ModItems;
 
-public class ModItemModels extends ItemModelProvider {
+import java.util.function.BiConsumer;
 
-    public ModItemModels(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
-        super(packOutput, References.MODID, existingFileHelper);
+public class ModItemModels extends ItemModelGenerators {
+
+    public ModItemModels(ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
+        super(packOutput, References.MODID);
     }
 
     @Override
@@ -55,4 +61,4 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(item.getId().getPath(), ResourceLocation.fromNamespaceAndPath(References.MODID, "block/" + item.getId().toString().substring(References.MODID.length() + 1)));
     }
 
-}
+}**/

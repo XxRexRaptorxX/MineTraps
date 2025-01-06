@@ -9,18 +9,10 @@
   ],
     
   "key": {
-    "#": {
-      "item": "minecraft:iron_ingot"
-    },
-    "I": {
-      "item": "minecraft:redstone"
-    },
-    "X": {
-      "item": "minetraps:nails"
-    },
-    "O": {
-      "item": "minecraft:piston"
-    }
+    "#": "#c:ingots/iron",
+    "I": "minecraft:redstone",
+    "X": "minetraps:nails",
+    "O": "minecraft:piston"
   },
   
   "result": {

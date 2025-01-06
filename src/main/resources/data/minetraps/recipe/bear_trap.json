@@ -9,15 +9,9 @@
   ],
     
   "key": {
-    "#": {
-      "item": "minetraps:nails"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    },
-    "O": {
-      "item": "minecraft:heavy_weighted_pressure_plate"
-    }
+    "#": "minetraps:nails",
+    "X": "#c:ingots/iron",
+    "O": "minecraft:heavy_weighted_pressure_plate"
   },
   
   "result": {

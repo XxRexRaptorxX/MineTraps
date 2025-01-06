@@ -9,9 +9,7 @@
   ],
   
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    }
+    "#": "#c:rods/wooden"
   },
   
   "result": {

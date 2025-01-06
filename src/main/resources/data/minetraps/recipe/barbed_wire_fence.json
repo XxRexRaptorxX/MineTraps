@@ -8,12 +8,8 @@
   ],
     
   "key": {
-    "#": {
-      "item": "minetraps:barbed_wire"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minetraps:barbed_wire",
+    "X": "#c:ingots/iron"
   },
   
   "result": {

@@ -9,9 +9,7 @@
   ],
   
   "key": {
-    "#": {
-      "item": "minetraps:nails"
-    }
+    "#": "minetraps:nails"
   },
   
   "result": {

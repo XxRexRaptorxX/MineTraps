@@ -9,12 +9,8 @@
   ],
     
   "key": {
-    "X": {
-      "item": "minecraft:stick"
-    },
-    "#": {
-      "item": "minecraft:glass"
-    }
+    "X": "#c:rods/wooden",
+    "#": "#c:glass_blocks/colorless"
   },
   
   "result": {

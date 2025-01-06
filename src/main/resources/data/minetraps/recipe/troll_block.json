@@ -9,15 +9,9 @@
   ],
     
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "O": {
-      "item": "minecraft:tnt"
-    },
-    "X": {
-      "item": "minecraft:stone_button"
-    }
+    "#": "#c:rods/wooden",
+    "O": "minecraft:tnt",
+    "X": "minecraft:stone_button"
   },
   
   "result": {

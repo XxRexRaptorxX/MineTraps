@@ -8,9 +8,7 @@
   ],
   
   "key": {
-    "#": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "#c:ingots/iron"
   },
   
   "result": {

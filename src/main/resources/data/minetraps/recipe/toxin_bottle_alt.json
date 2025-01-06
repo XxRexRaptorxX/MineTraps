@@ -2,23 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-
-    {  
-      "item": "minetraps:toxin_bucket"
-    },
-    {  
-      "item": "minecraft:glass_bottle"
-    },
-    {  
-      "item": "minecraft:glass_bottle"
-    },
-    {  
-      "item": "minecraft:glass_bottle"
-    },
-    {  
-      "item": "minecraft:glass_bottle"
-    }
+    "minetraps:toxin_bucket",
+    "minecraft:glass_bottle",
+    "minecraft:glass_bottle",
+    "minecraft:glass_bottle",
+    "minecraft:glass_bottle"
   ],
+
   "result": {
     "id": "minetraps:toxin_bottle",
     "count": 4

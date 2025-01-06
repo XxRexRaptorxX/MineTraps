@@ -9,12 +9,8 @@
   ],
     
   "key": {
-    "#": {
-      "item": "minetraps:nails"
-    },
-    "X": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minetraps:nails",
+    "X": "#c:ingots/iron"
   },
   
   "result": {

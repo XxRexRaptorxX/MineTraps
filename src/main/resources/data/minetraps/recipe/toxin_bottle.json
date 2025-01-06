@@ -2,21 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-
-    {
-      "item": "minecraft:glass_bottle"
-    },
-    {
-      "item": "minecraft:rotten_flesh"
-    },
-    {
-      "item": "minecraft:pufferfish"
-    },
-    {
-      "item": "minecraft:fermented_spider_eye"
-    }
-
+    "minecraft:glass_bottle",
+    "minecraft:rotten_flesh",
+    "minecraft:pufferfish",
+    "minecraft:fermented_spider_eye"
   ],
+
   "result": {
     "id": "minetraps:toxin_bottle"
   }

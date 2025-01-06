@@ -1,5 +1,5 @@
 package xxrexraptorxx.minetraps.datagen;
-/**
+/*
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;

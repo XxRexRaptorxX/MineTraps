@@ -9,9 +9,7 @@
   ],
   
   "key": {
-    "#": {
-      "item": "minetraps:barbed_wire"
-    }
+    "#": "minetraps:barbed_wire"
   },
   
   "result": {

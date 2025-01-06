@@ -29,6 +29,7 @@ public class MineTraps {
         ModFluidTypes.init(eventBus);
         CreativeModeTabs.init(eventBus);
         Config.init(container);
+
     }
 
 }

@@ -13,12 +13,9 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -32,14 +29,8 @@ public class BlockChestBomb extends Block {
 	protected static final VoxelShape CUSTOM_SHAPE = Block.box(	1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
 
-	public BlockChestBomb() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(2.5F, 0.0F)
-				.sound(SoundType.WOOD)
-				.mapColor(MapColor.WOOD)
-				.instrument(NoteBlockInstrument.BASS)
-		);
+	public BlockChestBomb(Properties properties) {
+		super(properties);
 	}
 
 

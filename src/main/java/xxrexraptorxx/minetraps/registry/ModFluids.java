@@ -11,7 +11,7 @@ import xxrexraptorxx.minetraps.main.References;
 
 public class ModFluids {
 
-    private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, References.MODID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, References.MODID);
 
     public static void init(IEventBus eventBus) {
         FLUIDS.register(eventBus);

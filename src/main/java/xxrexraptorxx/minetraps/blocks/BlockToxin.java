@@ -24,6 +24,7 @@ public class BlockToxin extends LiquidBlock {
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
             if(entityIn instanceof LivingEntity) {
                 LivingEntity entity = (LivingEntity) entityIn;
+
                 entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIN_POISON_EFFECT_DURATION.get(), Config.TOXIN_POISON_EFFECT_AMPLIFIER.get()));
                 entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, Config.TOXIN_CONFUSION_EFFECT_DURATION.get(), Config.TOXIN_CONFUSION_EFFECT_AMPLIFIER.get()));
             }

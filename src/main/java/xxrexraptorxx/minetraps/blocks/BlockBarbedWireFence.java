@@ -15,14 +15,11 @@ import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CrossCollisionBlock;
 import net.minecraft.world.level.block.IronBarsBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -32,16 +29,8 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWireFence extends CrossCollisionBlock {
 
-	public BlockBarbedWireFence() {
-		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(5.0F, 10.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.PLING)
-				.noOcclusion()
-				.noCollission()
-		);
+	public BlockBarbedWireFence(Properties properties) {
+		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, properties);
 
 		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}

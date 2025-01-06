@@ -19,15 +19,13 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import xxrexraptorxx.minetraps.main.References;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
@@ -50,15 +48,9 @@ public class BlockPitfallTrap extends Block {
 	protected static final VoxelShape CUSTOM_COLLISION_AABB = Block.box(0.0625D, 0.0625D, 0.0625D, 15.9375D, 15.9375D, 15.9375D);
 
 
-	public BlockPitfallTrap() {
-		super(Properties.of()
-				.strength(1.0F, 1.0F)
-				.sound(SoundType.WOOD)
-				.mapColor(MapColor.WOOD)
-				.instrument(NoteBlockInstrument.BASS)
-				.noOcclusion()
-				.noCollission()
-		);
+	public BlockPitfallTrap(Properties properties) {
+		super(properties);
+
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));
 	}
 
@@ -71,7 +63,7 @@ public class BlockPitfallTrap extends Block {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-		list.add(Component.translatable("message.minetraps.pitfall.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message." + References.MODID + ".pitfall.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 

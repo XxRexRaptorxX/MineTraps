@@ -14,16 +14,14 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import xxrexraptorxx.minetraps.main.References;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.TrapHelper;
 
@@ -45,15 +43,9 @@ public class BlockGhost extends Block {
 	public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 6);
 
 
-	public BlockGhost() {
-		super(Properties.of()
-				.strength(1.5F, 6.0F)
-				.sound(SoundType.STONE)
-				.mapColor(MapColor.STONE)
-				.instrument(NoteBlockInstrument.XYLOPHONE)
-				.noCollission()
-				.noOcclusion()
-		);
+	public BlockGhost(Properties properties) {
+		super(properties);
+
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));
 	}
 
@@ -66,7 +58,7 @@ public class BlockGhost extends Block {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-		list.add(Component.translatable("message.minetraps.ghost.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message." + References.MODID + ".ghost.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 

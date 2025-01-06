@@ -9,12 +9,14 @@ import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import xxrexraptorxx.minetraps.registry.ModItems;
 
 public class ItemToxinBottle extends Item {
 
     public ItemToxinBottle() {
         super(new Properties()
                 .stacksTo(4)
+                .setId(ModItems.itemId("toxin_bottle"))
                 .craftRemainder(Items.GLASS_BOTTLE)
                 .usingConvertsTo(Items.GLASS_BOTTLE)
                 .component(DataComponents.CONSUMABLE,
@@ -24,16 +26,11 @@ public class ItemToxinBottle extends Item {
                                 .sound(SoundEvents.GENERIC_DRINK)
                                 .soundAfterConsume(SoundEvents.GENERIC_DRINK)
                                 .hasConsumeParticles(true)
-                                .onConsume(
-                                        new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 800, 1), 1.0F)
-                                )
-                                .onConsume(
-                                        new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 400, 0), 0.95F)
-                                )
+                                .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 800, 1), 1.0F))
+                                .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 400, 0), 0.95F))
                                 .build()
                 )
         );
-
     }
 
 }

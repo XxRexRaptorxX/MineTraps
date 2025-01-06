@@ -17,7 +17,7 @@ public class CreativeModeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register(References.MODID, () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + References.MODID + ".tab"))
-            .icon(() -> ModBlocks.PITFALL_TRAP_BLOCKITEM.get().getDefaultInstance())
+            .icon(() -> ModBlocks.PITFALL_TRAP.asItem().getDefaultInstance())
             .displayItems((params, output) -> {
                 output.accept(ModBlocks.BARBED_WIRE.get());
                 output.accept(ModBlocks.RAZOR_WIRE.get());

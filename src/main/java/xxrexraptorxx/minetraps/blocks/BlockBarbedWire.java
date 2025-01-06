@@ -7,12 +7,9 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HalfTransparentBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -27,16 +24,8 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 
 	private static final VoxelShape RENDER_SHAPE = Shapes.empty();
 
-	public BlockBarbedWire() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(5.0F, 10.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.PLING)
-				.noCollission()
-				.noOcclusion()
-		);
+	public BlockBarbedWire(Properties properties) {
+		super(properties);
 	}
 
 

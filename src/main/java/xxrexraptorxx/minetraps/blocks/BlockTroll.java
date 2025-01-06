@@ -19,14 +19,12 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
+import xxrexraptorxx.minetraps.main.References;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 import xxrexraptorxx.minetraps.utils.TrollHelper;
@@ -51,20 +49,15 @@ public class BlockTroll extends Block {
 	public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 8);
 
 
-	public BlockTroll() {
-		super(Properties.of()
-				.strength(1.5F, 6.0F)
-				.sound(SoundType.STONE)
-				.mapColor(MapColor.STONE)
-				.instrument(NoteBlockInstrument.BELL)
-				.noLootTable()
-		);
+	public BlockTroll(Properties properties) {
+		super(properties);
+
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, 0));
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-		list.add(Component.translatable("message.minetraps.troll.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message." + References.MODID + ".troll.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 

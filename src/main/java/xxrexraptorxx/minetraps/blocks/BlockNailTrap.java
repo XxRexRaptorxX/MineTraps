@@ -12,10 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -28,16 +25,8 @@ public class BlockNailTrap extends FallingBlock {
 	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
 
 
-	public BlockNailTrap() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(1.0F, 8.0F)
-				.sound(SoundType.GRAVEL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.BELL)
-				.noOcclusion()
-				.noCollission()
-		);
+	public BlockNailTrap(Properties properties) {
+		super(properties);
 	}
 
 

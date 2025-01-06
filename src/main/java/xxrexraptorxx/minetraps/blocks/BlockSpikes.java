@@ -23,17 +23,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import xxrexraptorxx.minetraps.main.References;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
@@ -46,16 +44,8 @@ public class BlockSpikes extends FallingBlock {
 	protected static final VoxelShape OM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
 	protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
-	public BlockSpikes() {
-		super(Properties.of()
-				.requiresCorrectToolForDrops()
-				.strength(1.8F, 7.0F)
-				.sound(SoundType.METAL)
-				.mapColor(MapColor.METAL)
-				.instrument(NoteBlockInstrument.BELL)
-				.noCollission()
-				.noOcclusion()
-		);
+	public BlockSpikes(Properties properties) {
+		super(properties);
 
 		this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));
 	}
@@ -91,7 +81,7 @@ public class BlockSpikes extends FallingBlock {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-		list.add(Component.translatable("message.minetraps.spike.desc").withStyle(ChatFormatting.GRAY));
+		list.add(Component.translatable("message." + References.MODID + ".spike.desc").withStyle(ChatFormatting.GRAY));
 	}
 
 
@@ -107,6 +97,7 @@ public class BlockSpikes extends FallingBlock {
 			LivingEntity entity = (LivingEntity) entityIn;
 
 			entity.hurt(level.damageSources().generic(), (float) Config.SPIKES_DAMAGE.get());
+
 			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION.get(), Config.TOXIC_SPIKES_EFFECT_AMPLIFIER.get()));
 		}
 	}
@@ -123,10 +114,12 @@ public class BlockSpikes extends FallingBlock {
 	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
 		if (!level.isClientSide) {
 			boolean flag = state.getValue(POWERED);
+
 			if (flag != level.hasNeighborSignal(pos)) {
 				if (flag) {
 					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 1.0F, 3);
 					level.scheduleTick(pos, this, 4);
+
 				} else {
 					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
 					level.setBlock(pos, state.cycle(POWERED), 2);

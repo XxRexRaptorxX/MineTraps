@@ -1,75 +1,200 @@
 package xxrexraptorxx.minetraps.registry;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xxrexraptorxx.minetraps.blocks.*;
 import xxrexraptorxx.minetraps.main.References;
 
+import java.util.function.Function;
+
 public class ModBlocks {
 
     private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(References.MODID);
-    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(References.MODID);
 
     public static void init(IEventBus eventBus) {
         BLOCKS.register(eventBus);
-        ITEMS.register(eventBus);
     }
 
 
-    public static final DeferredBlock<BlockBarbedWire> BARBED_WIRE = BLOCKS.register("barbed_wire", BlockBarbedWire::new);
-    public static final DeferredItem<Item> BARBED_WIRE_BLOCKITEM = ITEMS.register("barbed_wire", () -> new BlockItem(BARBED_WIRE.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockBarbedWire> BARBED_WIRE = registerBlock("barbed_wire", properties -> new BlockBarbedWire(properties
+            .requiresCorrectToolForDrops()
+            .strength(5.0F, 10.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.PLING)
+            .noCollission()
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockBarbedWireFence> BARBED_WIRE_FENCE = BLOCKS.register("barbed_wire_fence", BlockBarbedWireFence::new);
-    public static final DeferredItem<Item> BARBED_WIRE_FENCE_BLOCKITEM = ITEMS.register("barbed_wire_fence", () -> new BlockItem(BARBED_WIRE_FENCE.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockBarbedWireFence> BARBED_WIRE_FENCE = registerBlock("barbed_wire_fence", properties -> new BlockBarbedWireFence(properties
+            .requiresCorrectToolForDrops()
+            .strength(5.0F, 10.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.PLING)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockBarbedWire> RAZOR_WIRE = BLOCKS.register("razor_wire", BlockBarbedWire::new);
-    public static final DeferredItem<Item> RAZOR_WIRE_BLOCKITEM = ITEMS.register("razor_wire", () -> new BlockItem(RAZOR_WIRE.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockBarbedWire> RAZOR_WIRE = registerBlock("razor_wire", properties -> new BlockBarbedWire(properties
+            .requiresCorrectToolForDrops()
+            .strength(5.0F, 10.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.PLING)
+            .noCollission()
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockBearTrap> BEAR_TRAP = BLOCKS.register("bear_trap", BlockBearTrap::new);
-    public static final DeferredItem<Item> BEAR_TRAP_BLOCKITEM = ITEMS.register("bear_trap", () -> new BlockItem(BEAR_TRAP.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockBearTrap> BEAR_TRAP = registerBlock("bear_trap", properties -> new BlockBearTrap(properties
+            .requiresCorrectToolForDrops()
+            .strength(5.0F, 10.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.PLING)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockChestBomb> CHEST_BOMB = BLOCKS.register("chest_bomb", BlockChestBomb::new);
-    public static final DeferredItem<Item> CHEST_BOMB_BLOCKITEM = ITEMS.register("chest_bomb", () -> new BlockItem(CHEST_BOMB.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockChestBomb> CHEST_BOMB = registerBlock("chest_bomb", properties -> new BlockChestBomb(properties
+            .requiresCorrectToolForDrops()
+            .strength(2.5F, 0.0F)
+            .sound(SoundType.WOOD)
+            .mapColor(MapColor.WOOD)
+            .instrument(NoteBlockInstrument.BASS)
+    ));
 
-    public static final DeferredBlock<BlockExplosiveMine> EXPLOSIVE_MINE = BLOCKS.register("explosive_mine", BlockExplosiveMine::new);
-    public static final DeferredItem<Item> EXPLOSIVE_MINE_BLOCKITEM = ITEMS.register("explosive_mine", () -> new BlockItem(EXPLOSIVE_MINE.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockExplosiveMine> EXPLOSIVE_MINE = registerBlock("explosive_mine", properties -> new BlockExplosiveMine(properties
+            .requiresCorrectToolForDrops()
+            .strength(1.0F, 0.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockExplosiveMine> TOXIC_MINE = BLOCKS.register("toxic_mine", BlockExplosiveMine::new);
-    public static final DeferredItem<Item> TOXIC_MINE_BLOCKITEM = ITEMS.register("toxic_mine", () -> new BlockItem(TOXIC_MINE.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockExplosiveMine> TOXIC_MINE = registerBlock("toxic_mine", properties -> new BlockExplosiveMine(properties
+            .requiresCorrectToolForDrops()
+            .strength(1.0F, 0.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockQuicksand> QUICK_SAND = BLOCKS.register("quicksand", BlockQuicksand::new);
-    public static final DeferredItem<Item> QUICK_SAND_BLOCKITEM = ITEMS.register("quicksand", () -> new BlockItem(QUICK_SAND.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockQuicksand> QUICK_SAND = registerBlock("quicksand", properties -> new BlockQuicksand(properties
+            .strength(0.65F, 0.0F)
+            .sound(SoundType.SAND)
+            .mapColor(MapColor.SAND)
+            .instrument(NoteBlockInstrument.SNARE)
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockObstacle> OBSTACLE = BLOCKS.register("obstacle", BlockObstacle::new);
-    public static final DeferredItem<Item> OBSTACLE_BLOCKITEM = ITEMS.register("obstacle", () -> new BlockItem(OBSTACLE.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockObstacle> OBSTACLE = registerBlock("obstacle", properties -> new BlockObstacle(properties
+            .requiresCorrectToolForDrops()
+            .strength(20.0F, 20.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockNailTrap> NAIL_TRAP = BLOCKS.register("nail_trap", BlockNailTrap::new);
-    public static final DeferredItem<Item> NAIL_TRAP_BLOCKITEM = ITEMS.register("nail_trap", () -> new BlockItem(NAIL_TRAP.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockNailTrap> NAIL_TRAP = registerBlock("nail_trap", properties -> new BlockNailTrap(properties
+            .requiresCorrectToolForDrops()
+            .strength(1.0F, 8.0F)
+            .sound(SoundType.GRAVEL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.BELL)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockNailTrap> TOXIC_NAIL_TRAP = BLOCKS.register("toxic_nail_trap", BlockNailTrap::new);
-    public static final DeferredItem<Item> TOXIC_NAIL_TRAP_BLOCKITEM = ITEMS.register("toxic_nail_trap", () -> new BlockItem(TOXIC_NAIL_TRAP.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockNailTrap> TOXIC_NAIL_TRAP = registerBlock("toxic_nail_trap", properties -> new BlockNailTrap(properties
+            .requiresCorrectToolForDrops()
+            .strength(1.0F, 8.0F)
+            .sound(SoundType.GRAVEL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.BELL)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockSpikes> SPIKES = BLOCKS.register("spikes", BlockSpikes::new);
-    public static final DeferredItem<Item> SPIKES_BLOCKITEM = ITEMS.register("spikes", () -> new BlockItem(SPIKES.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockSpikes> SPIKES = registerBlock("spikes", properties -> new BlockSpikes(properties
+            .requiresCorrectToolForDrops()
+            .strength(1.8F, 7.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.BELL)
+            .noCollission()
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockSpikes> TOXIC_SPIKES = BLOCKS.register("spikes_toxic", BlockSpikes::new);
-    public static final DeferredItem<Item> TOXIC_SPIKES_BLOCKITEM = ITEMS.register("spikes_toxic", () -> new BlockItem(TOXIC_SPIKES.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockSpikes> TOXIC_SPIKES = registerBlock("spikes_toxic", properties -> new BlockSpikes(properties
+            .requiresCorrectToolForDrops()
+            .strength(1.8F, 7.0F)
+            .sound(SoundType.METAL)
+            .mapColor(MapColor.METAL)
+            .instrument(NoteBlockInstrument.BELL)
+            .noCollission()
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockPitfallTrap> PITFALL_TRAP = BLOCKS.register("pitfall_trap", BlockPitfallTrap::new);
-    public static final DeferredItem<Item> PITFALL_TRAP_BLOCKITEM = ITEMS.register("pitfall_trap", () -> new BlockItem(PITFALL_TRAP.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockPitfallTrap> PITFALL_TRAP = registerBlock("pitfall_trap", properties -> new BlockPitfallTrap(properties
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.WOOD)
+            .mapColor(MapColor.WOOD)
+            .instrument(NoteBlockInstrument.BASS)
+            .noOcclusion()
+            .noCollission()
+    ));
 
-    public static final DeferredBlock<BlockGhost> GHOST_BLOCK = BLOCKS.register("ghost_block", BlockGhost::new);
-    public static final DeferredItem<Item> GHOST_BLOCK_BLOCKITEM = ITEMS.register("ghost_block", () -> new BlockItem(GHOST_BLOCK.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockGhost> GHOST_BLOCK = registerBlock("ghost_block", properties -> new BlockGhost(properties
+            .strength(1.5F, 6.0F)
+            .sound(SoundType.STONE)
+            .mapColor(MapColor.STONE)
+            .instrument(NoteBlockInstrument.XYLOPHONE)
+            .noCollission()
+            .noOcclusion()
+    ));
 
-    public static final DeferredBlock<BlockTroll> TROLL_BLOCK = BLOCKS.register("troll_block", BlockTroll::new);
-    public static final DeferredItem<Item> TROLL_BLOCKITEM = ITEMS.register("troll_block", () -> new BlockItem(TROLL_BLOCK.get(), new Item.Properties()));
+    public static final DeferredBlock<BlockTroll> TROLL_BLOCK = registerBlock("troll_block", properties -> new BlockTroll(properties
+            .strength(1.5F, 6.0F)
+            .sound(SoundType.STONE)
+            .mapColor(MapColor.STONE)
+            .instrument(NoteBlockInstrument.BELL)
+            .noLootTable()
+    ));
 
-    public static final DeferredBlock<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
+    public static final DeferredBlock<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).setId(blockId("toxin"))));
+
+
+
+    public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> blockCreator) {
+        DeferredBlock<T> toReturn = BLOCKS.register(name, () -> blockCreator.apply(BlockBehaviour.Properties.of().setId(blockId(name))));
+        registerBlockItems(name, toReturn);
+        return toReturn;
+    }
+
+    public static <T extends Block> void registerBlockItems(String name, DeferredBlock<T> block) {
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().setId(ModItems.itemId(name)).useBlockDescriptionPrefix()));
+    }
+
+    public static ResourceKey<Block> blockId(String name) {
+        return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(References.MODID, name));
+    }
 
 }

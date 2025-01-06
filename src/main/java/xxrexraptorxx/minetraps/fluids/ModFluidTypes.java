@@ -25,7 +25,7 @@ public class ModFluidTypes {
     }
 
     public static final DeferredHolder<FluidType, BaseFluidType> TOXIN_FLUID_TYPE = register("toxin_fluid",
-            FluidType.Properties.create().density(2500).viscosity(3000).sound(SoundAction.get("drink"), SoundEvents.HONEY_DRINK));
+            FluidType.Properties.create().density(2500).viscosity(3000).canExtinguish(true).canHydrate(false).sound(SoundAction.get("drink"), SoundEvents.HONEY_DRINK.value()));
 
 
     private static DeferredHolder<FluidType, BaseFluidType> register(String name, FluidType.Properties properties) {

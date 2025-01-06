@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:rods/iron"
+      },
+      "type": "neoforge:not"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+
+    "# #",
+    " # ",
+    "# #"
+  ],
+
+  "key": {
+    "#": "#c:rods/iron"
+  },
+
+  "result": {
+    "id": "minetraps:obstacle",
+    "count": 8
+  }
+}

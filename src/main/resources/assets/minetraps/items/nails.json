@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minetraps:item/toxic_spikes"
+    "model": "minetraps:item/nails"
   }
 }

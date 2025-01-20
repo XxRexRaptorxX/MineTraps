@@ -179,7 +179,7 @@ public class ModBlocks {
             .noLootTable()
     ));
 
-    public static final DeferredBlock<BlockToxin> TOXIN = BLOCKS.register("toxin", () -> new BlockToxin(ModFluids.TOXIN, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).setId(blockId("toxin"))));
+    public static final DeferredBlock<BlockToxin> TOXIN = registerBlock("toxin", properties -> new BlockToxin(ModFluids.TOXIN.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).setId(blockId("toxin"))));
 
 
 

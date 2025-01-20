@@ -10,7 +10,7 @@
 
     "item.minetraps.nails": "Цвяхи",
     "item.minetraps.toxin_bottle": "Токсин",
-    "item.minetraps.toxin_bucket": "Відро токсину [WIP]",
+    "item.minetraps.toxin_bucket": "Відро токсину",
 
     "block.minetraps.explosive_mine": "Міна",
     "block.minetraps.explosive_block": "Вибуховий блок",
@@ -61,5 +61,6 @@
     "block.minetraps.toxin_flowing": "Токсин",
 
     "fluid.minetraps.toxin": "Токсин",
-    "fluid.minetraps.toxin_flowing": "Токсин"
+    "fluid.minetraps.toxin_flowing": "Токсин",
+    "fluid_type.minetraps.toxin_fluid": "Токсин"
 }

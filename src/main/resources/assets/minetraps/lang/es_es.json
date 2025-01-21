@@ -10,7 +10,7 @@
 
     "item.minetraps.nails": "Clavos",
     "item.minetraps.toxin_bottle": "Toxina",
-    "item.minetraps.toxin_bucket": "Cubo de Toxina [WIP]",
+    "item.minetraps.toxin_bucket": "Cubo de Toxina",
 
     "block.minetraps.explosive_mine": "Mina",
     "block.minetraps.explosive_block": "Bloque Explosivo",
@@ -61,5 +61,6 @@
     "block.minetraps.toxin_flowing": "Toxina",
 
     "fluid.minetraps.toxin": "Toxina",
-    "fluid.minetraps.toxin_flowing": "Toxina"
+    "fluid.minetraps.toxin_flowing": "Toxina",
+    "fluid_type.minetraps.toxin_fluid": "Toxina"
 }

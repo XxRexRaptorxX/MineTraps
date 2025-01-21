@@ -10,7 +10,7 @@
 
     "item.minetraps.nails": "钉子",
     "item.minetraps.toxin_bottle": "毒液瓶",
-    "item.minetraps.toxin_bucket": "毒液桶 [WIP]",
+    "item.minetraps.toxin_bucket": "毒液桶",
 
     "block.minetraps.explosive_mine": "地雷",
     "block.minetraps.explosive_block": "爆炸方块",
@@ -61,5 +61,6 @@
     "block.minetraps.toxin_flowing": "毒液",
 
     "fluid.minetraps.toxin": "毒液",
-    "fluid.minetraps.toxin_flowing": "毒液"
+    "fluid.minetraps.toxin_flowing": "毒液",
+    "fluid_type.minetraps.toxin_fluid": "毒液"
 }

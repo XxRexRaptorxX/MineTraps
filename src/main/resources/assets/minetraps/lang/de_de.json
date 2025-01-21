@@ -7,7 +7,7 @@
 
     "item.minetraps.nails": "Nägel",
     "item.minetraps.toxin_bottle": "Toxin",
-    "item.minetraps.minetraps.toxin_bucket": "Toxin Eimer [WIP]",
+    "item.minetraps.toxin_bucket": "Toxin Eimer",
 
     "block.minetraps.barbed_wire": "Stacheldraht",
     "block.minetraps.barbed_wire_fence": "Stacheldraht Zaun",
@@ -58,5 +58,6 @@
     "block.minetraps.toxin_flowing": "Toxin",
 
     "fluid.minetraps.toxin": "Toxin",
-    "fluid.minetraps.toxin_flowing": "Toxin"
+    "fluid.minetraps.toxin_flowing": "Toxin",
+    "fluid_type.minetraps.toxin_fluid": "Toxin"
 }

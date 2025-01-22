@@ -22,7 +22,7 @@ public class ModRecipes extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NAILS, 9)
                 .pattern("#")
                 .pattern("#")
-                .input('#', Items.IRON_INGOT)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.NAILS)));
 
@@ -32,7 +32,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("X#X")
                 .pattern("#X#")
                 .input('#', ModItems.NAILS)
-                .input('X', Items.IRON_INGOT)
+                .input('X', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                 .criterion(hasItem(ModItems.NAILS), conditionsFromItem(ModItems.NAILS))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.BARBED_WIRE)));
@@ -42,7 +42,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("X#X")
                 .pattern("X#X")
                 .input('#', ModBlocks.BARBED_WIRE)
-                .input('X', Items.IRON_INGOT)
+                .input('X', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                 .criterion(hasItem(ModBlocks.BARBED_WIRE), conditionsFromItem(ModBlocks.BARBED_WIRE))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.BARBED_WIRE_FENCE)));
@@ -53,7 +53,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("XOX")
                 .pattern("###")
                 .input('#', ModItems.NAILS)
-                .input('X', Items.IRON_INGOT)
+                .input('X', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .input('O', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                 .criterion(hasItem(ModItems.NAILS), conditionsFromItem(ModItems.NAILS))
@@ -72,7 +72,7 @@ public class ModRecipes extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.EXPLOSIVE_MINE, 1)
                 .pattern("#X#")
                 .pattern("#O#")
-                .input('#', Items.IRON_INGOT)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .input('X', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
                 .input('O', Items.TNT)
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
@@ -86,7 +86,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("# #")
                 .pattern("X#X")
                 .input('#', Items.GLASS)
-                .input('X', Items.STICK)
+                .input('X', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "rods/wooden")))
                 .criterion(hasItem(Items.GLASS), conditionsFromItem(Items.GLASS))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.GHOST_BLOCK)));
@@ -101,11 +101,11 @@ public class ModRecipes extends FabricRecipeProvider {
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.NAIL_TRAP)));
 
         // Obstacle Recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.OBSTACLE, 1)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.OBSTACLE, 4)
                 .pattern("# #")
                 .pattern(" # ")
                 .pattern("# #")
-                .input('#', Items.IRON_INGOT)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.OBSTACLE)));
 
@@ -114,7 +114,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .input('#', Items.STICK)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "rods/wooden")))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.PITFALL_TRAP)));
 
@@ -123,8 +123,8 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("#X#")
                 .pattern("X#X")
                 .pattern("#X#")
-                .input('#', Items.SAND)
-                .input('X', Items.GRAVEL)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "sands/colorless")))
+                .input('X', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "gravels")))
                 .criterion(hasItem(Items.SAND), conditionsFromItem(Items.SAND))
                 .criterion(hasItem(Items.GRAVEL), conditionsFromItem(Items.GRAVEL))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.QUICK_SAND)));
@@ -143,7 +143,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("XXX")
                 .pattern("IOI")
                 .pattern("###")
-                .input('#', Items.IRON_INGOT)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "ingots/iron")))
                 .input('X', ModItems.NAILS)
                 .input('O', Items.PISTON)
                 .input('I', Items.REDSTONE)
@@ -217,12 +217,25 @@ public class ModRecipes extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(Items.FERMENTED_SPIDER_EYE), FabricRecipeProvider.conditionsFromItem(Items.FERMENTED_SPIDER_EYE))
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.TOXIN_BUCKET)));
 
+        // Toxin Bucket Recipe
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TOXIN_BUCKET, 1)
+                .input(Items.BUCKET)
+                .input(ModItems.TOXIN_BOTTLE)
+                .input(ModItems.TOXIN_BOTTLE)
+                .input(ModItems.TOXIN_BOTTLE)
+                .input(ModItems.TOXIN_BOTTLE)
+                .criterion(FabricRecipeProvider.hasItem(Items.BUCKET), FabricRecipeProvider.conditionsFromItem(Items.BUCKET))
+                .criterion(FabricRecipeProvider.hasItem(Items.ROTTEN_FLESH), FabricRecipeProvider.conditionsFromItem(Items.ROTTEN_FLESH))
+                .criterion(FabricRecipeProvider.hasItem(Items.PUFFERFISH), FabricRecipeProvider.conditionsFromItem(Items.PUFFERFISH))
+                .criterion(FabricRecipeProvider.hasItem(Items.FERMENTED_SPIDER_EYE), FabricRecipeProvider.conditionsFromItem(Items.FERMENTED_SPIDER_EYE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.TOXIN_BUCKET) + "_alt"));
+
         // Troll Block Recipe
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.TROLL_BLOCK, 1)
                 .pattern("#X#")
                 .pattern("XOX")
                 .pattern("#X#")
-                .input('#', Items.STICK)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "rods/wooden")))
                 .input('X', Items.STONE_BUTTON)
                 .input('O', Items.TNT)
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))

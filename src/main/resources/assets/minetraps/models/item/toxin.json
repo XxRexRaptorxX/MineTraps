@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minetraps:item/toxin"
+    "layer0": "minetraps:block/toxin"
   }
 }

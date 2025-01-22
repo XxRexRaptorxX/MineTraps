@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     },
     "O": {
       "item": "minecraft:tnt"

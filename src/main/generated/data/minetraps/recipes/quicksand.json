@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "minecraft:sand"
+      "tag": "c:sands/colorless"
     },
     "X": {
-      "item": "minecraft:gravel"
+      "tag": "c:gravels"
     }
   },
   "pattern": [

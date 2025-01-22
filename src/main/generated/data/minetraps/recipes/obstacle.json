@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "minecraft:iron_ingot"
+      "tag": "c:ingots/iron"
     }
   },
   "pattern": [
@@ -12,6 +12,7 @@
     "# #"
   ],
   "result": {
+    "count": 4,
     "item": "minetraps:obstacle"
   }
 }

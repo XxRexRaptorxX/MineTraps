@@ -9,7 +9,7 @@
       "item": "minecraft:heavy_weighted_pressure_plate"
     },
     "X": {
-      "item": "minecraft:iron_ingot"
+      "tag": "c:ingots/iron"
     }
   },
   "pattern": [

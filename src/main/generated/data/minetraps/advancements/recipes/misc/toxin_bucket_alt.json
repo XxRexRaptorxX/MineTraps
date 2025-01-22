@@ -1,24 +1,24 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fermented_spider_eye": {
+    "has_bucket": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:fermented_spider_eye"
+              "minecraft:bucket"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_glass_bottle": {
+    "has_fermented_spider_eye": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:glass_bottle"
+              "minecraft:fermented_spider_eye"
             ]
           }
         ]
@@ -51,7 +51,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:toxin_bottle"
+        "recipe": "minecraft:toxin_bucket_alt"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -59,7 +59,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_glass_bottle",
+      "has_bucket",
       "has_rotten_flesh",
       "has_pufferfish",
       "has_fermented_spider_eye"
@@ -67,7 +67,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:toxin_bottle"
+      "minecraft:toxin_bucket_alt"
     ]
   }
 }

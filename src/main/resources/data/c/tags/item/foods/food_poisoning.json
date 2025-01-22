@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minetraps:toxin_bottle",
+    "minetraps:toxin_bucket"
+  ]
+}

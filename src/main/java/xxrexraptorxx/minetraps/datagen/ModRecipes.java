@@ -62,7 +62,7 @@ public class ModRecipes extends FabricRecipeProvider {
 
         // Chest Bomb Recipe
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CHEST_BOMB, 1)
-                .input(Items.TRAPPED_CHEST)
+                .input(TagKey.of(Registry.ITEM_KEY, new Identifier("c", "chests/trapped")))
                 .input(Items.TNT)
                 .criterion(FabricRecipeProvider.hasItem(Items.TRAPPED_CHEST), FabricRecipeProvider.conditionsFromItem(Items.TRAPPED_CHEST))
                 .criterion(FabricRecipeProvider.hasItem(Items.TNT), FabricRecipeProvider.conditionsFromItem(Items.TNT))
@@ -85,7 +85,7 @@ public class ModRecipes extends FabricRecipeProvider {
                 .pattern("X#X")
                 .pattern("# #")
                 .pattern("X#X")
-                .input('#', Items.GLASS)
+                .input('#', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "glass/colorless")))
                 .input('X', TagKey.of(Registry.ITEM_KEY, new Identifier("c", "rods/wooden")))
                 .criterion(hasItem(Items.GLASS), conditionsFromItem(Items.GLASS))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))

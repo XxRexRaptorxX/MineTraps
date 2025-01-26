@@ -27,22 +27,22 @@ public class ItemToxinBottle extends Item {
 
 
     @Override
-    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull LivingEntity pEntityLiving) {
-        super.finishUsingItem(pStack, pLevel, pEntityLiving);
-        if (pEntityLiving instanceof ServerPlayer serverPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, pStack);
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving) {
+        super.finishUsingItem(stack, level, entityLiving);
+        if (entityLiving instanceof ServerPlayer serverPlayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!pLevel.isClientSide) {
-            pEntityLiving.addEffect(new MobEffectInstance(MobEffects.POISON, 800, 1));
-            pEntityLiving.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+        if (!level.isClientSide) {
+            entityLiving.addEffect(new MobEffectInstance(MobEffects.POISON, 800, 1));
+            entityLiving.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
         }
 
-        if (pEntityLiving instanceof Player playerEntity) {
+        if (entityLiving instanceof Player playerEntity) {
             if (!playerEntity.isCreative()) {
-                pStack.shrink(1);
-                if (!pStack.isEmpty()) {
+                stack.shrink(1);
+                if (!stack.isEmpty()) {
                     ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
                     if (!playerEntity.getInventory().add(itemStack)) {
                         playerEntity.drop(itemStack, false);
@@ -52,7 +52,7 @@ public class ItemToxinBottle extends Item {
                 }
             }
         }
-        return pStack;
+        return stack;
     }
 
 

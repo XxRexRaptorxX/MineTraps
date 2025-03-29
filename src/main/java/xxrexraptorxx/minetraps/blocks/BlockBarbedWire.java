@@ -13,8 +13,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
@@ -22,8 +20,6 @@ import javax.annotation.Nullable;
 
 
 public class BlockBarbedWire extends HalfTransparentBlock {
-
-	private static final VoxelShape RENDER_SHAPE = Shapes.empty();
 
 	public BlockBarbedWire(Properties properties) {
 		super(properties);

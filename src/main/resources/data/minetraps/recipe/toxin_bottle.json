@@ -2,7 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:glass_bottle",
+    {
+      "neoforge:ingredient_type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:poison"
+        }
+      },
+      "items": "minecraft:potion"
+    },
     "minecraft:rotten_flesh",
     "minecraft:pufferfish",
     "minecraft:fermented_spider_eye"

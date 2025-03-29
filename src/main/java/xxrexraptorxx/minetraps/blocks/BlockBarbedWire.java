@@ -2,6 +2,7 @@ package xxrexraptorxx.minetraps.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -30,13 +31,13 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 
 
 	@Override
-	protected boolean isPathfindable(BlockState state, PathComputationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
 		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
 		if (!level.isClientSide) {
 			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
@@ -55,7 +56,7 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 	//Facing
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(BlockStateProperties.HORIZONTAL_FACING);
 
 	}

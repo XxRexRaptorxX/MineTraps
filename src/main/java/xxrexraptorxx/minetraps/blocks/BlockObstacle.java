@@ -19,7 +19,7 @@ public class BlockObstacle extends Block {
 
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return CUSTOM_SHAPE;
 	}
 

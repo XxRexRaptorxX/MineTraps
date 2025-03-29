@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemToxinBottle extends Item {
+
     public ItemToxinBottle(Properties properties) {
         super(properties
                 .stacksTo(4)
@@ -24,6 +25,7 @@ public class ItemToxinBottle extends Item {
     }
 
     public static final FoodProperties TOXIN_BOTTLE_FOOD = new FoodProperties.Builder().build();
+
     public static final Consumable TOXIN_BOTTLE_CONSUMABLE = Consumable.builder()
             .consumeSeconds(1.6F)
             .animation(ItemUseAnimation.DRINK)
@@ -31,7 +33,6 @@ public class ItemToxinBottle extends Item {
             .soundAfterConsume(SoundEvents.GENERIC_DRINK)
             .hasConsumeParticles(false)
             .build();
-
 
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity) {
@@ -42,7 +43,7 @@ public class ItemToxinBottle extends Item {
 
         if (!level.isClientSide()) {
             livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 800, 1));
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 1));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 400, 1));
         }
 
         // Note: stack decrement is done by super.finishUsing
@@ -63,15 +64,18 @@ public class ItemToxinBottle extends Item {
         return stack;
     }
 
+
     @Override
     public int getUseDuration(@NotNull ItemStack stack, @NotNull LivingEntity user) {
         return TOXIN_BOTTLE_CONSUMABLE.consumeTicks();
     }
 
+
     @Override
     public @NotNull ItemUseAnimation getUseAnimation(@NotNull ItemStack stack) {
         return ItemUseAnimation.DRINK;
     }
+
 
     @Override
     public @NotNull InteractionResult use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {

@@ -1,10 +1,8 @@
 package xxrexraptorxx.minetraps.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -12,11 +10,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -27,22 +23,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import xxrexraptorxx.minetraps.main.References;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockSpikes extends FallingBlock {
 
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 	protected static final VoxelShape OM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
 	protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+	public static final MapCodec<BlockSpikes> CODEC = simpleCodec(BlockSpikes::new);
+
 
 	public BlockSpikes(Properties properties) {
 		super(properties);
@@ -80,19 +77,13 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-		list.add(Component.translatable("message." + References.MODID + ".spike.desc").withStyle(ChatFormatting.GRAY));
-	}
-
-
-	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
 		pBuilder.add(POWERED);
 	}
 
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
 		if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
 			LivingEntity entity = (LivingEntity) entityIn;
 
@@ -131,7 +122,7 @@ public class BlockSpikes extends FallingBlock {
 
 	@Override
 	protected MapCodec<? extends FallingBlock> codec() {
-		return null;
+		return CODEC;
 	}
 
 
@@ -140,6 +131,12 @@ public class BlockSpikes extends FallingBlock {
 		if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
 			level.setBlock(pos, state.cycle(POWERED), 2);
 		}
+	}
+
+
+	@Override
+	public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+		return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
 	}
 
 }

@@ -4,12 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
-import org.jetbrains.annotations.NotNull;
 import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockToxin extends LiquidBlock {
@@ -18,11 +18,12 @@ public class BlockToxin extends LiquidBlock {
         super(fluid, properties);
     }
 
+
     @Override
-    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entityIn) {
-            if(entityIn instanceof LivingEntity entity) {
-                entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIN_POISON_EFFECT_DURATION.get(), Config.TOXIN_POISON_EFFECT_AMPLIFIER.get()));
-                entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, Config.TOXIN_CONFUSION_EFFECT_DURATION.get(), Config.TOXIN_CONFUSION_EFFECT_AMPLIFIER.get()));
-            }
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
+        if(entityIn instanceof LivingEntity entity) {
+            entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIN_POISON_EFFECT_DURATION.get(), Config.TOXIN_POISON_EFFECT_AMPLIFIER.get()));
+            entity.addEffect(new MobEffectInstance(MobEffects.NAUSEA, Config.TOXIN_CONFUSION_EFFECT_DURATION.get(), Config.TOXIN_CONFUSION_EFFECT_AMPLIFIER.get()));
         }
+    }
 }

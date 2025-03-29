@@ -35,7 +35,7 @@ public class BlockChestBomb extends Block {
 
 
 	@Override
-	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return CUSTOM_SHAPE;
 	}
 
@@ -68,7 +68,7 @@ public class BlockChestBomb extends Block {
 	//Facing
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(BlockStateProperties.HORIZONTAL_FACING);
 	}
 

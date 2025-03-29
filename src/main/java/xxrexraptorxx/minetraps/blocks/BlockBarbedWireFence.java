@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -28,6 +29,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWireFence extends CrossCollisionBlock {
+
+	public static final MapCodec<BlockBarbedWireFence> CODEC = simpleCodec(BlockBarbedWireFence::new);
+
 
 	public BlockBarbedWireFence(Properties properties) {
 		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, properties);
@@ -85,19 +89,19 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 	}
 
 
-	public final boolean connectsTo(BlockState state, boolean p_54219_) {
-		return !isExceptionForConnection(state) && p_54219_ || state.getBlock() instanceof IronBarsBlock || state.getBlock() instanceof BlockBarbedWireFence || state.is(BlockTags.WALLS);
+	public final boolean connectsTo(BlockState state, boolean flag) {
+		return !isExceptionForConnection(state) && flag || state.getBlock() instanceof IronBarsBlock || state.getBlock() instanceof BlockBarbedWireFence || state.is(BlockTags.WALLS);
 	}
 
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
+	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
 		state.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
 	}
 
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
 		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
 
 		if (!level.isClientSide) {
@@ -115,12 +119,12 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 	@Override
 	protected MapCodec<? extends CrossCollisionBlock> codec() {
-		return null;
+		return CODEC;
 	}
 
 
 	@Override
-	protected boolean isPathfindable(BlockState state, PathComputationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 }

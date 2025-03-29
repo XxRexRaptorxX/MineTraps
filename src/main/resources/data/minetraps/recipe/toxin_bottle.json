@@ -6,7 +6,7 @@
       "neoforge:ingredient_type": "neoforge:components",
       "components": {
         "minecraft:potion_contents": {
-          "potion": "minecraft:poison"
+          "potion": "minecraft:water"
         }
       },
       "items": "minecraft:potion"

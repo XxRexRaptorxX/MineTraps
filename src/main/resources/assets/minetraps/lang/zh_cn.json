@@ -61,5 +61,6 @@
     "item.minetraps.toxin_flowing": "毒液",
 
     "fluid.minetraps.toxin": "毒液",
-    "fluid.minetraps.toxin_flowing": "毒液"
+    "fluid.minetraps.toxin_flowing": "毒液",
+    "fluid_type.minetraps.toxin_fluid": "毒液"
 }

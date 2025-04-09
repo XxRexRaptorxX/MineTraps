@@ -54,12 +54,12 @@
     "item.minetraps.mud": "Грязюка",
     "item.minetraps.quicksand": "Сипучі піски",
     "item.minetraps.chest_bomb": "Скриня-бомба",
-    "item.minetraps.minetraps.toxin": "Токсин",
     "item.minetraps.wall_spikes": "Настінні шипи",
     "item.minetraps.wall_spikes_on": "Настінні шипи",
     "item.minetraps.toxin": "Токсин",
     "item.minetraps.toxin_flowing": "Токсин",
 
     "fluid.minetraps.toxin": "Токсин",
-    "fluid.minetraps.toxin_flowing": "Токсин"
+    "fluid.minetraps.toxin_flowing": "Токсин",
+    "fluid_type.minetraps.toxin_fluid": "Токсин"
 }

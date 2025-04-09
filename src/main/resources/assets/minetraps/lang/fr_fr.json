@@ -54,12 +54,12 @@
     "item.minetraps.mud": "Boue",
     "item.minetraps.quicksand": "Sables Mouvants",
     "item.minetraps.chest_bomb": "Coffre Explosif",
-    "item.minetraps.minetraps.toxin": "Toxine",
     "item.minetraps.wall_spikes": "Piques Murales",
     "item.minetraps.wall_spikes_on": "Piques Murales",
     "item.minetraps.toxin": "Toxine",
     "item.minetraps.toxin_flowing": "Toxine",
 
     "fluid.minetraps.toxin": "Toxine",
-    "fluid.minetraps.toxin_flowing": "Toxine"
+    "fluid.minetraps.toxin_flowing": "Toxine",
+    "fluid_type.minetraps.toxin_fluid": "Toxine"
 }

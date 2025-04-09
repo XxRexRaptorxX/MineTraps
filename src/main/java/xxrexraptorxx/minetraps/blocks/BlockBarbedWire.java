@@ -3,6 +3,7 @@ package xxrexraptorxx.minetraps.blocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.item.ItemPlacementContext;
@@ -43,7 +44,7 @@ public class BlockBarbedWire extends HorizontalFacingBlock {
 	}
 
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
 		entity.slowMovement(state, new Vec3d(0.25, 0.05f, 0.25));
 
 		if (!world.isClient()) {

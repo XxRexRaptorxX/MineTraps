@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
 
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -32,6 +33,11 @@ public class BlockBearTrap extends FallingBlock {
 
 	public MapCodec<BlockBearTrap> getCodec() {
 		return CODEC;
+	}
+
+	@Override
+	public int getColor(BlockState state, BlockView world, BlockPos pos) {
+		return getDefaultMapColor().getRenderColor(MapColor.Brightness.NORMAL);
 	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
@@ -64,7 +70,7 @@ public class BlockBearTrap extends FallingBlock {
 	}
 
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn, EntityCollisionHandler handler) {
 		if (entityIn instanceof LivingEntity entity) {
 			if (!world.isClient()) {
             	if (!entity.hasStatusEffect(StatusEffects.SLOWNESS)) {

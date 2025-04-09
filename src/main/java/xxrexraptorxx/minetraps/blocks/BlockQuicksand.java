@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -22,6 +23,11 @@ public class BlockQuicksand extends FallingBlock {
 
 	public MapCodec<BlockQuicksand> getCodec() {
 		return CODEC;
+	}
+
+	@Override
+	public int getColor(BlockState state, BlockView world, BlockPos pos) {
+		return getDefaultMapColor().getRenderColor(MapColor.Brightness.NORMAL);
 	}
 
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
@@ -45,7 +51,7 @@ public class BlockQuicksand extends FallingBlock {
 
 
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn, EntityCollisionHandler handler) {
 		if (entityIn instanceof LivingEntity entity) {
 
 			entity.slowMovement(state, new Vec3d(0.25D, 0.10D, 0.25D));

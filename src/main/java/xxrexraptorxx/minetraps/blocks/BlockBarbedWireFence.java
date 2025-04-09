@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,11 +32,12 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import xxrexraptorxx.minetraps.damage_type.MineTrapsDamageTypes;
 import xxrexraptorxx.minetraps.utils.Config;
+import java.util.function.Function;
 
 
 public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 	public static final MapCodec<BlockBarbedWireFence> CODEC = BlockBarbedWireFence.createCodec(BlockBarbedWireFence::new);
-	private final VoxelShape[] cullingShapes;
+	private final Function<BlockState, VoxelShape> cullingShapes;
 
 	@Override
 	protected MapCodec<? extends HorizontalConnectingBlock> getCodec() {
@@ -43,7 +45,7 @@ public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 	}
 
 	public BlockBarbedWireFence(AbstractBlock.Settings settings) {
-		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, settings
+		super(1.0F, 16.0F, 1.0F, 16.0F, 24.0F, settings
 				.mapColor(MapColor.IRON_GRAY)
 				.nonOpaque()
 				.noCollision()
@@ -54,12 +56,12 @@ public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 		);
 
 		this.setDefaultState(this.stateManager.getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
-		this.cullingShapes = this.createShapes(2.0f, 1.0f, 16.0f, 6.0f, 15.0f);
+		this.cullingShapes = this.createShapeFunction(2.0f, 1.0f, 16.0f, 6.0f, 15.0f);
 	}
 
 	@Override
 	public VoxelShape getCullingShape(BlockState state) {
-		return this.cullingShapes[this.getShapeIndex(state)];
+		return (VoxelShape)this.cullingShapes.apply(state);
 	}
 
 	@Override
@@ -128,7 +130,7 @@ public class BlockBarbedWireFence extends HorizontalConnectingBlock {
 	}
 
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
 		entity.slowMovement(state, new Vec3d(0.25, 0.05f, 0.25));
 
 		if (!world.isClient()) {

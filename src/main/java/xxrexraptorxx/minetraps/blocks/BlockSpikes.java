@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -95,7 +96,7 @@ public class BlockSpikes extends FallingBlock {
 
 
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn, EntityCollisionHandler handler) {
 		if ((entityIn instanceof LivingEntity entity) && !world.isClient() && state.get(POWERED)) {
 			entityIn.damage((ServerWorld) world, MineTrapsDamageTypes.of(entityIn.getWorld(), MineTrapsDamageTypes.SPIKES), (float) Config.SPIKES_DAMAGE);
 			if(this == ModBlocks.TOXIC_SPIKES) entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, Config.TOXIC_SPIKES_EFFECT_DURATION, Config.TOXIC_SPIKES_EFFECT_AMPLIFIER));
@@ -132,5 +133,10 @@ public class BlockSpikes extends FallingBlock {
 		if (state.get(POWERED) && !world.isReceivingRedstonePower(pos)) {
 			world.setBlockState(pos, state.cycle(POWERED), 2);
 		}
+	}
+
+	@Override
+	public int getColor(BlockState state, BlockView world, BlockPos pos) {
+		return getDefaultMapColor().getRenderColor(MapColor.Brightness.NORMAL);
 	}
 }

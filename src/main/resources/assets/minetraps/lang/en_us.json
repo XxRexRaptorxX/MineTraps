@@ -51,7 +51,6 @@
     "item.minetraps.mud": "Mud",
     "item.minetraps.quicksand": "Quicksand",
     "item.minetraps.chest_bomb": "Chest Bomb",
-    "item.minetraps.minetraps.toxin": "Toxin",
     "item.minetraps.wall_spikes": "Wall Spikes",
     "item.minetraps.wall_spikes_on": "Wall Spikes",
     "item.minetraps.toxin": "Toxin",
@@ -59,6 +58,7 @@
 
     "fluid.minetraps.toxin": "Toxin",
     "fluid.minetraps.toxin_flowing": "Toxin",
+    "fluid_type.minetraps.toxin_fluid": "Toxin",
 
     "death.attack.spikes": "%1$s came to close to a trap and died."
 }

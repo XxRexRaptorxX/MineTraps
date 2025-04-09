@@ -2,7 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:glass_bottle",
+    {
+      "fabric:type": "fabric:components",
+      "base": "minecraft:potion",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:water"
+        }
+      },
+      "strict": true
+    },
     "minecraft:rotten_flesh",
     "minecraft:pufferfish",
     "minecraft:fermented_spider_eye"

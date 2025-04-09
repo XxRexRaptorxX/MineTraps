@@ -54,12 +54,12 @@
     "item.minetraps.mud": "Lodo",
     "item.minetraps.quicksand": "Arena movediza",
     "item.minetraps.chest_bomb": "Cofre bomba",
-    "item.minetraps.minetraps.toxin": "Toxina",
     "item.minetraps.wall_spikes": "Muro de espinas",
     "item.minetraps.wall_spikes_on": "Muro de espinas",
     "item.minetraps.toxin": "Toxina",
     "item.minetraps.toxin_flowing": "Toxina",
 
     "fluid.minetraps.toxin": "Toxina",
-    "fluid.minetraps.toxin_flowing": "Toxina"
+    "fluid.minetraps.toxin_flowing": "Toxina",
+    "fluid_type.minetraps.toxin_fluid": "Toxina"
 }

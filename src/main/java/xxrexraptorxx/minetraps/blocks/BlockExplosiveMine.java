@@ -6,6 +6,7 @@ import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -35,6 +36,11 @@ public class BlockExplosiveMine extends FallingBlock {
 		return CODEC;
 	}
 
+	@Override
+	public int getColor(BlockState state, BlockView world, BlockPos pos) {
+		return getDefaultMapColor().getRenderColor(MapColor.Brightness.NORMAL);
+	}
+
 	private final VoxelShape CUSTOM_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
 
 	public BlockExplosiveMine(AbstractBlock.Settings settings) {
@@ -56,7 +62,7 @@ public class BlockExplosiveMine extends FallingBlock {
 
 
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn, EntityCollisionHandler handler) {
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_METAL_PRESSURE_PLATE_CLICK_ON, SoundCategory.BLOCKS, 1.0F, 3);
 
 		if (!world.isClient()) {

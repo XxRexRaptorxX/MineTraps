@@ -51,7 +51,6 @@
     "item.minetraps.mud": "Schlamm",
     "item.minetraps.quicksand": "Treibsand",
     "item.minetraps.chest_bomb": "Kisten Bombe",
-    "item.minetraps.minetraps.toxin": "Toxin",
     "item.minetraps.wall_spikes": "Wand Spikes",
     "item.minetraps.wall_spikes_on": "Wand Spikes",
     "item.minetraps.toxin": "Toxin",
@@ -59,6 +58,7 @@
 
     "fluid.minetraps.toxin": "Toxin",
     "fluid.minetraps.toxin_flowing": "Toxin",
+    "fluid_type.minetraps.toxin_fluid": "Toxin",
 
     "death.attack.spikes": "%1$s wurde durch eine Falle getötet."
 }

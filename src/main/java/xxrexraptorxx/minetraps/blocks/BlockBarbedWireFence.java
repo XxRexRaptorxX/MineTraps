@@ -34,7 +34,7 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 
 	public BlockBarbedWireFence(Properties properties) {
-		super(1.0F, 1.0F, 16.0F, 16.0F, 16.0F, properties);
+		super(1.0F, 16.0F, 1.0F, 16.0F, 24.0F, properties);
 
 		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}

@@ -70,7 +70,7 @@ public class BlockTroll extends Block {
 		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
 		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.EXPLOSIVE_BLOCK_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getExplosiveBlockRadius(), true, Level.ExplosionInteraction.TNT);
 		}
 	}
 
@@ -82,7 +82,7 @@ public class BlockTroll extends Block {
 		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
 		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.EXPLOSIVE_BLOCK_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getExplosiveBlockRadius(), true, Level.ExplosionInteraction.TNT);
 		}
 
 		return true;

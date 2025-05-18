@@ -60,7 +60,7 @@ public class BlockBearTrap extends FallingBlock {
 			LivingEntity entity = (LivingEntity) entityIn;
 			if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getPath())) entity.hurt(level.damageSources().generic(), 6.0F);
 
-			entity.hurt(level.damageSources().generic(), (float) Config.BEAR_TRAP_DAMAGE.get());
+			entity.hurt(level.damageSources().generic(), (float) Config.getBearTrapDamage());
 			entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
 
 			if(!level.isClientSide) {

@@ -18,6 +18,7 @@ import xxrexraptorxx.minetraps.main.References;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = References.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModClientEvents {
+
     @SubscribeEvent
     static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new IClientFluidTypeExtensions() {

@@ -51,17 +51,17 @@ public class BlockExplosiveMine extends FallingBlock {
 		if (!level.isClientSide) {
 			if(this == ModBlocks.TOXIC_MINE.get()) {
 				AreaEffectCloud cloud = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.POSION_MINE_EFFECT_DURATION.get(), Config.POSION_MINE_EFFECT_AMPLIFIER.get()));
-				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION.get());
+				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
+				cloud.setDuration(Config.getPoisonMineCloudDuration());
 				cloud.setRadius(10);
 				//cloud.setFixedColor(0x27ae60);		//TODO
 				cloud.setWaitTime(10);
 				level.addFreshEntity(cloud);
 			}
 
-			entity.hurt(level.damageSources().generic(), (float) Config.MINE_DAMAGE.get());
+			entity.hurt(level.damageSources().generic(), (float) Config.getMineDamage());
 			level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-			level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), (float) Config.MINE_EXPLOSION_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+			level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getMineExplosionRadius(), true, Level.ExplosionInteraction.TNT);
 		}
 	}
 
@@ -72,8 +72,8 @@ public class BlockExplosiveMine extends FallingBlock {
 
 		if (!world.isClientSide) {
 			if (this == ModBlocks.TOXIC_MINE.get()) {
-				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.POSION_MINE_EFFECT_DURATION.get(), Config.POSION_MINE_EFFECT_AMPLIFIER.get()));
-				cloud.setDuration(Config.POSION_MINE_CLOUD_DURATION.get());
+				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
+				cloud.setDuration(Config.getPoisonMineCloudDuration());
 				cloud.setRadius(10);
 				//cloud.setFixedColor(0x27ae60); TODO
 				cloud.setWaitTime(10);
@@ -81,7 +81,7 @@ public class BlockExplosiveMine extends FallingBlock {
 			}
 
 			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-			world.explode(cloud, pos.getX(), pos.getY(), pos.getZ(), Config.MINE_EXPLOSION_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+			world.explode(cloud, pos.getX(), pos.getY(), pos.getZ(), Config.getMineExplosionRadius(), true, Level.ExplosionInteraction.TNT);
 		}
 	}
 

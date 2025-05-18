@@ -58,7 +58,7 @@ public class BlockChestBomb extends Block {
 		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
 		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.CHEST_BOMB_EXPLOSION_RADIUS.get(), true, Level.ExplosionInteraction.TNT);
+			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getChestBombExplosionRadius(), true, Level.ExplosionInteraction.TNT);
 		}
 
 		return InteractionResult.SUCCESS;

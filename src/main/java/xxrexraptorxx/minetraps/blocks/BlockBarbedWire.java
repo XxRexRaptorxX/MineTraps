@@ -36,13 +36,13 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
 		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
 		if (!level.isClientSide) {
-			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
-				if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(level.damageSources().generic(), Config.BARBED_WIRE_DAMAGE.get());
-				if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(level.damageSources().generic(), Config.RAZOR_WIRE_DAMAGE.get());
+			if (Config.getBarbedWireDestroyItems()) {
+				if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(level.damageSources().generic(), Config.getBarbedWireDamage());
+				if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(level.damageSources().generic(), Config.getRazorWireDamage());
 			} else {
 				if (entity instanceof LivingEntity) {
-					if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(level.damageSources().generic(), (float) Config.BARBED_WIRE_DAMAGE.get());
-					if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(level.damageSources().generic(), (float) Config.RAZOR_WIRE_DAMAGE.get());
+					if (this == ModBlocks.BARBED_WIRE.get())  entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireDamage());
+					if (this == ModBlocks.RAZOR_WIRE.get())  entity.hurt(level.damageSources().generic(), (float) Config.getRazorWireDamage());
 				}
 			}
 		}

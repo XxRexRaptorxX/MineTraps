@@ -105,12 +105,12 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
 
 		if (!level.isClientSide) {
-			if (Config.BARBED_WIRE_DESTROY_ITEMS.get()) {
-				entity.hurt(level.damageSources().generic(), (float) Config.BARBED_WIRE_FENCE_DAMAGE.get());
+			if (Config.getBarbedWireDestroyItems()) {
+				entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
 
 			} else {
 				if (entity instanceof LivingEntity) {
-					entity.hurt(level.damageSources().generic(), (float) Config.BARBED_WIRE_FENCE_DAMAGE.get());
+					entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
 				}
 			}
 		}

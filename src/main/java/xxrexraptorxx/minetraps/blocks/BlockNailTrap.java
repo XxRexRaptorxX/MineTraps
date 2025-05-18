@@ -59,9 +59,9 @@ public class BlockNailTrap extends FallingBlock {
 				LivingEntity entity = (LivingEntity) entityIn;
 
 				if (this == ModBlocks.TOXIC_NAIL_TRAP.get())
-					entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.TOXIC_NAIL_TRAP_EFFECT_DURATION.get(), Config.TOXIC_NAIL_TRAP_EFFECT_AMPLIFIER.get()));
+					entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getToxicNailTrapEffectDuration(), Config.getToxicNailTrapEffectAmplifier()));
 
-				entity.hurt(level.damageSources().generic(), (float) Config.NAIL_TRAP_DAMAGE.get());
+				entity.hurt(level.damageSources().generic(), (float) Config.getNailTrapDamage());
 			}
 		}
 	}

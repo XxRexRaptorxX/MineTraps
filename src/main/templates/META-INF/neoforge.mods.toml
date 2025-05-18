@@ -15,6 +15,8 @@ logoFile="logo.png"
 authors="${mod_authors}"
 description='''This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!'''
 
+[modproperties.${mod_id}]
+configuredBackground="minetraps:textures/block/pitfall_trap_cobblestone.png"
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
@@ -29,6 +31,14 @@ modId="minecraft"
 mandatory=true
 type="required"
 versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="magmacore"
+mandatory=true
+type="required"
+versionRange="${magmacore_version_range}"
 ordering="NONE"
 side="BOTH"
 

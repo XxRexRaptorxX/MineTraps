@@ -44,7 +44,7 @@ public class Events {
 
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Pre event) {
-        if (Config.UPDATE_CHECKER.get()) {
+        if (Config.UPDATE_CHECKER != null && Config.UPDATE_CHECKER.get()) {
             if (!hasShownUp && Minecraft.getInstance().screen == null) {
                 if (VersionChecker.getResult(ModList.get().getModContainerById(References.MODID).get().getModInfo()).status() == VersionChecker.Status.OUTDATED ||
                         VersionChecker.getResult(ModList.get().getModContainerById(References.MODID).get().getModInfo()).status() == VersionChecker.Status.BETA_OUTDATED ) {
@@ -75,7 +75,7 @@ public class Events {
         Player player = event.getEntity();
         Level level = player.level();
 
-        if (Config.PATREON_REWARDS.get()) {
+        if (Config.PATREON_REWARDS != null && Config.PATREON_REWARDS.get()) {
 
             try {
                 URL SUPPORTER_URL = new URL("https://raw.githubusercontent.com/XxRexRaptorxX/Patreons/main/Supporter");

@@ -113,6 +113,8 @@ dependencies {
     runtimeOnly("mezz.jei:jei-${mc_version}-neoforge:${jei_version}")
     //JADE
     runtimeOnly("curse.maven:jade-324717:${jade_version}")
+    //JEED
+    runtimeOnly("curse.maven:jeed-532286:${jeed_version}")
 }
 
 

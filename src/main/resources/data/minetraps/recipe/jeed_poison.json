@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "jeed"
+    }
+  ],
+  "type": "jeed:effect_provider",
+  "effect": "minecraft:poison",
+
+  "providers": [
+    {
+      "item": "minetraps:toxin_bottle"
+    },
+    {
+      "item": "minetraps:toxin_bucket"
+    },
+    {
+      "item": "minetraps:spikes_toxic"
+    },
+    {
+      "item": "minetraps:toxic_nail_trap"
+    },
+    {
+      "item": "minetraps:poison_mine"
+    }
+  ],
+
+  "fluid_providers": [
+    "minetraps:toxin"
+  ]
+}

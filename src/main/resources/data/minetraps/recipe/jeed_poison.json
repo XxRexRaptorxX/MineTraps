@@ -14,6 +14,15 @@
     },
     {
       "item": "minetraps:toxin_bucket"
+    },
+    {
+      "item": "minetraps:spikes_toxic"
+    },
+    {
+      "item": "minetraps:toxic_nail_trap"
+    },
+    {
+      "item": "minetraps:poison_mine"
     }
   ],
 

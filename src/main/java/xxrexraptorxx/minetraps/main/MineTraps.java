@@ -4,11 +4,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import xxrexraptorxx.magmacore.config.ConfigHelper;
 import xxrexraptorxx.magmacore.main.ModRegistry;
 import xxrexraptorxx.minetraps.fluids.ModFluidTypes;
 import xxrexraptorxx.minetraps.registry.CreativeModeTabs;
@@ -34,8 +32,7 @@ public class MineTraps {
         ModFluidTypes.init(eventBus);
         CreativeModeTabs.init(eventBus);
 
-        container.registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG, References.MODID + "-server.toml");
-
+        ConfigHelper.registerConfigs(container, References.MODID, false, Config.SERVER_CONFIG, null);
         ModRegistry.register(References.MODID, References.NAME, References.URL);
     }
 
@@ -44,7 +41,7 @@ public class MineTraps {
     public static class MineTrapsClient {
 
         public MineTrapsClient(ModContainer container) {
-            container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+            ConfigHelper.registerIngameConfig(container);
         }
     }
 

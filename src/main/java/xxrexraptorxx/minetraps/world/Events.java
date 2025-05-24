@@ -25,16 +25,16 @@ public class Events {
         List<Component> list = event.getToolTip();
 
         if (BuiltInRegistries.BLOCK.getKey(ModBlocks.GHOST_BLOCK.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", "ghost.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "ghost.desc").withStyle(ChatFormatting.GRAY));
 
         } else if (BuiltInRegistries.BLOCK.getKey(ModBlocks.PITFALL_TRAP.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", "pitfall.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "pitfall.desc").withStyle(ChatFormatting.GRAY));
 
         } else if (BuiltInRegistries.BLOCK.getKey(ModBlocks.PITFALL_TRAP.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", "spike.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "spike.desc").withStyle(ChatFormatting.GRAY));
 
         } else if (BuiltInRegistries.BLOCK.getKey(ModBlocks.PITFALL_TRAP.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", "troll.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "troll.desc").withStyle(ChatFormatting.GRAY));
         }
     }
 

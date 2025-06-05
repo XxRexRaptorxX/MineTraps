@@ -23,11 +23,13 @@ Build your own bunker or save your base with different types of barbed wire and 
 
 ## 📷 Presentation
 
+![items and blocks](https://i.imgur.com/MLlk74C.png)
 ![defense wall](https://i.imgur.com/zSZsVwv.png)
-![some traps](https://i.imgur.com/NY47e9D.png)
+![hidden explosives](https://i.imgur.com/pULsBYr.png)
 ![redstone spikes](https://i.imgur.com/twdet20.png)
 ![pitfall traps](https://i.imgur.com/tTI41PC.png)
 ![toxin fluid](https://i.imgur.com/StrgrTN.png)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1J4Ojojukkg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <p align="center">
   <img src="https://github.com/XxRexRaptorxX/General/blob/main/page_decorations/line.png?raw=true" alt="line" width="2000"/>

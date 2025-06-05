@@ -6,7 +6,7 @@
   <a href="https://discord.gg/hmaD7Se"><img src="https://img.shields.io/discord/523112426913267713?color=282828&logo=discord&style=flat&label=&labelColor=B6BCEA" alt="Discord"></a>
 </p>
 <p align="center">
-  <img src="https://github.com/XxRexRaptorxX/Bedrock-Miner/blob/main/src/main/resources/logo.png?raw=true" alt="logo" width="500"/><br>
+  <img src="https://github.com/XxRexRaptorxX/MineTraps/blob/main/src/main/resources/logo.png?raw=true" alt="logo" width="500"/><br>
   <img src="https://github.com/XxRexRaptorxX/General/blob/main/page_decorations/line_curved.png?raw=true" alt="line" width="2000"/>
 </p>
 

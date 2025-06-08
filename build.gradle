@@ -134,10 +134,6 @@ repositories {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/"
     }
-    maven { // Curios
-        name = "Illusive Soulworks maven"
-        url = "https://maven.theillusivec4.top/"
-    }
 }
 
 dependencies {
@@ -157,9 +153,6 @@ dependencies {
     runtimeOnly "curse.maven:jade-324717:${jade_version}"
     //BlockDetective
     runtimeOnly "curse.maven:blockdetective-662628:${blockdetective_version}"
-    //Curios
-    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}:api"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -243,8 +236,6 @@ modrinth {
         // The scope can be `required`, `optional`, `incompatible`, or `embedded`
         // The type can either be `project` or `version`
         required.project "magma-core"
-        optional.project "jei"
-        optional.project "curios"
     }
 }
 //tasks.modrinth.dependsOn(tasks.modrinthSyncBody) //auto readme sync

@@ -216,6 +216,7 @@ idea {
     }
 }
 
+
 //MODRINTH
 def rawGameVersions = project.findProperty("game_versions")?.toString() ?: "" //Game version transformator for Modrinth
 def parsedGameVersions = rawGameVersions.split(",").collect { it.trim() }
@@ -225,7 +226,7 @@ if (modrinthToken == null) {
 }
 modrinth {
     token = modrinthToken
-    projectId = "minetraps"
+    projectId = mr_id
     versionType = release_type //can be `release`, `beta` or `alpha`
     uploadFile = jar
     gameVersions = parsedGameVersions

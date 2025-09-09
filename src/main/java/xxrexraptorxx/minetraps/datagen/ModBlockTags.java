@@ -16,7 +16,7 @@ public class ModBlockTags extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(   ModBlocks.TOXIC_SPIKES,
                         ModBlocks.SPIKES,
                         ModBlocks.BARBED_WIRE,
@@ -27,10 +27,10 @@ public class ModBlockTags extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.GHOST_BLOCK,
                         ModBlocks.TROLL_BLOCK);
 
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+        valueLookupBuilder(BlockTags.AXE_MINEABLE)
                 .add(   ModBlocks.CHEST_BOMB);
 
-        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+        valueLookupBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(   ModBlocks.QUICK_SAND,
                         ModBlocks.NAIL_TRAP,
                         ModBlocks.TOXIC_NAIL_TRAP,
@@ -40,7 +40,7 @@ public class ModBlockTags extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.BEAR_TRAP
                 );
 
-        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+        valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(   ModBlocks.TOXIC_SPIKES,
                         ModBlocks.SPIKES,
                         ModBlocks.BARBED_WIRE,
@@ -59,11 +59,11 @@ public class ModBlockTags extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.GHOST_BLOCK,
                         ModBlocks.TROLL_BLOCK);
 
-        getOrCreateTagBuilder(BlockTags.FENCES)
+        valueLookupBuilder(BlockTags.FENCES)
                 .add(   ModBlocks.BARBED_WIRE_FENCE
                 );
 
-        getOrCreateTagBuilder(BlockTags.SAND)
+        valueLookupBuilder(BlockTags.SAND)
                 .add(   ModBlocks.QUICK_SAND
                 );
     }

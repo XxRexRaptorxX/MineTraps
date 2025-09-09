@@ -1,7 +1,2 @@
-# v.2.5.0-fabric for MC 1.21.6
+# [v.2.5.0-fabric for MC 1.21.6,1.21.7,1.21.8](https://github.com/XxRexRaptorxX/MineTraps/tree/v.2.5.0-fabric-dev1)
 
-## 📝 Changes
-
-- Initial release or changes not documented
-
-Please refer to commit history for detailed changes.

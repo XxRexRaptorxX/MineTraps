@@ -117,11 +117,11 @@ afterEvaluate {
     modrinth {
         token = System.getenv("MODRINTH_TOKEN") ?: project.findProperty("modrinthToken")?.toString()
         projectId = mr_id
-        versionName = "v.${mod_version}-${mod_loader}"
+        versionName = "v.${mod_version}"
         versionNumber = "v.${mod_version}"
         versionType = release_type
         uploadFile = jar
-        loaders = ["fabric,quilt"]
+        loaders = ["fabric","quilt"]
         gameVersions = parsedGameVersions
         changelog = readLatestChangelog()
         failSilently = true
@@ -139,7 +139,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     apiToken = tokens[1] // CurseForge token
 
     def mainFile = upload(project.findProperty("cf_id") as Integer, jar)
-    mainFile.displayName = "${mod_name.replace(' ', '')} v.${mod_version}-${mod_loader}"
+    mainFile.displayName = "${mod_name.replace(' ', '')} v.${mod_version}"
     mainFile.releaseType = release_type
     mainFile.changelog = readLatestChangelog()
     mainFile.changelogType = 'markdown'

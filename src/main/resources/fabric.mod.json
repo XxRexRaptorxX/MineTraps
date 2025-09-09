@@ -1,52 +1,48 @@
 {
-	"schemaVersion": 1,
-	"id": "${mod_id}",
-	"version": "${mod_version}",
-	"name": "${mod_name}",
-	"description": "This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!",
-	"authors": [
-		"XxRexRaptorxX (RexRaptor), owner of all the rights to the MineTraps mod",
-		"MC Mods Pete, mcmods.pete@gmail.com (Fabric port)"
-	],
-	"contact": {
-		"homepage": "https://www.curseforge.com/minecraft/mc-mods/minetraps",
-		"sources": "https://github.com/XxRexRaptorxX/MineTraps"
-	},
-	"custom": {
-		"modmenu": {
-			"links": {
-				"modmenu.discord": "https://discord.com/invite/ycRJJk8EXV"
-			}
-		}
-	},
-	"license": "All Rights Reserved",
-	"icon": "logo.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-          "xxrexraptorxx.minetraps.main.MineTraps"
-		],
-		"client": [
-			"xxrexraptorxx.minetraps.main.MineTrapsClient"
-		],
-		"fabric-datagen": [
-			"xxrexraptorxx.minetraps.datagen.DataGenerators"
-		]
-	},
-
-
-	"mixins": [
-		"minetraps.mixins.json"
-	],
-
-
-	"depends": {
-		"fabricloader": "${fabric_version_range}",
-		"minecraft": "${mc_version_range}",
-		"java": "${java_version_range}",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
-	}
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!",
+  "authors": [
+    "XxRexRaptorxX (RexRaptor), owner of all the rights to the MineTraps mod",
+    "MC Mods Pete, mcmods.pete@gmail.com (Fabric port)"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/minetraps",
+    "sources": "https://github.com/XxRexRaptorxX/MineTraps"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.com/invite/ycRJJk8EXV"
+      }
+    }
+  },
+  "license": "All Rights Reserved",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "xxrexraptorxx.minetraps.main.MineTraps"
+    ],
+    "client": [
+      "xxrexraptorxx.minetraps.main.MineTrapsClient"
+    ],
+    "fabric-datagen": [
+      "xxrexraptorxx.minetraps.datagen.DataGenerators"
+    ]
+  },
+  "mixins": [
+    "minetraps.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "${fabric_version_range}",
+    "minecraft": "${minecraft_version_range}",
+    "java": "${java_version_range}",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
 }

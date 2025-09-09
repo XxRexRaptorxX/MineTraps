@@ -1,5 +1,6 @@
 package xxrexraptorxx.minetraps.fluids;
 
+import java.util.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
@@ -25,11 +26,7 @@ import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.registry.ModFluids;
 import xxrexraptorxx.minetraps.registry.ModItems;
 
-import java.util.Optional;
-
-
-public abstract class ToxinFluid
-extends FlowableFluid {
+public abstract class ToxinFluid extends FlowableFluid {
     @Override
     public Fluid getFlowing() {
         return ModFluids.FLOWING_TOXIN;
@@ -45,18 +42,29 @@ extends FlowableFluid {
         return ModItems.TOXIN_BUCKET;
     }
 
-
     @Override
     public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
         if (!state.isStill() && !state.get(FALLING)) {
             if (random.nextInt(64) == 0) {
-                world.playSound(null, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS);
+                world.playSound(
+                        null,
+                        (double) pos.getX() + 0.5,
+                        (double) pos.getY() + 0.5,
+                        (double) pos.getZ() + 0.5,
+                        SoundEvents.BLOCK_WATER_AMBIENT,
+                        SoundCategory.BLOCKS);
             }
         } else if (random.nextInt(10) == 0) {
-            world.addParticleClient(ParticleTypes.UNDERWATER, (double)pos.getX() + random.nextDouble(), (double)pos.getY() + random.nextDouble(), (double)pos.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
+            world.addParticleClient(
+                    ParticleTypes.UNDERWATER,
+                    (double) pos.getX() + random.nextDouble(),
+                    (double) pos.getY() + random.nextDouble(),
+                    (double) pos.getZ() + random.nextDouble(),
+                    0.0,
+                    0.0,
+                    0.0);
         }
     }
-
 
     @Override
     @Nullable
@@ -64,10 +72,9 @@ extends FlowableFluid {
         return ParticleTypes.DRIPPING_WATER;
     }
 
-
     @Override
     protected boolean isInfinite(ServerWorld world) {
-        return false;//world.getGameRules().getBoolean(GameRules.WATER_SOURCE_CONVERSION);
+        return false; // world.getGameRules().getBoolean(GameRules.WATER_SOURCE_CONVERSION);
     }
 
     @Override
@@ -80,7 +87,6 @@ extends FlowableFluid {
     public int getMaxFlowDistance(WorldView world) {
         return 4;
     }
-
 
     @Override
     protected BlockState toBlockState(FluidState fluidState) {
@@ -103,7 +109,8 @@ extends FlowableFluid {
     }
 
     @Override
-    public boolean canBeReplacedWith(FluidState state, BlockView world, BlockPos pos, Fluid fluid, Direction direction) {
+    public boolean canBeReplacedWith(
+            FluidState state, BlockView world, BlockPos pos, Fluid fluid, Direction direction) {
         return direction == Direction.DOWN && !fluid.isIn(FluidTags.WATER);
     }
 
@@ -117,8 +124,7 @@ extends FlowableFluid {
         return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
     }
 
-    public static class Flowing
-    extends ToxinFluid {
+    public static class Flowing extends ToxinFluid {
         @Override
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
             super.appendProperties(builder);
@@ -136,8 +142,7 @@ extends FlowableFluid {
         }
     }
 
-    public static class Still
-    extends ToxinFluid {
+    public static class Still extends ToxinFluid {
         @Override
         public int getLevel(FluidState state) {
             return 8;
@@ -149,4 +154,3 @@ extends FlowableFluid {
         }
     }
 }
-

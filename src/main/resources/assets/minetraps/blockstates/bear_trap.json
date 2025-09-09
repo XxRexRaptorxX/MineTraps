@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "minetraps:block/bear_trap" }
+  "variants": {
+    "": {
+      "model": "minetraps:block/bear_trap"
     }
+  }
 }

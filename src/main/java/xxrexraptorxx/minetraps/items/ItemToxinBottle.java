@@ -16,12 +16,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-
 public class ItemToxinBottle extends Item {
     public ItemToxinBottle(Item.Settings settings) {
-        super(settings
-                .maxCount(4)
-                .recipeRemainder(Items.GLASS_BOTTLE));
+        super(settings.maxCount(4).recipeRemainder(Items.GLASS_BOTTLE));
     }
 
     public static final FoodComponent TOXIN_BOTTLE_FOOD = new FoodComponent.Builder().build();
@@ -29,8 +26,8 @@ public class ItemToxinBottle extends Item {
             .consumeSeconds(2.0F)
             .useAction(UseAction.DRINK)
             .sound(SoundEvents.ENTITY_GENERIC_DRINK)
-            .consumeParticles(false).build();
-
+            .consumeParticles(false)
+            .build();
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {

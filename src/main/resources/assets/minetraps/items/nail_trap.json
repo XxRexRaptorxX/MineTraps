@@ -1,6 +1,6 @@
 {
-    "model": {
-        "type": "minecraft:model",
-        "model": "minetraps:item/nail_trap"
-    }
+  "model": {
+    "type": "minecraft:model",
+    "model": "minetraps:item/nail_trap"
+  }
 }

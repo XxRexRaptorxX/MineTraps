@@ -1,7 +1,6 @@
 package xxrexraptorxx.minetraps.utils;
 
 import com.mojang.datafixers.util.Pair;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +16,8 @@ public class MineTrapsConfigProvider implements SimpleConfig.DefaultConfig {
 
     public void addKeyValuePair(Pair<String, ?> keyValuePair, String comment, String info) {
         configsList.add(keyValuePair);
-        configContents += "# " + info + "\n" + keyValuePair.getFirst() + "=" + keyValuePair.getSecond() + " #"
-                + comment + " | default: " + keyValuePair.getSecond() + "\n\n";
+        configContents += "# " + info + "\n" + keyValuePair.getFirst() + "=" + keyValuePair.getSecond() + " #" + comment
+                + " | default: " + keyValuePair.getSecond() + "\n\n";
     }
 
     @Override

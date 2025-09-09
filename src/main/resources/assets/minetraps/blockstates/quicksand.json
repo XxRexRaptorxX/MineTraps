@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "minetraps:block/quicksand" }
+  "variants": {
+    "": {
+      "model": "minetraps:block/quicksand"
     }
+  }
 }

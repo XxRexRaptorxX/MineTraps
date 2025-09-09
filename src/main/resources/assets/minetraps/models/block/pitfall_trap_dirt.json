@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "particle": "minetraps:block/pitfall_trap_dirt",
-        "up": "minecraft:block/dirt",
-        "down": "minetraps:block/pitfall_trap_dirt",
-        "north": "minetraps:block/pitfall_trap_dirt",
-        "east": "minetraps:block/pitfall_trap_dirt",
-        "west": "minetraps:block/pitfall_trap_dirt",
-        "south": "minetraps:block/pitfall_trap_dirt"
-    }
+  "parent": "block/cube",
+  "textures": {
+    "particle": "minetraps:block/pitfall_trap_dirt",
+    "up": "minecraft:block/dirt",
+    "down": "minetraps:block/pitfall_trap_dirt",
+    "north": "minetraps:block/pitfall_trap_dirt",
+    "east": "minetraps:block/pitfall_trap_dirt",
+    "west": "minetraps:block/pitfall_trap_dirt",
+    "south": "minetraps:block/pitfall_trap_dirt"
+  }
 }

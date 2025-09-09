@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "minetraps:block/toxin" }
+  "variants": {
+    "": {
+      "model": "minetraps:block/toxin"
     }
+  }
 }

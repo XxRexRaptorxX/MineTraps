@@ -10,15 +10,15 @@ import xxrexraptorxx.minetraps.fluids.ToxinFluid;
 import xxrexraptorxx.minetraps.main.MineTraps;
 import xxrexraptorxx.minetraps.main.References;
 
-
 public class ModFluids {
     public static final FlowableFluid TOXIN = ModFluids.registerFluid("toxin", new ToxinFluid.Still());
-    public static final FlowableFluid FLOWING_TOXIN = ModFluids.registerFluid("toxin_flowing", new ToxinFluid.Flowing());
+    public static final FlowableFluid FLOWING_TOXIN =
+            ModFluids.registerFluid("toxin_flowing", new ToxinFluid.Flowing());
     public static final ModFluidVariantAttributeHandler handler = new ModFluidVariantAttributeHandler();
 
     private static FlowableFluid registerFluid(String name, FlowableFluid fluid) {
 
-        //MineTraps.LOGGER.info(" -- registerFluid ------------------------");
+        // MineTraps.LOGGER.info(" -- registerFluid ------------------------");
         return Registry.register(Registries.FLUID, Identifier.of(References.MODID, name), fluid);
     }
 

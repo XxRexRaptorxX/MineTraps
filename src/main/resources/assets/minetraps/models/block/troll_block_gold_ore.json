@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "particle": "minecraft:block/gold_ore",
-        "up":       "minecraft:block/gold_ore",
-        "down":     "minecraft:block/gold_ore",
-        "north":    "minecraft:block/gold_ore",
-        "east":     "minecraft:block/gold_ore",
-        "west":     "minecraft:block/gold_ore",
-        "south":    "minecraft:block/gold_ore"
-    }
+  "parent": "block/cube",
+  "textures": {
+    "particle": "minecraft:block/gold_ore",
+    "up": "minecraft:block/gold_ore",
+    "down": "minecraft:block/gold_ore",
+    "north": "minecraft:block/gold_ore",
+    "east": "minecraft:block/gold_ore",
+    "west": "minecraft:block/gold_ore",
+    "south": "minecraft:block/gold_ore"
+  }
 }

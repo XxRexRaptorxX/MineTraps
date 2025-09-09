@@ -1,10 +1,8 @@
 package xxrexraptorxx.minetraps.utils;
 
+import java.util.ArrayList;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
-
-import java.util.ArrayList;
-
 
 public class TrapHelper {
 
@@ -20,15 +18,14 @@ public class TrapHelper {
         };
     }
 
-
     public static ArrayList<Item> getTypeList() {
         ArrayList<Item> types = new ArrayList<>();
-            types.add(Blocks.DIRT.asItem());
-            types.add(Blocks.STONE.asItem());
-            types.add(Blocks.COBBLESTONE.asItem());
-            types.add(Blocks.SAND.asItem());
-            types.add(Blocks.STONE_BRICKS.asItem());
-            types.add(Blocks.OAK_PLANKS.asItem());
+        types.add(Blocks.DIRT.asItem());
+        types.add(Blocks.STONE.asItem());
+        types.add(Blocks.COBBLESTONE.asItem());
+        types.add(Blocks.SAND.asItem());
+        types.add(Blocks.STONE_BRICKS.asItem());
+        types.add(Blocks.OAK_PLANKS.asItem());
         return types;
     }
 }

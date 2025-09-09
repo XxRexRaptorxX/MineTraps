@@ -20,57 +20,72 @@ import xxrexraptorxx.minetraps.registry.ModBlocks;
 import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWire extends HorizontalFacingBlock {
-	public static final MapCodec<BlockBarbedWire> CODEC = BlockBarbedWire.createCodec(BlockBarbedWire::new);
+    public static final MapCodec<BlockBarbedWire> CODEC = BlockBarbedWire.createCodec(BlockBarbedWire::new);
 
-	public MapCodec<BlockBarbedWire> getCodec() {
-		return CODEC;
-	}
+    public MapCodec<BlockBarbedWire> getCodec() {
+        return CODEC;
+    }
 
-	public BlockBarbedWire(AbstractBlock.Settings settings) {
-		super(settings
-				.mapColor(MapColor.IRON_GRAY)
-				.nonOpaque()
-				.noCollision()
-				.requiresTool()
-				.strength(5.0f,10.0f)
-				.sounds(BlockSoundGroup.METAL));
+    public BlockBarbedWire(AbstractBlock.Settings settings) {
+        super(settings.mapColor(MapColor.IRON_GRAY)
+                .nonOpaque()
+                .noCollision()
+                .requiresTool()
+                .strength(5.0f, 10.0f)
+                .sounds(BlockSoundGroup.METAL));
 
-		setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
-	}
+        setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
+    }
 
-	@Override
-	protected boolean canPathfindThrough(BlockState state, NavigationType type) {
-		return false;
-	}
+    @Override
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+        return false;
+    }
 
-	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
-		entity.slowMovement(state, new Vec3d(0.25, 0.05f, 0.25));
+    @Override
+    public void onEntityCollision(
+            BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
+        entity.slowMovement(state, new Vec3d(0.25, 0.05f, 0.25));
 
-		if (!world.isClient()) {
-				if (Config.BARBED_WIRE_DESTROY_ITEMS) {
-					if (this == ModBlocks.BARBED_WIRE)
-						entity.damage((ServerWorld) world, MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BARBED_WIRE_DAMAGE);
-					if (this == ModBlocks.RAZOR_WIRE)
-						entity.damage((ServerWorld) world, MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.RAZOR_WIRE_DAMAGE);
-				} else {
-					if (entity instanceof LivingEntity) {
-						if (this == ModBlocks.BARBED_WIRE)
-							entity.damage((ServerWorld) world, MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.BARBED_WIRE_DAMAGE);
-						if (this == ModBlocks.RAZOR_WIRE)
-							entity.damage((ServerWorld) world, MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES), Config.RAZOR_WIRE_DAMAGE);
-					}
-				}
-		}
-	}
+        if (!world.isClient()) {
+            if (Config.BARBED_WIRE_DESTROY_ITEMS) {
+                if (this == ModBlocks.BARBED_WIRE)
+                    entity.damage(
+                            (ServerWorld) world,
+                            MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES),
+                            Config.BARBED_WIRE_DAMAGE);
+                if (this == ModBlocks.RAZOR_WIRE)
+                    entity.damage(
+                            (ServerWorld) world,
+                            MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES),
+                            Config.RAZOR_WIRE_DAMAGE);
+            } else {
+                if (entity instanceof LivingEntity) {
+                    if (this == ModBlocks.BARBED_WIRE)
+                        entity.damage(
+                                (ServerWorld) world,
+                                MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES),
+                                Config.BARBED_WIRE_DAMAGE);
+                    if (this == ModBlocks.RAZOR_WIRE)
+                        entity.damage(
+                                (ServerWorld) world,
+                                MineTrapsDamageTypes.of(entity.getWorld(), MineTrapsDamageTypes.SPIKES),
+                                Config.RAZOR_WIRE_DAMAGE);
+                }
+            }
+        }
+    }
 
-	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(Properties.HORIZONTAL_FACING);
-	}
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(Properties.HORIZONTAL_FACING);
+    }
 
-	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
-	}
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return super.getPlacementState(ctx)
+                .with(
+                        Properties.HORIZONTAL_FACING,
+                        ctx.getHorizontalPlayerFacing().getOpposite());
+    }
 }

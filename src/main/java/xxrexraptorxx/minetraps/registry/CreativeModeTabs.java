@@ -10,12 +10,14 @@ import net.minecraft.util.Identifier;
 import xxrexraptorxx.minetraps.main.MineTraps;
 import xxrexraptorxx.minetraps.main.References;
 
-
 public class CreativeModeTabs {
-    public static final ItemGroup MINETRAPS_TAB = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup MINETRAPS_TAB = Registry.register(
+            Registries.ITEM_GROUP,
             Identifier.of(References.MODID),
-            FabricItemGroup.builder().displayName(Text.translatable("itemGroup." + References.MODID + ".tab"))
-                    .icon(() -> new ItemStack(ModBlocks.PITFALL_TRAP.asItem())).entries((displayContext, entries) -> {
+            FabricItemGroup.builder()
+                    .displayName(Text.translatable("itemGroup." + References.MODID + ".tab"))
+                    .icon(() -> new ItemStack(ModBlocks.PITFALL_TRAP.asItem()))
+                    .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.BARBED_WIRE);
                         entries.add(ModBlocks.BARBED_WIRE_FENCE);
                         entries.add(ModBlocks.RAZOR_WIRE);
@@ -35,8 +37,8 @@ public class CreativeModeTabs {
                         entries.add(ModItems.NAILS);
                         entries.add(ModItems.TOXIN_BUCKET);
                         entries.add(ModItems.TOXIN_BOTTLE);
-
-                    }).build());
+                    })
+                    .build());
 
     public static void registerItemGroups() {
         MineTraps.LOGGER.info("Registering Item Groups for " + References.MODID);

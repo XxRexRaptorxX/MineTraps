@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "particle": "minecraft:block/deepslate_iron_ore",
-        "up":       "minecraft:block/deepslate_iron_ore",
-        "down":     "minecraft:block/deepslate_iron_ore",
-        "north":    "minecraft:block/deepslate_iron_ore",
-        "east":     "minecraft:block/deepslate_iron_ore",
-        "west":     "minecraft:block/deepslate_iron_ore",
-        "south":    "minecraft:block/deepslate_iron_ore"
-    }
+  "parent": "block/cube",
+  "textures": {
+    "particle": "minecraft:block/deepslate_iron_ore",
+    "up": "minecraft:block/deepslate_iron_ore",
+    "down": "minecraft:block/deepslate_iron_ore",
+    "north": "minecraft:block/deepslate_iron_ore",
+    "east": "minecraft:block/deepslate_iron_ore",
+    "west": "minecraft:block/deepslate_iron_ore",
+    "south": "minecraft:block/deepslate_iron_ore"
+  }
 }

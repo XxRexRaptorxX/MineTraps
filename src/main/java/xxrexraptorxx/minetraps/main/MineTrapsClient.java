@@ -1,9 +1,9 @@
 package xxrexraptorxx.minetraps.main;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.util.Identifier;
 import xxrexraptorxx.minetraps.registry.ModBlocks;
@@ -30,10 +30,12 @@ public class MineTrapsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.GHOST_BLOCK, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putFluids(BlockRenderLayer.TRANSLUCENT, ModFluids.TOXIN, ModFluids.FLOWING_TOXIN);
 
-        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.TOXIN, ModFluids.FLOWING_TOXIN, new SimpleFluidRenderHandler(
-                Identifier.of("minetraps:block/toxin_still"),
-                Identifier.of("minetraps:block/toxin_flow"),
-                0x3F7529
-        ));
+        FluidRenderHandlerRegistry.INSTANCE.register(
+                ModFluids.TOXIN,
+                ModFluids.FLOWING_TOXIN,
+                new SimpleFluidRenderHandler(
+                        Identifier.of("minetraps:block/toxin_still"),
+                        Identifier.of("minetraps:block/toxin_flow"),
+                        0x3F7529));
     }
 }

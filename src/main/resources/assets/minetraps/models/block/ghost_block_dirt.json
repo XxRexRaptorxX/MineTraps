@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "particle": "minecraft:block/dirt",
-        "up":       "minecraft:block/dirt",
-        "down":     "minecraft:block/dirt",
-        "north":    "minecraft:block/dirt",
-        "east":     "minecraft:block/dirt",
-        "west":     "minecraft:block/dirt",
-        "south":    "minecraft:block/dirt"
-    }
+  "parent": "block/cube",
+  "textures": {
+    "particle": "minecraft:block/dirt",
+    "up": "minecraft:block/dirt",
+    "down": "minecraft:block/dirt",
+    "north": "minecraft:block/dirt",
+    "east": "minecraft:block/dirt",
+    "west": "minecraft:block/dirt",
+    "south": "minecraft:block/dirt"
+  }
 }

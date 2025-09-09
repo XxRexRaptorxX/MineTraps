@@ -69,7 +69,6 @@ public class Events {
 
      */
 
-
     /**
      * Distributes the supporter rewards on first join.
      */
@@ -130,7 +129,6 @@ public class Events {
 
      */
 
-
     /**
      * Tests if a player is a supporter
      *
@@ -139,31 +137,31 @@ public class Events {
      * @return true/false
      */
     /*
-    private static boolean SupporterCheck(URL url, Player player) {
-        try {
-            Scanner scanner = new Scanner(url.openStream());
-            List<String> supporterList = scanner.tokens().toList();
+        private static boolean SupporterCheck(URL url, Player player) {
+            try {
+                Scanner scanner = new Scanner(url.openStream());
+                List<String> supporterList = scanner.tokens().toList();
 
-            for (String name: supporterList) {
-                //test if player is in supporter list
-                if (player.getName().getString().equals(name)) {
-                    return true;
+                for (String name: supporterList) {
+                    //test if player is in supporter list
+                    if (player.getName().getString().equals(name)) {
+                        return true;
+                    }
                 }
+
+                scanner.close();
+
+            } catch (MalformedURLException e) {
+                MineTraps.LOGGER.error("Supporter list URL not found! >>" + url);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-            scanner.close();
-
-        } catch (MalformedURLException e) {
-            MineTraps.LOGGER.error("Supporter list URL not found! >>" + url);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
 
-        return false;
+
     }
 
-
-}
-
-     */
+         */

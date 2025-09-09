@@ -1,13 +1,31 @@
 {
-    "variants": {
-        "type=0": { "model": "minetraps:block/troll_block" },
-        "type=1": { "model": "minetraps:block/troll_block_diamond_ore" },
-        "type=2": { "model": "minetraps:block/troll_block_emerald_ore" },
-        "type=3": { "model": "minetraps:block/troll_block_iron_ore" },
-        "type=4": { "model": "minetraps:block/troll_block_gold_ore" },
-        "type=5": { "model": "minetraps:block/troll_block_deepslate_diamond_ore" },
-        "type=6": { "model": "minetraps:block/troll_block_deepslate_emerald_ore" },
-        "type=7": { "model": "minetraps:block/troll_block_deepslate_iron_ore" },
-        "type=8": { "model": "minetraps:block/troll_block_deepslate_gold_ore" }
+  "variants": {
+    "type=0": {
+      "model": "minetraps:block/troll_block"
+    },
+    "type=1": {
+      "model": "minetraps:block/troll_block_diamond_ore"
+    },
+    "type=2": {
+      "model": "minetraps:block/troll_block_emerald_ore"
+    },
+    "type=3": {
+      "model": "minetraps:block/troll_block_iron_ore"
+    },
+    "type=4": {
+      "model": "minetraps:block/troll_block_gold_ore"
+    },
+    "type=5": {
+      "model": "minetraps:block/troll_block_deepslate_diamond_ore"
+    },
+    "type=6": {
+      "model": "minetraps:block/troll_block_deepslate_emerald_ore"
+    },
+    "type=7": {
+      "model": "minetraps:block/troll_block_deepslate_iron_ore"
+    },
+    "type=8": {
+      "model": "minetraps:block/troll_block_deepslate_gold_ore"
     }
+  }
 }

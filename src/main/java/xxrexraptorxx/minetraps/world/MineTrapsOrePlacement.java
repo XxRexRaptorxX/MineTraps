@@ -1,8 +1,7 @@
 package xxrexraptorxx.minetraps.world;
 
-import net.minecraft.world.gen.placementmodifier.*;
-
 import java.util.List;
+import net.minecraft.world.gen.placementmodifier.*;
 
 public class MineTrapsOrePlacement {
     public static List<PlacementModifier> modifiers(PlacementModifier countModifier, PlacementModifier heightModifier) {

@@ -1,13 +1,10 @@
 package xxrexraptorxx.minetraps.utils;
 
+import java.util.ArrayList;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 
-import java.util.ArrayList;
-
-
 public class TrollHelper {
-
 
     public static int getStateFromBlock(String inputBlock) {
         return switch (inputBlock) {
@@ -23,16 +20,15 @@ public class TrollHelper {
         };
     }
 
-
     public static ArrayList<Item> getTypeList() {
         ArrayList<Item> types = new ArrayList<>();
-            types.add(Blocks.DIAMOND_ORE.asItem());
-            types.add(Blocks.EMERALD_ORE.asItem());
-            types.add(Blocks.IRON_ORE.asItem());
-            types.add(Blocks.GOLD_ORE.asItem());
-            types.add(Blocks.DEEPSLATE_DIAMOND_ORE.asItem());
-            types.add(Blocks.DEEPSLATE_GOLD_ORE.asItem());
-            types.add(Blocks.DEEPSLATE_IRON_ORE.asItem());
+        types.add(Blocks.DIAMOND_ORE.asItem());
+        types.add(Blocks.EMERALD_ORE.asItem());
+        types.add(Blocks.IRON_ORE.asItem());
+        types.add(Blocks.GOLD_ORE.asItem());
+        types.add(Blocks.DEEPSLATE_DIAMOND_ORE.asItem());
+        types.add(Blocks.DEEPSLATE_GOLD_ORE.asItem());
+        types.add(Blocks.DEEPSLATE_IRON_ORE.asItem());
         return types;
     }
 }

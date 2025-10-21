@@ -1,4 +1,4 @@
-# [v.5.1.0 for MC 1.21.10](https://github.com/XxRexRaptorxX/MineTraps/compare/v.5.1.0-dev1...v.5.1.0-dev5)
+# [v.5.1.0 for MC 1.21.10](https://github.com/XxRexRaptorxX/MineTraps/compare/v.5.1.0-dev1...v.5.1.0-dev6)
 
 ## ✨ Features
 

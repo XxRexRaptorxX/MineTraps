@@ -10,17 +10,17 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockObstacle extends Block {
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 24.0D, 16.0D);
+    protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 24.0D, 16.0D);
 
 
-	public BlockObstacle(Properties properties) {
-		super(properties);
-	}
+    public BlockObstacle(Properties properties) {
+        super(properties);
+    }
 
 
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return CUSTOM_SHAPE;
-	}
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return CUSTOM_SHAPE;
+    }
 
 }

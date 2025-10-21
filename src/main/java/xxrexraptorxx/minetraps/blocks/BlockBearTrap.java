@@ -28,58 +28,63 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBearTrap extends FallingBlock {
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
-	public static final MapCodec<BlockBearTrap> CODEC = simpleCodec(BlockBearTrap::new);
+    protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
+    public static final MapCodec<BlockBearTrap> CODEC = simpleCodec(BlockBearTrap::new);
 
-	public BlockBearTrap(Properties properties) {
-		super(properties);
-	}
-
-
-	@Override
-	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return CUSTOM_SHAPE;
-	}
+    public BlockBearTrap(Properties properties) {
+        super(properties);
+    }
 
 
-	@Override
-	public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-		return Shapes.empty();
-	}
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return CUSTOM_SHAPE;
+    }
 
 
-	@Override
-	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-		return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
-	}
+    @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Shapes.empty();
+    }
 
 
-	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
-		if (entityIn instanceof LivingEntity) {
-			LivingEntity entity = (LivingEntity) entityIn;
-			if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getPath())) entity.hurt(level.damageSources().generic(), 6.0F);
-
-			entity.hurt(level.damageSources().generic(), (float) Config.getBearTrapDamage());
-			entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
-
-			if(!level.isClientSide) {
-				if(!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "." + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getPath())) level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
-				entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 5, 0, false, false, false));
-			}
-
-		}
-	}
+    @Override
+    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+        return canSupportCenter(pLevel, pPos.below(), Direction.DOWN);
+    }
 
 
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return CODEC;
-	}
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
+        if (entityIn instanceof LivingEntity) {
+            LivingEntity entity = (LivingEntity) entityIn;
+            if (!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "."
+                    + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getPath()))
+                entity.hurt(level.damageSources().generic(), 6.0F);
+
+            entity.hurt(level.damageSources().generic(), (float) Config.getBearTrapDamage());
+            entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
+
+            if (!level.isClientSide) {
+                if (!entity.getActiveEffects().toString()
+                        .contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "."
+                                + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getPath()))
+                    level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 3);
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 5, 0, false, false, false));
+            }
+
+        }
+    }
 
 
-	@Override
-	public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
-	}
+    @Override
+    protected MapCodec<? extends FallingBlock> codec() {
+        return CODEC;
+    }
+
+
+    @Override
+    public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
+    }
 }

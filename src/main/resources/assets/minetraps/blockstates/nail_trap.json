@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "minetraps:block/nail_trap" }
+  "variants": {
+    "": {
+      "model": "minetraps:block/nail_trap"
     }
+  }
 }

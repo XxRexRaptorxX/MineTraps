@@ -2,19 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "pattern": [
-  
     "XXX",
     "IOI",
     "###"
   ],
-    
   "key": {
     "#": "#c:ingots/iron",
     "I": "minecraft:redstone",
     "X": "minetraps:nails",
     "O": "minecraft:piston"
   },
-  
   "result": {
     "id": "minetraps:spikes"
   }

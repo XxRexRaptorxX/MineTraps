@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "#X#",
     "X#X",
-    "#X#" 
+    "#X#"
   ],
-    
   "key": {
     "#": "minetraps:nails",
     "X": "#c:ingots/iron"
   },
-  
   "result": {
     "id": "minetraps:barbed_wire",
     "count": 4

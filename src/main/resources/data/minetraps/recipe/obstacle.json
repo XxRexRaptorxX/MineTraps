@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "# #",
     " # ",
     "# #"
   ],
-  
   "key": {
     "#": "#c:ingots/iron"
   },
-  
   "result": {
     "id": "minetraps:obstacle",
     "count": 4

@@ -7,7 +7,6 @@
   ],
   "type": "jeed:effect_provider",
   "effect": "minecraft:nausea",
-
   "providers": [
     {
       "item": "minetraps:toxin_bottle"
@@ -16,7 +15,6 @@
       "item": "minetraps:toxin_bucket"
     }
   ],
-
   "fluid_providers": [
     "minetraps:toxin"
   ]

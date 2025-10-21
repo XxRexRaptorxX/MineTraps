@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "X#X",
     "# #",
     "X#X"
   ],
-    
   "key": {
     "X": "#c:rods/wooden",
     "#": "#c:glass_blocks/colorless"
   },
-  
   "result": {
     "id": "minetraps:ghost_block"
   }

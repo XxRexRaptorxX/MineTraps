@@ -23,12 +23,12 @@ public class TrapHelper {
 
     public static ArrayList<Item> getTypeList() {
         ArrayList<Item> types = new ArrayList<Item>();
-            types.add(Blocks.DIRT.asItem());
-            types.add(Blocks.STONE.asItem());
-            types.add(Blocks.COBBLESTONE.asItem());
-            types.add(Blocks.SAND.asItem());
-            types.add(Blocks.STONE_BRICKS.asItem());
-            types.add(Blocks.OAK_PLANKS.asItem());
+        types.add(Blocks.DIRT.asItem());
+        types.add(Blocks.STONE.asItem());
+        types.add(Blocks.COBBLESTONE.asItem());
+        types.add(Blocks.SAND.asItem());
+        types.add(Blocks.STONE_BRICKS.asItem());
+        types.add(Blocks.OAK_PLANKS.asItem());
         return types;
     }
 }

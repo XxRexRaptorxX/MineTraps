@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "particle": "minecraft:block/deepslate_gold_ore",
-        "up":       "minecraft:block/deepslate_gold_ore",
-        "down":     "minecraft:block/deepslate_gold_ore",
-        "north":    "minecraft:block/deepslate_gold_ore",
-        "east":     "minecraft:block/deepslate_gold_ore",
-        "west":     "minecraft:block/deepslate_gold_ore",
-        "south":    "minecraft:block/deepslate_gold_ore"
-    }
+  "parent": "block/cube",
+  "textures": {
+    "particle": "minecraft:block/deepslate_gold_ore",
+    "up": "minecraft:block/deepslate_gold_ore",
+    "down": "minecraft:block/deepslate_gold_ore",
+    "north": "minecraft:block/deepslate_gold_ore",
+    "east": "minecraft:block/deepslate_gold_ore",
+    "west": "minecraft:block/deepslate_gold_ore",
+    "south": "minecraft:block/deepslate_gold_ore"
+  }
 }

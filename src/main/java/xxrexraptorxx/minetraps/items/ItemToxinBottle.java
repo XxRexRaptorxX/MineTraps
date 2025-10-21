@@ -19,20 +19,13 @@ import org.jetbrains.annotations.NotNull;
 public class ItemToxinBottle extends Item {
 
     public ItemToxinBottle(Properties properties) {
-        super(properties
-                .stacksTo(4)
-                .craftRemainder(Items.GLASS_BOTTLE));
+        super(properties.stacksTo(4).craftRemainder(Items.GLASS_BOTTLE));
     }
 
     public static final FoodProperties TOXIN_BOTTLE_FOOD = new FoodProperties.Builder().build();
 
-    public static final Consumable TOXIN_BOTTLE_CONSUMABLE = Consumable.builder()
-            .consumeSeconds(1.6F)
-            .animation(ItemUseAnimation.DRINK)
-            .sound(SoundEvents.GENERIC_DRINK)
-            .soundAfterConsume(SoundEvents.GENERIC_DRINK)
-            .hasConsumeParticles(false)
-            .build();
+    public static final Consumable TOXIN_BOTTLE_CONSUMABLE = Consumable.builder().consumeSeconds(1.6F).animation(ItemUseAnimation.DRINK).sound(SoundEvents.GENERIC_DRINK)
+            .soundAfterConsume(SoundEvents.GENERIC_DRINK).hasConsumeParticles(false).build();
 
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity) {

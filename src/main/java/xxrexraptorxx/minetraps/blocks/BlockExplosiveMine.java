@@ -29,77 +29,77 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockExplosiveMine extends FallingBlock {
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
-	public static final MapCodec<BlockExplosiveMine> CODEC = simpleCodec(BlockExplosiveMine::new);
+    protected static final VoxelShape CUSTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.00D, 16.0D);
+    public static final MapCodec<BlockExplosiveMine> CODEC = simpleCodec(BlockExplosiveMine::new);
 
 
-	public BlockExplosiveMine(Properties properties) {
-		super(properties);
-	}
+    public BlockExplosiveMine(Properties properties) {
+        super(properties);
+    }
 
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return CUSTOM_SHAPE;
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return CUSTOM_SHAPE;
+    }
 
 
-	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
-		level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
+        level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
 
-		if (!level.isClientSide) {
-			if(this == ModBlocks.TOXIC_MINE.get()) {
-				AreaEffectCloud cloud = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
-				cloud.setDuration(Config.getPoisonMineCloudDuration());
-				cloud.setRadius(10);
-				//cloud.setFixedColor(0x27ae60);		//TODO
-				cloud.setWaitTime(10);
-				level.addFreshEntity(cloud);
-			}
+        if (!level.isClientSide) {
+            if (this == ModBlocks.TOXIC_MINE.get()) {
+                AreaEffectCloud cloud = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
+                cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
+                cloud.setDuration(Config.getPoisonMineCloudDuration());
+                cloud.setRadius(10);
+                // cloud.setFixedColor(0x27ae60); //TODO
+                cloud.setWaitTime(10);
+                level.addFreshEntity(cloud);
+            }
 
-			entity.hurt(level.damageSources().generic(), (float) Config.getMineDamage());
-			level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-			level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getMineExplosionRadius(), true, Level.ExplosionInteraction.TNT);
-		}
-	}
-
-
-	@Override
-	public void onBlockExploded(BlockState state, ServerLevel world, BlockPos pos, Explosion explosion) {
-		AreaEffectCloud cloud = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
-
-		if (!world.isClientSide) {
-			if (this == ModBlocks.TOXIC_MINE.get()) {
-				cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
-				cloud.setDuration(Config.getPoisonMineCloudDuration());
-				cloud.setRadius(10);
-				//cloud.setFixedColor(0x27ae60); TODO
-				cloud.setWaitTime(10);
-				world.addFreshEntity(cloud);
-			}
-
-			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-			world.explode(cloud, pos.getX(), pos.getY(), pos.getZ(), Config.getMineExplosionRadius(), true, Level.ExplosionInteraction.TNT);
-		}
-	}
+            entity.hurt(level.damageSources().generic(), (float) Config.getMineDamage());
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+            level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getMineExplosionRadius(), true, Level.ExplosionInteraction.TNT);
+        }
+    }
 
 
-	@Override
-	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-		return canSupportCenter(level, pos.below(), Direction.DOWN);
-	}
+    @Override
+    public void onBlockExploded(BlockState state, ServerLevel world, BlockPos pos, Explosion explosion) {
+        AreaEffectCloud cloud = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
+
+        if (!world.isClientSide) {
+            if (this == ModBlocks.TOXIC_MINE.get()) {
+                cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
+                cloud.setDuration(Config.getPoisonMineCloudDuration());
+                cloud.setRadius(10);
+                // cloud.setFixedColor(0x27ae60); TODO
+                cloud.setWaitTime(10);
+                world.addFreshEntity(cloud);
+            }
+
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+            world.explode(cloud, pos.getX(), pos.getY(), pos.getZ(), Config.getMineExplosionRadius(), true, Level.ExplosionInteraction.TNT);
+        }
+    }
 
 
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return CODEC;
-	}
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return canSupportCenter(level, pos.below(), Direction.DOWN);
+    }
 
 
-	@Override
-	public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
-	}
+    @Override
+    protected MapCodec<? extends FallingBlock> codec() {
+        return CODEC;
+    }
+
+
+    @Override
+    public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
+    }
 }

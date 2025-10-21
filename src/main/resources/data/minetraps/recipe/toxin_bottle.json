@@ -15,7 +15,6 @@
     "minecraft:pufferfish",
     "minecraft:fermented_spider_eye"
   ],
-
   "result": {
     "id": "minetraps:toxin_bottle"
   }

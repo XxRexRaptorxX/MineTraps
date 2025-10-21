@@ -12,10 +12,8 @@ import xxrexraptorxx.minetraps.main.References;
 public class ModFluids {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, References.MODID);
 
-    public static final DeferredHolder<Fluid,ToxinFluid> TOXIN = FLUIDS.register("toxin",
-            ToxinFluid.Source::new);
-    public static final DeferredHolder<Fluid,ToxinFluid> FLOWING_TOXIN = FLUIDS.register("toxin_flowing",
-            ToxinFluid.Flowing::new);
+    public static final DeferredHolder<Fluid, ToxinFluid> TOXIN = FLUIDS.register("toxin", ToxinFluid.Source::new);
+    public static final DeferredHolder<Fluid, ToxinFluid> FLOWING_TOXIN = FLUIDS.register("toxin_flowing", ToxinFluid.Flowing::new);
 
     static {
         for (Fluid fluid : BuiltInRegistries.FLUID) {

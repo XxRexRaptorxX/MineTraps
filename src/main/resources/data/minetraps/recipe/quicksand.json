@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "#X#",
     "X#X",
-    "#X#" 
+    "#X#"
   ],
-    
   "key": {
     "#": "#c:sands/colorless",
     "X": "#c:gravels"
   },
-  
   "result": {
     "id": "minetraps:quicksand",
     "count": 4

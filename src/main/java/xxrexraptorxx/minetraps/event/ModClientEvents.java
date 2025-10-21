@@ -31,28 +31,35 @@ public class ModClientEvents {
                 return WATER_STILL;
             }
 
+
             @Override
             public @NotNull ResourceLocation getFlowingTexture() {
                 return WATER_FLOW;
             }
+
 
             @Override
             public ResourceLocation getOverlayTexture() {
                 return WATER_OVERLAY;
             }
 
+
             @Override
             public int getTintColor() {
                 return 0x3F7529;
             }
 
+
             @Override
-            public @NotNull Vector4f modifyFogColor(@NotNull Camera camera, float partialTick, @NotNull ClientLevel level, int renderDistance, float darkenWorldAmount, @NotNull Vector4f fluidFogColor) {
+            public @NotNull Vector4f modifyFogColor(@NotNull Camera camera, float partialTick, @NotNull ClientLevel level, int renderDistance, float darkenWorldAmount,
+                    @NotNull Vector4f fluidFogColor) {
                 return new Vector4f(63f / 255f, 117f / 255f, 41f / 255f, 255f / 255f);
             }
 
+
             @Override
-            public @NotNull FogParameters modifyFogRender(@NotNull Camera camera, FogRenderer.@NotNull FogMode mode, float renderDistance, float partialTick, @NotNull FogParameters fogParameters) {
+            public @NotNull FogParameters modifyFogRender(@NotNull Camera camera, FogRenderer.@NotNull FogMode mode, float renderDistance, float partialTick,
+                    @NotNull FogParameters fogParameters) {
                 return new FogParameters(1.0f, 3.0f, FogShape.CYLINDER, 63f / 255f, 117f / 255f, 41f / 255f, 255f / 255f);
             }
 

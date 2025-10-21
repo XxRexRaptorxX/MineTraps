@@ -2,15 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "#",
     "#"
   ],
-  
   "key": {
     "#": "#c:ingots/iron"
   },
-  
   "result": {
     "id": "minetraps:nails",
     "count": 9

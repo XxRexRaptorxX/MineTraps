@@ -35,108 +35,109 @@ import javax.annotation.Nullable;
 
 public class BlockSpikes extends FallingBlock {
 
-	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	protected static final VoxelShape OM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
-	protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
-	public static final MapCodec<BlockSpikes> CODEC = simpleCodec(BlockSpikes::new);
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    protected static final VoxelShape OM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D);
+    protected static final VoxelShape OFF_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+    public static final MapCodec<BlockSpikes> CODEC = simpleCodec(BlockSpikes::new);
 
 
-	public BlockSpikes(Properties properties) {
-		super(properties);
+    public BlockSpikes(Properties properties) {
+        super(properties);
 
-		this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));
-	}
-
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return Shapes.empty();
-	}
+        this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));
+    }
 
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		if (state.getValue(POWERED)) {
-			return OM_SHAPE;
-		} else {
-			return OFF_SHAPE;
-		}
-	}
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return Shapes.empty();
+    }
 
 
-	@Override
-	public boolean canConnectRedstone(BlockState state, BlockGetter world, BlockPos pos, @Nullable Direction direction) {
-		return true;
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        if (state.getValue(POWERED)) {
+            return OM_SHAPE;
+        } else {
+            return OFF_SHAPE;
+        }
+    }
 
 
-	@Override
-	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-		return canSupportCenter(level, pos.below(), Direction.DOWN);
-	}
+    @Override
+    public boolean canConnectRedstone(BlockState state, BlockGetter world, BlockPos pos, @Nullable Direction direction) {
+        return true;
+    }
 
 
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-		pBuilder.add(POWERED);
-	}
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return canSupportCenter(level, pos.below(), Direction.DOWN);
+    }
 
 
-	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
-		if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
-			LivingEntity entity = (LivingEntity) entityIn;
-
-			entity.hurt(level.damageSources().generic(), (float) Config.getSpikesDamage());
-
-			if(this == ModBlocks.TOXIC_SPIKES.get()) entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getToxicSpikesEffectDuration(), Config.getToxicSpikesEffectAmplifier()));
-		}
-	}
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(POWERED);
+    }
 
 
-	@Nullable
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
-	}
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
+        if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
+            LivingEntity entity = (LivingEntity) entityIn;
+
+            entity.hurt(level.damageSources().generic(), (float) Config.getSpikesDamage());
+
+            if (this == ModBlocks.TOXIC_SPIKES.get())
+                entity.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getToxicSpikesEffectDuration(), Config.getToxicSpikesEffectAmplifier()));
+        }
+    }
 
 
-	@Override
-	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
-		if (!level.isClientSide) {
-			boolean flag = state.getValue(POWERED);
-
-			if (flag != level.hasNeighborSignal(pos)) {
-				if (flag) {
-					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 1.0F, 3);
-					level.scheduleTick(pos, this, 4);
-
-				} else {
-					level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
-					level.setBlock(pos, state.cycle(POWERED), 2);
-				}
-			}
-		}
-	}
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
+    }
 
 
-	@Override
-	protected MapCodec<? extends FallingBlock> codec() {
-		return CODEC;
-	}
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
+        if (!level.isClientSide) {
+            boolean flag = state.getValue(POWERED);
+
+            if (flag != level.hasNeighborSignal(pos)) {
+                if (flag) {
+                    level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 1.0F, 3);
+                    level.scheduleTick(pos, this, 4);
+
+                } else {
+                    level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 3);
+                    level.setBlock(pos, state.cycle(POWERED), 2);
+                }
+            }
+        }
+    }
 
 
-	@Override
-	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
-			level.setBlock(pos, state.cycle(POWERED), 2);
-		}
-	}
+    @Override
+    protected MapCodec<? extends FallingBlock> codec() {
+        return CODEC;
+    }
 
 
-	@Override
-	public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
-	}
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+        if (state.getValue(POWERED) && !level.hasNeighborSignal(pos)) {
+            level.setBlock(pos, state.cycle(POWERED), 2);
+        }
+    }
+
+
+    @Override
+    public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return defaultMapColor().calculateARGBColor(MapColor.Brightness.NORMAL);
+    }
 
 }

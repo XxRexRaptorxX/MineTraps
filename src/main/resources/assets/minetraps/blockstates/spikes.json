@@ -1,7 +1,10 @@
 {
-    "variants": {
-        "powered=false": { "model": "minetraps:block/spikes" },
-        "powered=true": { "model": "minetraps:block/spikes_on" }
+  "variants": {
+    "powered=false": {
+      "model": "minetraps:block/spikes"
+    },
+    "powered=true": {
+      "model": "minetraps:block/spikes_on"
     }
+  }
 }
-

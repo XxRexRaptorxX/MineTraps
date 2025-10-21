@@ -26,56 +26,57 @@ import javax.annotation.Nullable;
 
 public class BlockChestBomb extends Block {
 
-	protected static final VoxelShape CUSTOM_SHAPE = Block.box(	1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+    protected static final VoxelShape CUSTOM_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
 
-	public BlockChestBomb(Properties properties) {
-		super(properties);
-	}
+    public BlockChestBomb(Properties properties) {
+        super(properties);
+    }
 
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return CUSTOM_SHAPE;
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return CUSTOM_SHAPE;
+    }
 
 
-	@Override
-	public void onBlockExploded(BlockState state, ServerLevel level, BlockPos pos, Explosion explosion) {
-		AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+    @Override
+    public void onBlockExploded(BlockState state, ServerLevel level, BlockPos pos, Explosion explosion) {
+        AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
-		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Level.ExplosionInteraction.TNT);
-		}
-	}
-
-
-	@Override
-	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-		AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
-		level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
-		level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-
-		if(!level.isClientSide) {
-			level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getChestBombExplosionRadius(), true, Level.ExplosionInteraction.TNT);
-		}
-
-		return InteractionResult.SUCCESS;
-	}
+        if (!level.isClientSide) {
+            level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Level.ExplosionInteraction.TNT);
+        }
+    }
 
 
-	//Facing
+    @Override
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
+        level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
-	@Override
-	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(BlockStateProperties.HORIZONTAL_FACING);
-	}
+        if (!level.isClientSide) {
+            level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getChestBombExplosionRadius(), true, Level.ExplosionInteraction.TNT);
+        }
+
+        return InteractionResult.SUCCESS;
+    }
 
 
-	@Nullable
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
-	}
+    // Facing
+
+
+    @Override
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.HORIZONTAL_FACING);
+    }
+
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
+    }
 }

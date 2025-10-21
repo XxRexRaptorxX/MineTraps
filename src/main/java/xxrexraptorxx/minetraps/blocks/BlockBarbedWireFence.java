@@ -30,101 +30,111 @@ import xxrexraptorxx.minetraps.utils.Config;
 
 public class BlockBarbedWireFence extends CrossCollisionBlock {
 
-	public static final MapCodec<BlockBarbedWireFence> CODEC = simpleCodec(BlockBarbedWireFence::new);
+    public static final MapCodec<BlockBarbedWireFence> CODEC = simpleCodec(BlockBarbedWireFence::new);
 
 
-	public BlockBarbedWireFence(Properties properties) {
-		super(1.0F, 16.0F, 1.0F, 16.0F, 24.0F, properties);
+    public BlockBarbedWireFence(Properties properties) {
+        super(1.0F, 16.0F, 1.0F, 16.0F, 24.0F, properties);
 
-		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
-	}
-
-
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		BlockGetter blockgetter = context.getLevel();
-		BlockPos blockpos = context.getClickedPos();
-		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
-		BlockPos blockpos1 = blockpos.north();
-		BlockPos blockpos2 = blockpos.south();
-		BlockPos blockpos3 = blockpos.west();
-		BlockPos blockpos4 = blockpos.east();
-		BlockState blockstate = blockgetter.getBlockState(blockpos1);
-		BlockState blockstate1 = blockgetter.getBlockState(blockpos2);
-		BlockState blockstate2 = blockgetter.getBlockState(blockpos3);
-		BlockState blockstate3 = blockgetter.getBlockState(blockpos4);
-		return this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(blockstate, blockstate.isFaceSturdy(blockgetter, blockpos1, Direction.SOUTH)))).setValue(SOUTH, Boolean.valueOf(this.connectsTo(blockstate1, blockstate1.isFaceSturdy(blockgetter, blockpos2, Direction.NORTH)))).setValue(WEST, Boolean.valueOf(this.connectsTo(blockstate2, blockstate2.isFaceSturdy(blockgetter, blockpos3, Direction.EAST)))).setValue(EAST, Boolean.valueOf(this.connectsTo(blockstate3, blockstate3.isFaceSturdy(blockgetter, blockpos4, Direction.WEST)))).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
-	}
+        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false))
+                .setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
+    }
 
 
-	@Override
-	public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
-		if ((Boolean)state.getValue(WATERLOGGED)) {
-			scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-		}
-
-		return direction.getAxis().isHorizontal() ? (BlockState)state.setValue((Property)PROPERTY_BY_DIRECTION.get(direction), this.connectsTo(neighborState, neighborState.isFaceSturdy(level, pos, direction.getOpposite()))) : super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
-	}
-
-
-	@Override
-	public VoxelShape getVisualShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-		return Shapes.empty();
-	}
-
-
-	@Override
-	public boolean skipRendering(BlockState state, BlockState state2, Direction direction) {
-		if (state2.is(this)) {
-			if (!direction.getAxis().isHorizontal()) {
-				return true;
-			}
-
-			if (state.getValue(PROPERTY_BY_DIRECTION.get(direction)) && state2.getValue(PROPERTY_BY_DIRECTION.get(direction.getOpposite()))) {
-				return true;
-			}
-		}
-
-		return super.skipRendering(state, state2, direction);
-	}
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockGetter blockgetter = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        BlockPos blockpos1 = blockpos.north();
+        BlockPos blockpos2 = blockpos.south();
+        BlockPos blockpos3 = blockpos.west();
+        BlockPos blockpos4 = blockpos.east();
+        BlockState blockstate = blockgetter.getBlockState(blockpos1);
+        BlockState blockstate1 = blockgetter.getBlockState(blockpos2);
+        BlockState blockstate2 = blockgetter.getBlockState(blockpos3);
+        BlockState blockstate3 = blockgetter.getBlockState(blockpos4);
+        return this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(blockstate, blockstate.isFaceSturdy(blockgetter, blockpos1, Direction.SOUTH))))
+                .setValue(SOUTH, Boolean.valueOf(this.connectsTo(blockstate1, blockstate1.isFaceSturdy(blockgetter, blockpos2, Direction.NORTH))))
+                .setValue(WEST, Boolean.valueOf(this.connectsTo(blockstate2, blockstate2.isFaceSturdy(blockgetter, blockpos3, Direction.EAST))))
+                .setValue(EAST, Boolean.valueOf(this.connectsTo(blockstate3, blockstate3.isFaceSturdy(blockgetter, blockpos4, Direction.WEST))))
+                .setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+    }
 
 
-	public final boolean connectsTo(BlockState state, boolean flag) {
-		return !isExceptionForConnection(state) && flag || state.getBlock() instanceof IronBarsBlock || state.getBlock() instanceof BlockBarbedWireFence || state.is(BlockTags.WALLS);
-	}
+    @Override
+    public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos,
+            BlockState neighborState, RandomSource random) {
+        if ((Boolean) state.getValue(WATERLOGGED)) {
+            scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
+        return direction.getAxis().isHorizontal()
+                ? (BlockState) state.setValue((Property) PROPERTY_BY_DIRECTION.get(direction),
+                        this.connectsTo(neighborState, neighborState.isFaceSturdy(level, pos, direction.getOpposite())))
+                : super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
+    }
 
 
-	@Override
-	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
-		state.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
-	}
+    @Override
+    public VoxelShape getVisualShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+        return Shapes.empty();
+    }
 
 
-	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
-		entity.makeStuckInBlock(state, new Vec3(0.25D, (double)0.05F, 0.25D));
+    @Override
+    public boolean skipRendering(BlockState state, BlockState state2, Direction direction) {
+        if (state2.is(this)) {
+            if (!direction.getAxis().isHorizontal()) {
+                return true;
+            }
 
-		if (!level.isClientSide) {
-			if (Config.getBarbedWireDestroyItems()) {
-				entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
+            if (state.getValue(PROPERTY_BY_DIRECTION.get(direction)) && state2.getValue(PROPERTY_BY_DIRECTION.get(direction.getOpposite()))) {
+                return true;
+            }
+        }
 
-			} else {
-				if (entity instanceof LivingEntity) {
-					entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
-				}
-			}
-		}
-	}
-
-
-	@Override
-	protected MapCodec<? extends CrossCollisionBlock> codec() {
-		return CODEC;
-	}
+        return super.skipRendering(state, state2, direction);
+    }
 
 
-	@Override
-	public boolean isPathfindable(BlockState state, PathComputationType type) {
-		return false;
-	}
+    public final boolean connectsTo(BlockState state, boolean flag) {
+        return !isExceptionForConnection(state) && flag || state.getBlock() instanceof IronBarsBlock || state.getBlock() instanceof BlockBarbedWireFence
+                || state.is(BlockTags.WALLS);
+    }
+
+
+    @Override
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
+        state.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
+    }
+
+
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
+        entity.makeStuckInBlock(state, new Vec3(0.25D, (double) 0.05F, 0.25D));
+
+        if (!level.isClientSide) {
+            if (Config.getBarbedWireDestroyItems()) {
+                entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
+
+            } else {
+                if (entity instanceof LivingEntity) {
+                    entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
+                }
+            }
+        }
+    }
+
+
+    @Override
+    protected MapCodec<? extends CrossCollisionBlock> codec() {
+        return CODEC;
+    }
+
+
+    @Override
+    public boolean isPathfindable(BlockState state, PathComputationType type) {
+        return false;
+    }
 }

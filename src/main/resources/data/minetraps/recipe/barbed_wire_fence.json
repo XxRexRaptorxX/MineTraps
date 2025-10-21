@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "X#X",
     "X#X"
   ],
-    
   "key": {
     "#": "minetraps:barbed_wire",
     "X": "#c:ingots/iron"
   },
-  
   "result": {
     "id": "minetraps:barbed_wire_fence",
     "count": 3

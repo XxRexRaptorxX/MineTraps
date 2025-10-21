@@ -8,7 +8,6 @@
     "minecraft:glass_bottle",
     "minecraft:glass_bottle"
   ],
-
   "result": {
     "id": "minetraps:toxin_bottle",
     "count": 4

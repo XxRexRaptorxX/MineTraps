@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "###",
     "###",
     "###"
   ],
-  
   "key": {
     "#": "minetraps:nails"
   },
-  
   "result": {
     "id": "minetraps:nail_trap"
   }

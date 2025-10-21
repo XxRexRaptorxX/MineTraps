@@ -5,7 +5,6 @@
     "minetraps:toxin_bottle",
     "minetraps:explosive_mine"
   ],
-
   "result": {
     "id": "minetraps:toxic_mine"
   }

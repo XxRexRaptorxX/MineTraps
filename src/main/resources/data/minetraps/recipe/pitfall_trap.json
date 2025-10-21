@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     "###",
     "###",
     "###"
   ],
-  
   "key": {
     "#": "#c:rods/wooden"
   },
-  
   "result": {
     "id": "minetraps:pitfall_trap"
   }

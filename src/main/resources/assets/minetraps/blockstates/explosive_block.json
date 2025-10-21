@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "minetraps:block/explosive_block" }
+  "variants": {
+    "": {
+      "model": "minetraps:block/explosive_block"
     }
+  }
 }

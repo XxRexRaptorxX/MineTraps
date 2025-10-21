@@ -29,40 +29,46 @@ import xxrexraptorxx.minetraps.registry.ModItems;
 
 import java.util.Optional;
 
-public abstract class ToxinFluid
-extends FlowingFluid {
+public abstract class ToxinFluid extends FlowingFluid {
 
     @Override
     public @NotNull Fluid getFlowing() {
         return ModFluids.FLOWING_TOXIN.get();
     }
 
+
     @Override
     public @NotNull Fluid getSource() {
         return ModFluids.TOXIN.get();
     }
+
 
     @Override
     public @NotNull Item getBucket() {
         return ModItems.TOXIN_BUCKET.get();
     }
 
+
     @Override
     public void animateTick(@NotNull Level level, @NotNull BlockPos blockPos, FluidState fluidState, @NotNull RandomSource randomSource) {
         if (!fluidState.isSource() && !fluidState.getValue(FALLING)) {
             if (randomSource.nextInt(64) == 0) {
-                level.playLocalSound((double)blockPos.getX() + 0.5, (double)blockPos.getY() + 0.5, (double)blockPos.getZ() + 0.5, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, randomSource.nextFloat() * 0.25f + 0.75f, randomSource.nextFloat() + 0.5f, false);
+                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS,
+                        randomSource.nextFloat() * 0.25f + 0.75f, randomSource.nextFloat() + 0.5f, false);
 
             }
         } else if (randomSource.nextInt(10) == 0) {
-            level.addParticle(ParticleTypes.UNDERWATER, (double)blockPos.getX() + randomSource.nextDouble(), (double)blockPos.getY() + randomSource.nextDouble(), (double)blockPos.getZ() + randomSource.nextDouble(), 0.0, 0.0, 0.0);
+            level.addParticle(ParticleTypes.UNDERWATER, (double) blockPos.getX() + randomSource.nextDouble(), (double) blockPos.getY() + randomSource.nextDouble(),
+                    (double) blockPos.getZ() + randomSource.nextDouble(), 0.0, 0.0, 0.0);
         }
     }
+
 
     @Override
     public @NotNull FluidType getFluidType() {
         return ModFluidTypes.TOXIN_FLUID_TYPE.value();
     }
+
 
     @javax.annotation.Nullable
     @Override
@@ -70,10 +76,12 @@ extends FlowingFluid {
         return ParticleTypes.DRIPPING_WATER;
     }
 
+
     @Override
     protected boolean canConvertToSource(@NotNull ServerLevel serverLevel) {
         return false;
     }
+
 
     @Override
     protected void beforeDestroyingBlock(@NotNull LevelAccessor level, @NotNull BlockPos pos, BlockState state) {
@@ -81,40 +89,48 @@ extends FlowingFluid {
         Block.dropResources(state, level, pos, blockentity);
     }
 
+
     @Override
     public int getSlopeFindDistance(@NotNull LevelReader level) {
         return 4;
     }
+
 
     @Override
     public @NotNull BlockState createLegacyBlock(@NotNull FluidState state) {
         return ModBlocks.TOXIN.get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
     }
 
+
     @Override
     public boolean isSame(@NotNull Fluid fluid) {
         return fluid == ModFluids.TOXIN.get() || fluid == ModFluids.FLOWING_TOXIN.get();
     }
+
 
     @Override
     public int getDropOff(@NotNull LevelReader level) {
         return 2;
     }
 
+
     @Override
     public int getTickDelay(@NotNull LevelReader levelReader) {
         return 5;
     }
+
 
     @Override
     public boolean canBeReplacedWith(@NotNull FluidState fluidState, @NotNull BlockGetter blockReader, @NotNull BlockPos pos, @NotNull Fluid fluid, @NotNull Direction direction) {
         return direction == Direction.DOWN && !fluid.is(FluidTags.WATER);
     }
 
+
     @Override
     protected float getExplosionResistance() {
         return 100.0F;
     }
+
 
     @Override
     public @NotNull Optional<SoundEvent> getPickupSound() {
@@ -128,10 +144,12 @@ extends FlowingFluid {
             builder.add(LEVEL);
         }
 
+
         @Override
         public int getAmount(FluidState state) {
             return state.getValue(LEVEL);
         }
+
 
         @Override
         public boolean isSource(@NotNull FluidState state) {
@@ -144,6 +162,7 @@ extends FlowingFluid {
         public int getAmount(@NotNull FluidState state) {
             return 8;
         }
+
 
         @Override
         public boolean isSource(@NotNull FluidState state) {

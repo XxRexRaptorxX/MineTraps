@@ -7,7 +7,6 @@
   ],
   "type": "jeed:effect_provider",
   "effect": "minecraft:poison",
-
   "providers": [
     {
       "item": "minetraps:toxin_bottle"
@@ -25,7 +24,6 @@
       "item": "minetraps:poison_mine"
     }
   ],
-
   "fluid_providers": [
     "minetraps:toxin"
   ]

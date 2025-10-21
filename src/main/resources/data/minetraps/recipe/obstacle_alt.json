@@ -11,16 +11,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-
     "# #",
     " # ",
     "# #"
   ],
-
   "key": {
     "#": "#c:rods/iron"
   },
-
   "result": {
     "id": "minetraps:obstacle",
     "count": 8

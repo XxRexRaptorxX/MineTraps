@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-  
     " # ",
     "# #",
     " # "
   ],
-  
   "key": {
     "#": "minetraps:barbed_wire"
   },
-  
   "result": {
     "id": "minetraps:razor_wire"
   }

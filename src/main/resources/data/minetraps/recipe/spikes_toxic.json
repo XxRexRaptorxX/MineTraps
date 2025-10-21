@@ -2,10 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "redstone",
   "ingredients": [
-      "minetraps:toxin_bottle",
-      "minetraps:spikes"
+    "minetraps:toxin_bottle",
+    "minetraps:spikes"
   ],
-
   "result": {
     "id": "minetraps:spikes_toxic"
   }

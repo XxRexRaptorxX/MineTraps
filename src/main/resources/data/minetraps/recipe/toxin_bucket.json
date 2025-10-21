@@ -2,7 +2,6 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-
     "minecraft:water_bucket",
     "minecraft:rotten_flesh",
     "minecraft:rotten_flesh",
@@ -13,7 +12,6 @@
     "minecraft:fermented_spider_eye",
     "minecraft:fermented_spider_eye"
   ],
-
   "result": {
     "id": "minetraps:toxin_bucket"
   }

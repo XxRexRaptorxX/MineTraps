@@ -1,12 +1,12 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "particle": "minetraps:block/pitfall_trap_planks",
-        "up": "minecraft:block/oak_planks",
-        "down": "minetraps:block/pitfall_trap_planks",
-        "north": "minetraps:block/pitfall_trap_planks",
-        "east": "minetraps:block/pitfall_trap_planks",
-        "west": "minetraps:block/pitfall_trap_planks",
-        "south": "minetraps:block/pitfall_trap_planks"
-    }
+  "parent": "block/cube",
+  "textures": {
+    "particle": "minetraps:block/pitfall_trap_planks",
+    "up": "minecraft:block/oak_planks",
+    "down": "minetraps:block/pitfall_trap_planks",
+    "north": "minetraps:block/pitfall_trap_planks",
+    "east": "minetraps:block/pitfall_trap_planks",
+    "west": "minetraps:block/pitfall_trap_planks",
+    "south": "minetraps:block/pitfall_trap_planks"
+  }
 }

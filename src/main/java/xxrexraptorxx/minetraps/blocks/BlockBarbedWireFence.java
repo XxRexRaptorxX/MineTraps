@@ -111,10 +111,10 @@ public class BlockBarbedWireFence extends CrossCollisionBlock {
 
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean p_451772_) {
         entity.makeStuckInBlock(state, new Vec3(0.25D, (double) 0.05F, 0.25D));
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             if (Config.getBarbedWireDestroyItems()) {
                 entity.hurt(level.damageSources().generic(), (float) Config.getBarbedWireFenceDamage());
 

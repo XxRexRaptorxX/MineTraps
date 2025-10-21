@@ -45,7 +45,7 @@ public class BlockChestBomb extends Block {
         AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), 3.0F, true, Level.ExplosionInteraction.TNT);
         }
     }
@@ -57,7 +57,7 @@ public class BlockChestBomb extends Block {
         level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getChestBombExplosionRadius(), true, Level.ExplosionInteraction.TNT);
         }
 

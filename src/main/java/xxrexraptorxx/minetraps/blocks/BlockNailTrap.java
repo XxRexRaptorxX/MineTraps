@@ -53,8 +53,8 @@ public class BlockNailTrap extends FallingBlock {
 
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
-        if (!level.isClientSide && !entityIn.isCrouching()) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier, boolean p_451772_) {
+        if (!level.isClientSide() && !entityIn.isCrouching()) {
             if (entityIn instanceof LivingEntity) {
                 LivingEntity entity = (LivingEntity) entityIn;
 

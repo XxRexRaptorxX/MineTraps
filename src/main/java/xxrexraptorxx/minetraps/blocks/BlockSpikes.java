@@ -83,8 +83,8 @@ public class BlockSpikes extends FallingBlock {
 
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
-        if (entityIn instanceof LivingEntity && !level.isClientSide && state.getValue(POWERED)) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier, boolean p_451772_) {
+        if (entityIn instanceof LivingEntity && !level.isClientSide() && state.getValue(POWERED)) {
             LivingEntity entity = (LivingEntity) entityIn;
 
             entity.hurt(level.damageSources().generic(), (float) Config.getSpikesDamage());
@@ -104,7 +104,7 @@ public class BlockSpikes extends FallingBlock {
 
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             boolean flag = state.getValue(POWERED);
 
             if (flag != level.hasNeighborSignal(pos)) {

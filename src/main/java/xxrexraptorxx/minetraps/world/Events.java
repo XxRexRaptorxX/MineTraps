@@ -14,7 +14,7 @@ import xxrexraptorxx.minetraps.registry.ModBlocks;
 
 import java.util.List;
 
-@EventBusSubscriber(modid = References.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = References.MODID)
 public class Events {
 
 
@@ -25,16 +25,16 @@ public class Events {
         List<Component> list = event.getToolTip();
 
         if (BuiltInRegistries.BLOCK.getKey(ModBlocks.GHOST_BLOCK.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "ghost.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setDescComponent(References.MODID, "ghost", ChatFormatting.GRAY));
 
         } else if (BuiltInRegistries.BLOCK.getKey(ModBlocks.PITFALL_TRAP.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "pitfall.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setDescComponent(References.MODID, "pitfall", ChatFormatting.GRAY));
 
         } else if (BuiltInRegistries.BLOCK.getKey(ModBlocks.PITFALL_TRAP.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "spike.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setDescComponent(References.MODID, "spike", ChatFormatting.GRAY));
 
         } else if (BuiltInRegistries.BLOCK.getKey(ModBlocks.PITFALL_TRAP.get()).getPath().equals(BuiltInRegistries.ITEM.getKey(item).getPath())) {
-            list.add(FormattingHelper.setModLangComponent("message", References.MODID, "troll.desc").withStyle(ChatFormatting.GRAY));
+            list.add(FormattingHelper.setDescComponent(References.MODID, "troll", ChatFormatting.GRAY));
         }
     }
 

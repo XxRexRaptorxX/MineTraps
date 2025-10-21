@@ -45,10 +45,10 @@ public class BlockExplosiveMine extends FallingBlock {
 
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean p_451772_) {
         level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             if (this == ModBlocks.TOXIC_MINE.get()) {
                 AreaEffectCloud cloud = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
                 cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
@@ -70,7 +70,7 @@ public class BlockExplosiveMine extends FallingBlock {
     public void onBlockExploded(BlockState state, ServerLevel world, BlockPos pos, Explosion explosion) {
         AreaEffectCloud cloud = new AreaEffectCloud(world, pos.getX(), pos.getY(), pos.getZ());
 
-        if (!world.isClientSide) {
+        if (!world.isClientSide()) {
             if (this == ModBlocks.TOXIC_MINE.get()) {
                 cloud.addEffect(new MobEffectInstance(MobEffects.POISON, Config.getPoisonMineEffectDuration(), Config.getPoisonMineEffectAmplifier()));
                 cloud.setDuration(Config.getPoisonMineCloudDuration());

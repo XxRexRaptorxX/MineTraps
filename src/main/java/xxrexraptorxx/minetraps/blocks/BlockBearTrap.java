@@ -55,7 +55,7 @@ public class BlockBearTrap extends FallingBlock {
 
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier, boolean p_451772_) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity entity = (LivingEntity) entityIn;
             if (!entity.getActiveEffects().toString().contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "."
@@ -65,7 +65,7 @@ public class BlockBearTrap extends FallingBlock {
             entity.hurt(level.damageSources().generic(), (float) Config.getBearTrapDamage());
             entity.makeStuckInBlock(state, new Vec3(0.1D, 0.25D, 0.1D));
 
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 if (!entity.getActiveEffects().toString()
                         .contains(BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getNamespace() + "."
                                 + BuiltInRegistries.MOB_EFFECT.getKey(MobEffects.SLOWNESS.value()).getPath()))

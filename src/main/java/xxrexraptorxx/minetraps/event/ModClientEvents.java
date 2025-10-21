@@ -1,10 +1,9 @@
 package xxrexraptorxx.minetraps.event;
 
-import com.mojang.blaze3d.shaders.FogShape;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.FogParameters;
-import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.client.renderer.fog.FogData;
+import net.minecraft.client.renderer.fog.environment.FogEnvironment;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,11 +11,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 import xxrexraptorxx.minetraps.fluids.ModFluidTypes;
 import xxrexraptorxx.minetraps.main.References;
 
-@EventBusSubscriber(value = Dist.CLIENT, modid = References.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(value = Dist.CLIENT, modid = References.MODID)
 public class ModClientEvents {
 
     @SubscribeEvent
@@ -58,9 +58,9 @@ public class ModClientEvents {
 
 
             @Override
-            public @NotNull FogParameters modifyFogRender(@NotNull Camera camera, FogRenderer.@NotNull FogMode mode, float renderDistance, float partialTick,
-                    @NotNull FogParameters fogParameters) {
-                return new FogParameters(1.0f, 3.0f, FogShape.CYLINDER, 63f / 255f, 117f / 255f, 41f / 255f, 255f / 255f);
+            public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+                fogData.environmentalStart = 0.125F;
+                fogData.environmentalEnd = 5.0F;
             }
 
         }, ModFluidTypes.TOXIN_FLUID_TYPE);

@@ -33,9 +33,9 @@ public class BlockBarbedWire extends HalfTransparentBlock {
 
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean p_451772_) {
         entity.makeStuckInBlock(state, new Vec3(0.25D, (double) 0.05F, 0.25D));
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             if (Config.getBarbedWireDestroyItems()) {
                 if (this == ModBlocks.BARBED_WIRE.get()) entity.hurt(level.damageSources().generic(), Config.getBarbedWireDamage());
                 if (this == ModBlocks.RAZOR_WIRE.get()) entity.hurt(level.damageSources().generic(), Config.getRazorWireDamage());

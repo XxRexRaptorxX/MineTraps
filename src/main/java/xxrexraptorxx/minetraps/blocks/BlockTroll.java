@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -62,19 +63,19 @@ public class BlockTroll extends Block {
         AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getExplosiveBlockRadius(), true, Level.ExplosionInteraction.TNT);
         }
     }
 
 
     @Override
-    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
+    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, ItemStack toolStack, boolean willHarvest, FluidState fluid) {
         AreaEffectCloud dummy = new AreaEffectCloud(level, pos.getX(), pos.getY(), pos.getZ());
         level.playSound((Player) null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 3);
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             level.explode(dummy, pos.getX(), pos.getY(), pos.getZ(), (float) Config.getExplosiveBlockRadius(), true, Level.ExplosionInteraction.TNT);
         }
 

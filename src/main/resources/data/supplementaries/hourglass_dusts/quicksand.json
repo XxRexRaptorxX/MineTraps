@@ -1,0 +1,7 @@
+{
+  "items": [
+    "minetraps:quicksand"
+  ],
+  "duration": 40,
+  "texture": "minetraps:block/quicksand"
+}

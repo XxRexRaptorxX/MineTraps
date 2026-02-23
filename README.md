@@ -3,7 +3,7 @@
   <a href="https://www.curseforge.com/minecraft/mc-mods/minetraps-fabric"><img src="http://cf.way2muchnoise.eu/short_1039596_Fabric.svg?badge_style=flat" alt="Curseforge"></a> 
   <a href="https://modrinth.com/mod/minetraps"><img src="https://img.shields.io/modrinth/dt/minetraps?logo=modrinth&label=&suffix=%20&style=flat&color=242629&labelColor=5ca424&logoColor=1c1c1c" alt="Modrinth"></a>
   <a href="https://www.curseforge.com/minecraft/mc-mods/minetraps"><img src="https://cf.way2muchnoise.eu/versions/311546(266fff).svg?badge_style=flat" alt="Supported Versions"></a>
-  <a href="https://discord.gg/hmaD7Se"><img src="https://img.shields.io/discord/523112426913267713?color=282828&logo=discord&style=flat&label=&labelColor=B6BCEA" alt="Discord"></a>
+  <a href="https://discord.gg/ycRJJk8EXV"><img src="https://img.shields.io/discord/523112426913267713?color=282828&logo=discord&style=flat&label=&labelColor=B6BCEA" alt="Discord"></a>
 </p>
 <p align="center">
   <img src="https://github.com/XxRexRaptorxX/MineTraps/blob/main/src/main/resources/logo.png?raw=true" alt="logo" width="400"/><br>
@@ -16,6 +16,8 @@
 This mod adds several new traps and blocks like mines, bear traps, nail traps, toxic mines, spikes and more!
 
 Build your own bunker or save your base with different types of barbed wire and obstacles!
+
+Do you use (Neo-)Forge? Then use [this version](https://www.curseforge.com/minecraft/mc-mods/minetraps)!
 
 <p align="center">
   <img src="https://github.com/XxRexRaptorxX/General/blob/main/page_decorations/line.png?raw=true" alt="line" width="2000"/>
